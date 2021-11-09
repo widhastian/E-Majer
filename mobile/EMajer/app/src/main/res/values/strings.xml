@@ -1,0 +1,29 @@
+<resources>
+    <string name="app_name">E-Majer</string>
+
+    <string name="home">Home</string>
+    <string name="mading">Mading</string>
+    <string name="account">Account</string>
+    <string name="sign_in">Sign In</string>
+    <string name="email_addre">Email Address</string>
+    <string name="password">Password</string>
+    <string name="forgot_pass">Forgot Password ?</string>
+    <string name="i_m_a_new_u">I\'m a new user. Sign Up</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="nama_penggu">Nama Pengguna</string>
+    <string name="confirm_pas">Confirm Password</string>
+    <string name="kelas">Kelas</string>
+    <string name="already_hav">Already have an account ?. Sign In</string>
+    <string name="masuk">Masuk</string>
+    <string name="daftar">Daftar</string>
+    <string name="masuk_sebag">Masuk sebagai</string>
+    <string name="pengurus_ke">Pengurus Kelas</string>
+    <string name="anggota">Anggota</string>
+    <string name="daftar_seba">Daftar sebagai</string>
+    <string name="e_majer">E-Majer</string>
+    <string name="selamat_dat">Selamat Datang di E-Majer, Widha!</string>
+    <string name="jumlah_uang">Jumlah Uang Kas</string>
+    <string name="value_kas">Rp 452.500;-</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>

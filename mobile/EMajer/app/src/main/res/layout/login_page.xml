@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <View
+        android:id="@+id/bg_signin"
+        android:layout_width="428dp"
+        android:layout_height="557dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="280dp"
+        android:background="@drawable/bg_signin"/>
+    <ImageView
+        android:id="@+id/logo_login"
+        android:layout_width="270dp"
+        android:layout_height="270dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="11dp"
+        android:src="@drawable/logo_login"/>
+
+    <!-- Inputan Email -->
+    <View
+        android:id="@+id/inputan_email"
+        android:layout_width="322dp"
+        android:layout_height="46dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="407dp"
+        android:background="@drawable/bg_input_email" />
+
+    <!-- Inputan Password -->
+    <View
+        android:id="@+id/inputan_passwd"
+        android:layout_width="322dp"
+        android:layout_height="46dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="505dp"
+        android:background="@drawable/bg_input_password" />
+
+    <!-- Button Sign In -->
+    <View
+        android:id="@+id/bg_button_signin"
+        android:layout_width="322dp"
+        android:layout_height="46dp"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="622dp"
+        android:background="@drawable/bg_button_signin" />
+
+    <!-- Sign In -->
+    <TextView
+        android:id="@+id/sign_in"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="309dp"
+        android:layout_centerHorizontal="true"
+        android:fontFamily="@font/poppins_bold"
+        android:gravity="top"
+        android:text="@string/sign_in"
+        android:textColor="@color/black"
+        android:textSize="20dp"
+        android:textStyle="bold" />
+
+    <!-- Email Address -->
+    <TextView
+        android:id="@+id/email_addre"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="45dp"
+        android:layout_marginTop="377dp"
+        android:fontFamily="@font/poppins"
+        android:gravity="top"
+        android:text="@string/email_addre"
+        android:textAppearance="@style/email_addre" />
+
+    <!-- Password -->
+    <TextView
+        android:id="@+id/password"
+        android:layout_width="68dp"
+        android:layout_height="21dp"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="45dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="475dp"
+        android:fontFamily="@font/poppins"
+        android:text="@string/password"
+        android:textAppearance="@style/password"
+        android:gravity="top" />
+
+    <!-- Forgot Password ? -->
+    <TextView
+        android:id="@+id/forgot_pass"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="248dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="579dp"
+        android:fontFamily="@font/poppins"
+        android:text="@string/forgot_pass"
+        android:textAppearance="@style/forgot_pass"
+        android:gravity="top"
+        />
+
+    <!-- Sign In -->
+    <TextView
+        android:id="@+id/button_sign_in"
+        android:layout_width="53dp"
+        android:layout_height="24dp"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="632dp"
+        android:fontFamily="@font/poppins"
+        android:text="@string/sign_in"
+        android:textAppearance="@style/sign_in"
+        android:gravity="top"
+        />
+
+    <!-- I’m a new user. Sign Up -->
+    <TextView
+        android:id="@+id/i_m_a_new_u"
+        android:layout_width="161dp"
+        android:layout_height="21dp"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="134dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="690dp"
+        android:text="@string/i_m_a_new_u"
+        android:textAppearance="@style/i_m_a_new_u"
+        android:gravity="top"
+        />
+</RelativeLayout>
