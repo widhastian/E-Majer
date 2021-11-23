@@ -24,7 +24,7 @@
 
 <body id="daftar2">
     <p class="container">
-    <div class="indikator">
+    <div class="indikator" style="padding-left: 37%;">
         <div style="display: block;">
             <div class="elips">1</div>
             <p class="verified">Email</p>
@@ -43,14 +43,14 @@
     <p class="p1">Mendaftar sebagai Pengurus kelas</p>
     <button class="btn-goggle"><img src="assets/gambar/icon google.png"> Lanjutkan dengan Google</button>
     <p class="p2">Atau</p>
-    <form action="" method="POST">
-        <input type="text" class="email" placeholder="Email"><br>
-        <input type="text" class="input" placeholder="Username"><br>
-        <input type="password" class="input" placeholder="password"><br>
-        <input type="password" class="input" placeholder="Konfirm password"><br>
-        <input type="text" class="input" placeholder="Kode kelas(Opsional)"><br>
-        <input type="submit" value="Selanjutnya">
-        <p class="register">Belum punya akun? <a href="">Daftar</a></p>
+    <form action="register(admin)-proses.php" method="POST" onsubmit="return register()">
+        <input type="text" style="height:35px" class="input" id="email" name="email" placeholder="Email"><br>
+        <input type="text" style="height:35px" class="input" id="username" name="username" placeholder="Username"><br>
+        <input type="password" style="height:35px" class="input" id="password" name="password" placeholder="password"><br>
+        <input type="password" style="height:35px" class="input" id="cpassword" placeholder="Konfirm password"><br>
+        <input type="text" style="height:35px" class="input" id="kelas" name="kelas" placeholder="Kode kelas(Opsional)"><br>
+        <input type="submit" value="Selanjutnya" style="height:35px">
+        <p class="register">Sudah punya akun? <a href="login.php">Masuk</a></p>
     </form>
     </div>
     <script>
@@ -62,6 +62,34 @@
                     input[j++].style.outline = "none";
                 }
                 input[i].style.outline = "2px solid #FEBE10";
+            }
+
+            var username = document.getElementById('username');
+            var email = document.getElementById('email');
+            var password = document.getElementById('password');
+            var cpassword = document.getElementById('cpassword');
+            var kode = document.getElementById('kelas');
+
+            function register() {
+                if (email.value == "") {
+                    alert("Email Tidak Boleh Kosong");
+                    return false;
+                } else if (username.value == "") {
+                    alert("Username Tidak Boleh Kosong");
+                    return false;
+                } else if (password.value == "") {
+                    alert("Password Tidak Boleh Kosong");
+                    return false;
+                } else if (cpassword.value == "") {
+                    alert("Konfirmasi Password Tidak Boleh Kosong");
+                    return false;
+                } else if (cpassword.value != password.value) {
+                    alert("Masukkan Password yang benar");
+                    return false;
+                } else if (kode.value == "") {
+                    alert("Kode Kelas Tidak Boleh Kosong");
+                    return false;
+                }
             }
         }
     </script>
