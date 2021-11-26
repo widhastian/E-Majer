@@ -753,8 +753,9 @@
   .home-section{
     position: relative;
     background: #f8f8f8;
-    height: 100vh;
+    height: 100%;
     left: 260px;
+    padding-bottom: 3px;
     width: calc(100% - 260px);
     transition: all 0.5s ease;
   }
@@ -765,7 +766,6 @@
   .home-section .home-content{
     height: 60px;
     display: flex;
-    position: fixed;
     align-items: center;
   }
   .home-section .home-content .bx-menu,
@@ -778,7 +778,8 @@
     cursor: pointer;
   }
   .home-section .home-content .text{
-    font-size: 26px;
+    font-size: 20px;
+    padding-top: 5px;
     font-weight: 600;
   }
 
@@ -787,8 +788,8 @@
   }
 
   .home-section .dashboard .box1{
-    width: 70%;
-    height: 300px;
+    width: 55%;
+    height: 40vh;
     background-color: #FFFFFF;
     border: 1px solid rgba(0, 0, 0, 0.3);
     box-sizing: border-box;
@@ -796,15 +797,117 @@
     border-radius: 10px;
   }
 
+  .home-section .dashboard .box-saldo{
+    width: 100%;
+    height: 18vh;
+    margin-left: 2rem;
+    display: flex;
+    background: #FFFFFF;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    box-sizing: border-box;
+    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+  }
+
+  .home-section .dashboard .box-kelas{
+    width:  100%;
+    height: 18vh;
+    display: flex;
+    font-display: flex;
+    margin-left: 2rem;
+    background: #FFFFFF;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    box-sizing: border-box;
+    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+  }
+
+  .home-section .dashboard .box-saldo .text {
+    display: block;
+    margin-left:3%;
+    margin-top:2%;
+  }
+
+  .home-section .dashboard .box-saldo .text .kelas{
+    font-size: 12px;
+    margin-top: -20px;
+    font-family: 'Poppins';
+  }
+
+  .home-section .dashboard .box-saldo .text .judul{font-size: 15px; padding-top: 5px; font-family: 'Poppins'; font-weight: bold;}
+   .home-section .dashboard .box-saldo .text .saldo{color: #156900; font-size:14px; margin-top:-10px; font-weight: bold; font-family: 'Poppins';}
+  
+  .home-section .dashboard .box-kelas .text {
+    display: block;
+    margin-left:3%;
+    margin-top:2%;
+    width: 100%;
+  }
+
+  .home-section .dashboard .box-kelas .text .judul{font-size: 15px; padding-top: 5px; font-family: 'Poppins'; font-weight: bold;}
+  .home-section .dashboard .box-kelas .text .kelas{
+    font-size: 12px;
+    margin-top: -20px;
+    font-family: 'Poppins';
+  }
+  .home-section .dashboard .box-kelas .text hr{padding-left: 1rem; width: 95%; top: -5px; position: relative;}
+  .home-section .dashboard .box-kelas .text button{top: -18px; border: none; background: #FFFFFF; position: relative; font-size: 14px;}
+
+  .home-section .dashboard .color-box{
+    height: 103%;
+    width: 5%;
+    margin-left: -2px;
+    margin-top: -2px;;
+    border-radius: 10px 0px 0px 10px;
+  }
+
   .home-section .dashboard .box2{
-    width: 70%;
-    height: 300px;
-    margin-top: 2%;
+    width: 55%;
+    height: 40vh;
+    position: relative;
+    margin-top: 3vh;
+    margin-bottom: 4vh;
     background-color: #FFFFFF;
     border: 1px solid rgba(0, 0, 0, 0.3);
     box-sizing: border-box;
     box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.25);
     border-radius: 10px;
+  }
+
+  .home-section .dashboard .box-calender{
+    width: 25%;
+    height: 30vh;
+    margin-left: 2rem;
+    margin-top: 1rem;
+    background: #FFFFFF;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    box-sizing: border-box;
+    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+  }
+
+  .home-section .setting {
+    width: 7vh;
+    height: 7vh;
+    margin-left: 2%;
+    margin-top: 2%;
+    background: #FFFFFF;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    box-sizing: border-box;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 5px;
+  }
+  
+  .home-section .notif {
+    width: 7vh;
+    height: 7vh;
+    margin-left: 80%;
+    margin-top: 2%;
+    background: #FFFFFF;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    box-sizing: border-box;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 5px;
   }
 
   @media (max-width: 420px) {
