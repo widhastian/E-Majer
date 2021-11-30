@@ -25,10 +25,11 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <form action="proses/tambah-barang-proses.php" method="POST" class="row g-3 needs-validation" onsubmit="return tambah();">
+                        <form action="proses/tambah-barang-proses.php" method="POST" class="row g-3 needs-validation" enctype="multipart/form-data" onsubmit="return tambah();">
                             <div class="col-md-12">
                                 <div class="input-group has-validation">
                                     <span class="input-group-text" id="inputGroupPrepend"><i class='bx bx-briefcase-alt'></i></span>
+                                    <input type="hidden" value="<?= $id ?>" name="id">
                                     <input type="text" class="form-control" id="nama_barang" n aria-describedby="inputGroupPrepend" placeholder="Nama Barang" name="nama_barang">
                                 </div>
                             </div>
@@ -108,6 +109,11 @@
             $q_tampil_barang = mysqli_query($koneksi, $query);
             if (mysqli_num_rows($q_tampil_barang) > 0) {
                 while ($r_tampil_barang = mysqli_fetch_array($q_tampil_barang)) {
+                    if (empty($r_tampil_barang['foto']) or ($r_tampil_barang['foto'] == '-')) {
+                        $foto = "barang.jpg";
+                    } else {
+                        $foto = $r_tampil_barang['foto'];
+                    }
             ?>
                     <tr>
                         <td><?php echo $nomor; ?></td>
@@ -124,9 +130,11 @@
                             }
                             ?>
                         </td>
-                        <td><?php echo $r_tampil_barang['foto']; ?></td>
+                        <td><img src="<?php echo "assets/gambar/" . $foto ?>" width=70px height=70px></td>
                         <td>
-                            <div type="button" class="btn btn-primary"><a href="index.php?p=barang-edit&id=<?php echo $r_tampil_barang['id_barang']; ?>" style="text-decoration: none; color:white;"><i class="fas fa-edit"></i></a></div>
+                            <a href="index.php?p=barang-edit&id=<?php echo $r_tampil_barang['id_barang']; ?>" style="text-decoration: none; color:white;">
+                                <div type="button" class="btn btn-primary"><i class="fas fa-edit"></i></div>
+                            </a>
                             <button type="button" class="btn btn-danger" onclick="konfirmasi('<?php echo $r_tampil_barang['id_barang']; ?>')"><i class="fas fa-trash-alt"></i></button>
                         </td>
                     </tr>

@@ -2,6 +2,11 @@
 $id = $_GET['id'];
 $query = mysqli_query($koneksi, "SELECT * FROM barang WHERE id_barang ='$id'");
 $data = mysqli_fetch_array($query);
+if (empty($data['foto']) or ($data['foto'] == '-')) {
+    $foto = "barang.jpg";
+} else {
+    $foto = $data['foto'];
+}
 ?>
 <section class="home-section">
     <div class="home-content">
@@ -16,7 +21,7 @@ $data = mysqli_fetch_array($query);
     </div>
     <div class="content">
         <table width="80%">
-            <form action="proses/barang-edit-proses.php" method="POST" class="row g-3 needs-validation" onsubmit="return tambah();">
+            <form action="proses/barang-edit-proses.php" method="POST" class="row g-3 needs-validation" enctype="multipart/form-data" onsubmit="return tambah();">
                 <tr>
                     <td style="width:15%; padding-top:1%"><label for="validationServer01" class="form-label ">Nama Barang</label></td>
                     <td style="width: 3%;">:</td>
@@ -72,15 +77,17 @@ $data = mysqli_fetch_array($query);
                     <td style="padding-top: 2%;"><label for="validationServer01" class="form-label ">Foto</label></td>
                     <td style="padding-top: 1%;">:</td>
                     <td>
+                        <img src="assets/gambar/<?php echo $foto; ?>" width=70px height=75px>
                         <div class="input-group has-validation mt-3">
-                            <input type="file" class="form-control" name="foto" id="foto" aria-describedby="inputGroupPrepend" value="<?= $data['foto'] ?>">
+                            <input type="file" class="form-control" name="foto" id="foto" aria-describedby="inputGroupPrepend">
+                            <input type="hidden" name="foto_awal" value="<?php echo $data['foto']; ?>">
                         </div>
                     </td>
                 </tr>
                 <tr>
                     <td>
                         <div class=" input-group has-validation mt-3">
-                            <button type="submit" class="btn btn-primary" name="btn-tambah"><i class='bx bx-edit'></i> Edit</button>
+                            <button type="submit" class="btn btn-primary" name="btn-edit"><i class='bx bx-edit'></i> Edit</button>
                         </div>
                     </td>
                 </tr>
@@ -100,7 +107,6 @@ $data = mysqli_fetch_array($query);
     var nama_barang = document.getElementById('nama_barang');
     var jumlah_barang = document.getElementById('jumlah_barang');
     var kondisi = document.getElementById('kondisi');
-    var foto = document.getElementById('foto');
 
     function tambah() {
         if (nama_barang.value == "") {
@@ -111,9 +117,6 @@ $data = mysqli_fetch_array($query);
             return false;
         } else if (kondisi.value == "0") {
             pesan('Pilih Kondisi Barang Dengan Benar', 'warning');
-            return false;
-        } else if (foto.value == "") {
-            pesan('Foto Tidak Boleh Kosong', 'warning');
             return false;
         }
     }
