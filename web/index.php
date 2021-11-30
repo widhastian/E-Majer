@@ -41,6 +41,7 @@ if (mysqli_num_rows($result) > 0) {
             <!-- font awesome -->
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
             <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js"></script>
+            <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
             <title>Document</title>
         </head>
 
@@ -115,10 +116,10 @@ if (mysqli_num_rows($result) > 0) {
                         </div>
                     </li>
                     <li>
-                        <a href="logout.php">
+                        <div class="logout">
                             <i class='bx bx-log-out'></i>
                             <span class="link_name">Logout</span>
-                        </a>
+                        </div>
                         <ul class="sub-menu blank">
                             <li><a class="link_name" href="#">logout</a></li>
                         </ul>
@@ -167,7 +168,7 @@ if (mysqli_num_rows($result) > 0) {
                 for (let i = 0; i < list.length; i++) {
                     if (pages === "home") {
                         list[0].className = 'li active';
-                    } else if (pages === "barang") {
+                    } else if (pages === "barang" || pages === "barang-tambah" || pages === "barang-edit") {
                         list[1].className = 'li active';
                     } else if (pages === "pembayaran") {
                         list[2].className = 'li active';
@@ -184,6 +185,26 @@ if (mysqli_num_rows($result) > 0) {
                         }
                         list[i].className = 'li active';
                     }
+                }
+
+                var logout = document.querySelector('.logout');
+                logout.addEventListener("click", onClick);
+
+                function onClick() {
+                    swal.fire({
+                        title: "Anda Yakin logout?",
+                        icon: "warning",
+                        closeOnClickOutside: false,
+                        showCancelButton: true,
+                        confirmButtonText: 'Yes',
+                        confirmButtonColor: '#6777ef',
+                        cancelButtonText: 'Cancel',
+                        cancelButtonColor: '#d33',
+                    }).then((result) => {
+                        if (result.value) {
+                            window.location.href = "logout.php";
+                        }
+                    });
                 }
             </script>
         </body>

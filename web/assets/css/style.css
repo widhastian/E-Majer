@@ -1,6 +1,7 @@
 * {
     margin:0px;
     padding: 0px;
+    font-family: 'Poppins', sans-serif;
 }
 
 
@@ -575,11 +576,13 @@
   
   .sidebar .profil-box .profil-name .nama {
     font-size: 14px;
+    font-family: 'Poppins', sans-serif;
   }
   
   .sidebar .profil-box .profil-name .level {
     font-size: 12px;
     position: relative;
+    font-family: 'Poppins', sans-serif;
     top: -1rem;
   }
   
@@ -980,6 +983,7 @@
     padding-bottom: 10px;
   }
 
+  
   .home-section .content .mading .i{
       margin-left: 10%;
   }

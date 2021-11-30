@@ -21,7 +21,7 @@ if (isset($_POST['btn-login'])) {
         }
 
         if ($num != 0) {
-            if ($username == $email ||  $password == $pwd) {
+            if ($username == $email &&  $password == $pwd) {
                 $_SESSION['id_akun'] = $id;
                 $_SESSION['nama'] = $nama;
                 $_SESSION['id_kelas'] = $kelas;

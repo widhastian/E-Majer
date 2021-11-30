@@ -45,16 +45,16 @@
                     $queryJml = $sql;
                 } else {
                     $query = "SELECT * FROM transaksi INNER JOIN akun ON transaksi.id_akun = akun.id_akun JOIN 
-                            kelas On akun.id_kelas = kelas.id_kelas WHERE transaksi.nama_kelas = '$kelas'";
+                            kelas On akun.id_kelas = kelas.id_kelas WHERE akun.id_kelas = '$kelas'";
                     $queryJml = "SELECT * FROM transaksi INNER JOIN akun ON transaksi.id_akun = akun.id_akun JOIN 
-                    kelas On akun.id_kelas = kelas.id_kelas WHERE transaksi.nama_kelas = '$kelas'  ";
+                    kelas On akun.id_kelas = kelas.id_kelas WHERE akun.id_kelas = '$kelas'  ";
                     $no = $posisi * 1;
                 }
             } else {
                 $query = "SELECT * FROM transaksi INNER JOIN akun ON transaksi.id_akun = akun.id_akun JOIN 
-                            kelas On akun.id_kelas = kelas.id_kelas WHERE transaksi.nama_kelas = '$kelas'  ";
+                            kelas On akun.id_kelas = kelas.id_kelas WHERE akun.id_kelas = '$kelas'  ";
                 $queryJml = "SELECT * FROM transaksi INNER JOIN akun ON transaksi.id_akun = akun.id_akun JOIN 
-                            kelas On akun.id_kelas = kelas.id_kelas WHERE transaksi.nama_kelas = '$kelas' ";
+                            kelas On akun.id_kelas = kelas.id_kelas WHERE akun.id_kelas = '$kelas' ";
                 $no = $posisi * 1;
             }
 
