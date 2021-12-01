@@ -1,0 +1,397 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Email Address -->
+    <style name="email_addre">
+
+        <item name="android:textSize">
+            14sp
+        </item>
+
+        <item name="android:textColor">
+            #949494
+        </item>
+
+    </style>
+
+    <!-- Password -->
+    <style name="password">
+
+        <item name="android:textSize">
+            14sp
+        </item>
+
+        <item name="android:textColor">
+            #949494
+        </item>
+
+    </style>
+
+    <!-- Forgot Password -->
+    <style name="forgot_pass">
+
+        <item name="android:textSize">
+            14sp
+        </item>
+
+        <item name="android:textColor">
+            #000000
+        </item>
+
+    </style>
+
+    <!-- Button Sign In -->
+    <style name="sign_in">
+
+        <item name="android:textSize">
+            16sp
+        </item>
+
+        <item name="android:textColor">
+            #FFFFFF
+        </item>
+
+    </style>
+
+    <!-- New User -->
+    <style name="i_m_a_new_u">
+
+        <item name="android:textSize">
+            14sp
+        </item>
+
+        <item name="android:textColor">
+            #000000
+        </item>
+
+    </style>
+
+    <!-- Sign Up -->
+    <style name="sign_up">
+
+        <item name="android:textSize">
+            20sp
+        </item>
+
+        <item name="android:textColor">
+            #000000
+        </item>
+
+    </style>
+
+    <!-- Nama Pengguna -->
+    <style name="nama_penggu">
+
+        <item name="android:textSize">
+            14sp
+        </item>
+
+        <item name="android:textColor">
+            #949494
+        </item>
+
+    </style>
+
+    <!-- Confirm Password -->
+    <style name="confirm_pas">
+
+        <item name="android:textSize">
+            14sp
+        </item>
+
+        <item name="android:textColor">
+            #949494
+        </item>
+
+    </style>
+
+    <!-- Kelas -->
+    <style name="kelas">
+
+        <item name="android:textSize">
+            14sp
+        </item>
+
+        <item name="android:textColor">
+            #949494
+        </item>
+
+    </style>
+
+    <!-- Already Have Account -->
+    <style name="already_hav">
+
+        <item name="android:textSize">
+            14sp
+        </item>
+
+        <item name="android:textColor">
+            #000000
+        </item>
+
+    </style>
+
+    <!-- Masuk -->
+    <style name="masuk">
+
+        <item name="android:textSize">
+            20sp
+        </item>
+
+        <item name="android:textColor">
+            #000000
+        </item>
+
+    </style>
+
+    <!-- Masuk2 -->
+    <style name="masuk2">
+
+        <item name="android:textSize">
+            20sp
+        </item>
+
+        <item name="android:textColor">
+            #C7C7C7
+        </item>
+
+    </style>
+
+    <!-- Daftar -->
+    <style name="daftar">
+
+        <item name="android:textSize">
+            20sp
+        </item>
+
+        <item name="android:textColor">
+            #C7C7C7
+        </item>
+
+    </style>
+
+    <!-- Daftar2 -->
+    <style name="daftar2">
+
+        <item name="android:textSize">
+            20sp
+        </item>
+
+        <item name="android:textColor">
+            #000000
+        </item>
+
+    </style>
+
+    <!-- Masuk Sebagai -->
+    <style name="masuk_sebag">
+
+        <item name="android:textSize">
+            20sp
+        </item>
+
+        <item name="android:textColor">
+            #000000
+        </item>
+
+    </style>
+
+    <!-- Pengurus Kelas -->
+    <style name="pengurus_ke">
+
+        <item name="android:textSize">
+            20sp
+        </item>
+
+        <item name="android:textColor">
+            #000000
+        </item>
+
+    </style>
+
+    <!-- Anggota -->
+    <style name="anggota">
+
+        <item name="android:textSize">
+            20sp
+        </item>
+
+        <item name="android:textColor">
+            #000000
+        </item>
+
+    </style>
+
+    <!-- Daftar Sebagai -->
+    <style name="daftar_seba">
+
+        <item name="android:textSize">
+            20sp
+        </item>
+
+        <item name="android:textColor">
+            #000000
+        </item>
+
+    </style>
+
+    <!-- E-Majer -->
+    <style name="e_majer">
+
+        <item name="android:textSize">
+            25sp
+        </item>
+
+        <item name="android:textColor">
+            #000000
+        </item>
+
+    </style>
+
+    <!-- Selamat Datang -->
+    <style name="selamat_dat">
+
+        <item name="android:textSize">
+            15sp
+        </item>
+
+        <item name="android:textColor">
+            #000000
+        </item>
+
+    </style>
+
+    <!-- Jumlah Uang -->
+    <style name="jumlah_uang">
+
+        <item name="android:textSize">
+            17sp
+        </item>
+
+        <item name="android:textColor">
+            #000000
+        </item>
+
+    </style>
+
+    <!-- Value jumlah uang kas -->
+    <style name="value_kas">
+
+        <item name="android:textSize">
+            23sp
+        </item>
+
+        <item name="android:textColor">
+            #000000
+        </item>
+
+    </style>
+
+    <!-- Nama Akun -->
+    <style name="muhammad_yu">
+
+        <item name="android:textSize">
+            25sp
+        </item>
+
+        <item name="android:textColor">
+            #000000
+        </item>
+
+    </style>
+
+    <!-- TIF-B -->
+    <style name="tif_b">
+
+        <item name="android:textSize">
+            18sp
+        </item>
+
+        <item name="android:textColor">
+            #BF8C00
+        </item>
+
+    </style>
+
+    <style name="parent">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+    </style>
+
+    <style name="modifiedEditText" parent="parent">
+        <item name="android:textSize">@dimen/newsMoreTextSize</item>
+        <item name="android:backgroundTint">@color/white</item>
+    </style>
+
+    <style name="keluar">
+
+        <item name="android:textSize">
+            18sp
+        </item>
+
+        <item name="android:textColor">
+            #FF0000
+        </item>
+
+    </style>
+
+    <style name="bayar_kas">
+
+        <item name="android:textSize">
+            10sp
+        </item>
+
+        <item name="android:textColor">
+            #000000
+        </item>
+
+    </style>
+
+    <style name="e_majer_pay">
+
+        <item name="android:textSize">
+            17sp
+        </item>
+
+        <item name="android:textColor">
+            #000000
+        </item>
+
+    </style>
+
+    <style name="data_barang">
+
+        <item name="android:textSize">
+            10sp
+        </item>
+
+        <item name="android:textColor">
+            #000000
+        </item>
+
+    </style>
+
+    <style name="riwayat_tra">
+
+        <item name="android:textSize">
+            10sp
+        </item>
+
+        <item name="android:textColor">
+            #000000
+        </item>
+
+    </style>
+
+    <style name="catatan_pen">
+
+        <item name="android:textSize">
+            10sp
+        </item>
+
+        <item name="android:textColor">
+            #000000
+        </item>
+
+    </style>
+</resources>

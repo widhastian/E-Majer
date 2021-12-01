@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background">
+
+    <!-- background abu -->
+    <View
+        android:id="@+id/bg"
+        android:layout_width="396dp"
+        android:layout_height="666dp"
+        android:layout_centerInParent="true"
+        android:background="@drawable/bg_register" />
+
+    <!-- Sign Up -->
+    <TextView
+        android:id="@+id/sign_up"
+        android:layout_width="78dp"
+        android:layout_height="30dp"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="76dp"
+        android:text="@string/sign_up"
+        android:textAppearance="@style/sign_up"
+        android:gravity="top" />
+
+    <!-- Email Address -->
+    <TextView
+        android:id="@+id/email_addre"
+        android:layout_width="99dp"
+        android:layout_height="21dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="54dp"
+        android:layout_marginTop="116dp"
+        android:gravity="top"
+        android:text="@string/email_addre"
+        android:textAppearance="@style/email_addre" />
+
+    <!-- Inputan Email -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/TextRegisterEmail"
+        android:layout_width="322dp"
+        android:layout_height="46dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="145dp"
+        android:background="@drawable/bg_input_email">
+
+    <EditText
+        android:id="@+id/editTextRegisterEmail"
+        style="@style/modifiedEditText"
+        android:inputType="textEmailAddress"
+        android:maxLines="1"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- Nama Pengguna -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textRegisterNama"
+        android:layout_width="322dp"
+        android:layout_height="46dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="233dp"
+        android:background="@drawable/bg_input_email">
+
+        <EditText
+            android:id="@+id/editTextRegisterName"
+            style="@style/modifiedEditText"
+            android:inputType="textPersonName"
+            android:maxLines="1"/>
+    </com.google.android.material.textfield.TextInputLayout>
+    <TextView
+        android:id="@+id/nama_penggu"
+        android:layout_width="119dp"
+        android:layout_height="21dp"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="54dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="203dp"
+        android:text="@string/nama_penggu"
+        android:textAppearance="@style/nama_penggu"
+        android:gravity="top" />
+
+
+    <!-- Password -->
+    <TextView
+        android:id="@+id/password"
+        android:layout_width="68dp"
+        android:layout_height="21dp"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="54dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="298dp"
+        android:text="@string/password"
+        android:textAppearance="@style/password"
+        android:gravity="top" />
+
+    <!-- field password -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textRegisterPassword"
+        android:layout_width="322dp"
+        android:layout_height="46dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="328dp"
+        android:background="@drawable/bg_input_email">
+
+        <EditText
+            android:id="@+id/editTextRegisterPassword"
+            style="@style/modifiedEditText"
+            android:inputType="textPassword"
+            android:maxLines="1"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- Confirm Password -->
+    <TextView
+        android:id="@+id/confirm_pas"
+        android:layout_width="128dp"
+        android:layout_height="21dp"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="54dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="383dp"
+        android:text="@string/confirm_pas"
+        android:textAppearance="@style/confirm_pas"
+        android:gravity="top" />
+
+    <!-- field confirm password -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textRegisterConfirmPassword"
+        android:layout_width="322dp"
+        android:layout_height="46dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="413dp"
+        android:background="@drawable/bg_input_email">
+
+        <EditText
+            android:id="@+id/editTextConfirmRegisterPassword"
+            style="@style/modifiedEditText"
+            android:inputType="textPassword"
+            android:maxLines="1"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- Kelas -->
+    <TextView
+        android:id="@+id/kelas"
+        android:layout_width="38dp"
+        android:layout_height="21dp"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="54dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="476dp"
+        android:text="@string/kelas"
+        android:textAppearance="@style/kelas"
+        android:gravity="top" />
+
+    <!-- field kelas -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textRegisterKelas"
+        android:layout_width="322dp"
+        android:layout_height="46dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="506dp"
+        android:background="@drawable/bg_input_email">
+
+        <EditText
+            android:id="@+id/editTextRegisterKelas"
+            style="@style/modifiedEditText"
+            android:inputType="text"
+            android:maxLines="1"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- button -->
+    <Button
+        android:id="@+id/btnRegister"
+        android:layout_width="322dp"
+        android:layout_height="46dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="585dp"
+        android:background="@drawable/bg_button_signin"
+        android:fontFamily="@font/poppins"
+        android:text="@string/sign_up"
+        android:textAppearance="@style/sign_up" />
+
+    <!-- Already have an account ?. Sign In -->
+    <TextView
+        android:id="@+id/already_hav"
+        android:layout_width="201dp"
+        android:layout_height="21dp"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="657dp"
+        android:text="@string/already_hav"
+        android:textAppearance="@style/already_hav"
+        android:gravity="top" />
+
+    <TextView
+        android:id="@+id/tvLoginHere"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="130dp"
+        android:layout_marginTop="657dp"
+        android:gravity="top"
+        android:text="Sign In"
+        android:textColor="#FECE2F"
+        android:textSize="14sp" />
+
+
+
+</RelativeLayout>

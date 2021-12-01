@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".HomeFragment"
+    android:background="@drawable/bg_home">
+
+    <!-- Rectangle 1 -->
+    <View
+        android:id="@+id/rectangle_1"
+        android:layout_width="404dp"
+        android:layout_height="207dp"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="85dp"
+        android:background="@drawable/rectangle_1"
+        />
+
+    <!-- Rectangle 14 -->
+    <View
+        android:id="@+id/rectangle_14"
+        android:layout_width="54.26dp"
+        android:layout_height="61.11dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="57.88dp"
+        android:layout_marginTop="164dp"
+        android:background="@drawable/rectangle_1" />
+
+    <!-- icons8-wallet-64 1 -->
+    <View
+        android:id="@+id/ic_bayar_kas"
+        android:layout_width="24.66dp"
+        android:layout_height="27.78dp"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="72.68dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="180.67dp"
+        android:background="@drawable/ic_bayarkas"
+        />
+
+    <!-- E-Majer -->
+    <TextView
+        android:id="@+id/tv_e_majer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="33dp"
+        android:layout_marginTop="14dp"
+        android:fontFamily="@font/lato_bold"
+        android:gravity="center_horizontal|top"
+        android:text="@string/e_majer"
+        android:textAppearance="@style/e_majer" />
+
+    <!-- Selamat Datang di E-Majer, (nama user)! -->
+    <TextView
+        android:id="@+id/selamat_dat"
+        android:layout_width="193dp"
+        android:layout_height="18dp"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="33dp"
+        android:layout_marginTop="7dp"
+        android:layout_below="@+id/tv_e_majer"
+        android:gravity="top"
+        android:text="@string/selamat_dat"
+        android:fontFamily="@font/lato_bold"
+        android:textAppearance="@style/selamat_dat" />
+
+    <TextView
+        android:id="@+id/editTextMainName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_e_majer"
+        android:layout_marginTop="7dp"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="220dp"
+        android:text="Name"
+        style="@style/selamat_dat"
+        android:fontFamily="@font/lato_bold"/>
+
+    <!-- E-Majer Pay -->
+    <TextView
+        android:id="@+id/e_majer_pay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="33dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="102dp"
+        android:text="@string/e_majer_pay"
+        android:textAppearance="@style/e_majer_pay"
+        android:gravity="top"
+        android:fontFamily="@font/lato"
+        />
+
+    <!-- Bayar Kas -->
+    <TextView
+        android:id="@+id/bayar_kas"
+        android:layout_width="73dp"
+        android:layout_height="13.33dp"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="49dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="230.67dp"
+        android:text="@string/bayar_kas"
+        android:textAppearance="@style/bayar_kas"
+        android:gravity="center_horizontal|top" />
+
+    <!-- Rectangle 2 -->
+    <View
+        android:id="@+id/rectangle_2"
+        android:layout_width="54.26dp"
+        android:layout_height="61.11dp"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="140dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="164dp"
+        android:background="@drawable/rectangle_1"
+        />
+
+    <!-- Data Barang -->
+    <TextView
+        android:id="@+id/data_barang"
+        android:layout_width="49dp"
+        android:layout_height="24dp"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="143dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="230.67dp"
+        android:text="@string/data_barang"
+        android:textAppearance="@style/data_barang"
+        android:fontFamily="@font/lato"
+        android:gravity="center_horizontal|top"
+        />
+
+    <!-- ic data barang -->
+    <View
+        android:id="@+id/ic_data_barang"
+        android:layout_width="25.91dp"
+        android:layout_height="24.31dp"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="153dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="181dp"
+        android:background="@drawable/ic_databarang"
+        />
+
+    <!-- Riwayat Transaksi -->
+    <TextView
+        android:id="@+id/riwayat_tra"
+        android:layout_width="79dp"
+        android:layout_height="11.5dp"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="214dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="230.67dp"
+        android:text="@string/riwayat_tra"
+        android:textAppearance="@style/riwayat_tra"
+        android:gravity="center_horizontal|top"
+        android:fontFamily="@font/lato"
+        />
+
+    <!-- Rectangle 21 -->
+    <View
+        android:id="@+id/rectangle_21"
+        android:layout_width="55dp"
+        android:layout_height="60dp"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="226dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="165dp"
+        android:background="@drawable/rectangle_1"
+        />
+
+    <!-- ic riwayat transaksi -->
+    <View
+        android:id="@+id/ic_riwayat_transaksi"
+        android:layout_width="25dp"
+        android:layout_height="23.96dp"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="241dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="183dp"
+        android:background="@drawable/ic_riwayattransaksi"
+        />
+
+    <!-- Catatan Pengeluaran -->
+    <TextView
+        android:id="@+id/catatan_pen"
+        android:layout_width="93dp"
+        android:layout_height="12dp"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="307dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="230.67dp"
+        android:text="@string/catatan_pen"
+        android:textAppearance="@style/catatan_pen"
+        android:gravity="center_horizontal|top"
+        android:fontFamily="@font/lato"
+        />
+
+
+</RelativeLayout>

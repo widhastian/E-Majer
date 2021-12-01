@@ -1,0 +1,38 @@
+<resources>
+    <string name="app_name">E\-Majer</string>
+
+    <string name="home">Home</string>
+    <string name="mading">Mading</string>
+    <string name="account">Account</string>
+    <string name="sign_in">Sign In</string>
+    <string name="email_addre">Email Address</string>
+    <string name="password">Password</string>
+    <string name="forgot_pass">Forgot Password ?</string>
+    <string name="i_m_a_new_u">I\'m a new user.</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="nama_penggu">Nama Pengguna</string>
+    <string name="confirm_pas">Confirm Password</string>
+    <string name="kelas">Kelas</string>
+    <string name="already_hav">Already have an account ?.</string>
+    <string name="masuk">Masuk</string>
+    <string name="daftar">Daftar</string>
+    <string name="masuk_sebag">Masuk sebagai</string>
+    <string name="pengurus_ke">Pengurus Kelas</string>
+    <string name="anggota">Anggota</string>
+    <string name="daftar_seba">Daftar sebagai</string>
+    <string name="e_majer">E-Majer</string>
+    <string name="selamat_dat">Selamat Datang di E-Majer,</string>
+    <string name="jumlah_uang">Jumlah Uang Kas</string>
+    <string name="value_kas">Rp 452.500;-</string>
+    <string name="muhammad_yu">Muhammad Yusril Amin</string>
+    <string name="tif_b">TIF B</string>
+    <string name="keluar">Keluar</string>
+    <string name="bayar_kas">Bayar Kas</string>
+    <string name="e_majer_pay">E-Majer Pay</string>
+    <string name="data_barang">Data Barang</string>
+    <string name="riwayat_tra">Riwayat Transaksi</string>
+    <string name="catatan_pen">Catatan Pengeluaran</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
