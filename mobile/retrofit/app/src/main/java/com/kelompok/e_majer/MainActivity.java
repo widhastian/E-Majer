@@ -11,9 +11,9 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
-    TextView etUsername, etName;
+    TextView editTextEmail, editTextName;
     SessionManager sessionManager;
-    String username, name;
+    String email, name;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,14 +24,14 @@ public class MainActivity extends AppCompatActivity {
             moveToLogin();
         }
 
-        etUsername = findViewById(R.id.etMainUsername);
-        etName = findViewById(R.id.etMainName);
+        editTextEmail = findViewById(R.id.etMainEmail);
+        editTextName = findViewById(R.id.etMainName);
 
-        username = sessionManager.getUserDetail().get(SessionManager.USERNAME);
+        email = sessionManager.getUserDetail().get(SessionManager.EMAIL);
         name = sessionManager.getUserDetail().get(SessionManager.NAME);
 
-        etUsername.setText(username);
-        etName.setText(name);
+        editTextEmail.setText(email);
+        editTextName.setText(name);
 
     }
 

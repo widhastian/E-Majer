@@ -2,8 +2,10 @@ package com.kelompok.e_majer;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -17,6 +19,8 @@ import com.kelompok.e_majer.model.register.Register;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RegisterActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -60,29 +64,47 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                 break;
         }
     }
+    public void submitByRetrofit(User user){
 
-    private void register(String email, String password, String name, String kelas) {
+        ProgressDialog proDialog = new ProgressDialog(this);
+        proDialog.setTitle(getString(R.string.retrofit));
+        proDialog.setMessage("Sedang Disubmit");
+        proDialog.show();
 
-        apiInterface = ApiClient.getClient().create(ApiInterface.class);
-        Call<Register> call = apiInterface.registerResponse(email, password, name, kelas);
-        call.enqueue(new Callback<Register>() {
+
+        Retrofit.Builder builder= new Retrofit.Builder().baseUrl("http://192.168.43.179/volley/").addConverterFactory(GsonConverterFactory.create());
+
+        Retrofit retrofit = builder.build();
+        MethodHTTP client= retrofit.create(MethodHTTP.class);
+        Call<Request> call =client.sendUser(user);
+
+        call.enqueue(new Callback<Request>() {
             @Override
-            public void onResponse(Call<Register> call, Response<Register> response) {
-                if(response.body() != null && response.isSuccessful() && response.body().isStatus()){
-                    Toast.makeText(RegisterActivity.this, response.body().getMessage(), Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
-                    startActivity(intent);
-                    finish();
-                } else {
-                    Toast.makeText(RegisterActivity.this, response.body().getMessage(), Toast.LENGTH_SHORT).show();
+            public void onResponse(Call<Request> call, Response<Request> response) {
+                proDialog.dismiss();
+                if (response.body()!=null){
+                    if(response.body().getCode() ==201){
+                        Toast.makeText(getApplicationContext(), "Response : "+response.body().getStatus(), Toast.LENGTH_SHORT).show();
+                        finish();
+                    }else if (response.body().getCode()==406){
+                        Toast.makeText(getApplicationContext(), "Response : "+response.body().getStatus(), Toast.LENGTH_SHORT).show();
+                        edtEmail.requestFocus();
+                    }else {
+                        Toast.makeText(getApplicationContext(), "Response : "+response.body().getStatus(), Toast.LENGTH_SHORT).show();
+                        finish();
+                    }
                 }
+                Log.e(TAG,"Error : "+response.message());
             }
 
             @Override
-            public void onFailure(Call<Register> call, Throwable t) {
-                Toast.makeText(RegisterActivity.this, t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+            public void onFailure(Call<Request> call, Throwable t) {
+
+                proDialog.dismiss();
+                Log.e(TAG,"Error2 : "+t.getMessage());
             }
         });
+    }
 
 
     }
