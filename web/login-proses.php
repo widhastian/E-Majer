@@ -1,5 +1,6 @@
 <?php
 require('koneksi.php');
+session_start();
 
 if (isset($_POST['btn-login'])) {
     $username = $_POST['email'];
@@ -10,16 +11,24 @@ if (isset($_POST['btn-login'])) {
         $num = mysqli_num_rows($result);
 
         while ($row = mysqli_fetch_array($result)) {
+            $id = $row['id_akun'];
             $nama = $row['nama'];
+            $kelas = $row['id_kelas'];
+            $level = $row['id_level'];
             $email = $row['email'];
-            $username1 = $row['username'];
+            $saldo = $row['saldo'];
             $pwd = $row['password'];;
         }
 
         if ($num != 0) {
-            if ($username == $username1 || $username == $email ||  $password == $pwd) {
+            if ($username == $email &&  $password == $pwd) {
+                $_SESSION['id_akun'] = $id;
+                $_SESSION['nama'] = $nama;
+                $_SESSION['id_kelas'] = $kelas;
+                $_SESSION['id_level'] = $level;
+                $_SESSION['saldo'] = $saldo;
                 echo "<script>alert('Anda Berhasil Login');</script>";
-                echo "<meta http-equiv='refresh' content='0; url=login.php'>";
+                echo "<meta http-equiv='refresh' content='0; url=index.php?p=home'>";
             } else {
                 echo "<script>alert('Anda Gagal Login');</script>";
                 echo "<meta http-equiv='refresh' content='0; url=login.php'>";
