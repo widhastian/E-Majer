@@ -9,13 +9,14 @@ $id = $_SESSION['id_akun'];
 $nama = $_SESSION['nama'];
 $kelas = $_SESSION['id_kelas'];
 $level = $_SESSION['id_level'];
-$saldo = $_SESSION['saldo'];
 
-$query = "SELECT * FROM akun INNER JOIN kelas ON akun.id_kelas = kelas.id_kelas INNER JOIN level ON akun.id_level = level.id_level WHERE akun.id_akun = $id";
+$query = "SELECT * FROM akun INNER JOIN kelas ON akun.id_kelas = kelas.id_kelas INNER JOIN level ON akun.id_level = level.id_level WHERE akun.id_akun = '$id'";
 $result = mysqli_query($koneksi, $query);
 $no = 1;
 if (mysqli_num_rows($result) > 0) {
     while ($row = mysqli_fetch_array($result)) {
+        $nominal = $row['nominal_uangkas'];
+        $saldo = $row['saldo'];
 ?>
         <!DOCTYPE html>
         <html lang="en">
@@ -61,7 +62,7 @@ if (mysqli_num_rows($result) > 0) {
                 <ul class="nav-links">
                     <li>
                         <div class="li">
-                            <a href="index.php?p=home">
+                            <a href="navbar.php?p=home">
                                 <i class='bx bxs-home'></i>
                                 <span class="link_name">Dashboard</span>
                             </a>
@@ -72,7 +73,7 @@ if (mysqli_num_rows($result) > 0) {
                     </li>
                     <li>
                         <div class="li">
-                            <a href="index.php?p=barang">
+                            <a href="navbar.php?p=barang">
                                 <i class='bx bx-clipboard'></i>
                                 <span class="link_name">Data Barang</span>
                             </a>
@@ -83,7 +84,7 @@ if (mysqli_num_rows($result) > 0) {
                     </li>
                     <li>
                         <div class="li">
-                            <a href="index.php?p=pembayaran">
+                            <a href="navbar.php?p=pembayaran">
                                 <i class='bx bxs-credit-card'></i>
                                 <span class="link_name">Transaksi Pembayaran</span>
                             </a>
@@ -94,7 +95,7 @@ if (mysqli_num_rows($result) > 0) {
                     </li>
                     <li>
                         <div class="li">
-                            <a href="index.php?p=pengeluaran">
+                            <a href="navbar.php?p=pengeluaran">
                                 <i class='bx bx-credit-card'></i>
                                 <span class="link_name">Transaksi Pengeluaran</span>
                             </a>
@@ -106,7 +107,7 @@ if (mysqli_num_rows($result) > 0) {
 
                     <li>
                         <div class="li">
-                            <a href="index.php?p=mading">
+                            <a href="navbar.php?p=mading">
                                 <i class='bx bx-news'></i>
                                 <span class="link_name">Mading</span>
                             </a>
@@ -116,13 +117,15 @@ if (mysqli_num_rows($result) > 0) {
                         </div>
                     </li>
                     <li>
-                        <div class="logout">
-                            <i class='bx bx-log-out'></i>
-                            <span class="link_name">Logout</span>
+                        <div class="logout1">
+                            <div class="logout">
+                                <i class='bx bx-log-out'></i>
+                                <span class="link_name">Logout</span>
+                            </div>
+                            <ul class="sub-menu blank">
+                                <li><a class="link_name" href="#">logout</a></li>
+                            </ul>
                         </div>
-                        <ul class="sub-menu blank">
-                            <li><a class="link_name" href="#">logout</a></li>
-                        </ul>
                     </li>
                 </ul>
             </div>
@@ -166,15 +169,15 @@ if (mysqli_num_rows($result) > 0) {
 
                 var list = document.querySelectorAll('.li');
                 for (let i = 0; i < list.length; i++) {
-                    if (pages === "home") {
+                    if (pages === "home" || pages === "kelas") {
                         list[0].className = 'li active';
-                    } else if (pages === "barang" || pages === "barang-tambah" || pages === "barang-edit") {
+                    } else if (pages === "barang" || pages === "barang-edit") {
                         list[1].className = 'li active';
                     } else if (pages === "pembayaran") {
                         list[2].className = 'li active';
-                    } else if (pages === "pengeluaran") {
+                    } else if (pages === "pengeluaran" || pages === "pengeluaran-edit" || pages === "detail" || pages === "detail-edit") {
                         list[3].className = 'li active';
-                    } else if (pages === "mading") {
+                    } else if (pages === "mading" || pages === "mading-edit") {
                         list[4].className = 'li active';
                     }
 

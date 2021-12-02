@@ -10,8 +10,56 @@
         </div>
     </div>
     <div class="content">
-        <button type="button" class="btn btn-success"><i class="fas fa-plus"></i> Tambah</button>
+        <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+            <i class="fas fa-plus"></i> Tambah
+        </button>
         <button type="button" class="btn btn-secondary"><i class="fas fa-print"></i> Print</button>
+
+        <!-- Modal -->
+        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="staticBackdropLabel">Transaksi Pembayaran</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="proses/pembayaran-tambah-proses.php" method="POST" class="row g-3 needs-validation" enctype="multipart/form-data" onsubmit="return tambah();">
+                            <div class="col-md-12">
+                                <div class="input-group has-validation">
+                                    <span class="input-group-text" id="inputGroupPrepend"><i class='bx bxs-user'></i></span>
+                                    <select class="form-select" id="nama" name="nama">
+                                        <option value="0">-- Nama Siswa --</option>
+                                        <?php
+                                        require('koneksi.php');
+                                        $result = mysqli_query($koneksi, "SELECT * FROM akun");
+                                        if (mysqli_num_rows($result) > 0) {
+                                            while ($row = mysqli_fetch_array($result)) { ?>
+                                                <option value="<?= $row['id_akun'] ?>"><?= $row['nama'] ?></option>
+                                        <?php
+                                            }
+                                        }
+                                        ?>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="input-group has-validation">
+                                    <input type="hidden" value="<?= $kelas ?>" name="kelas">
+                                    <span class="input-group-text" id="inputGroupPrepend"><i class="fas fa-calendar-alt"></i></span>
+                                    <input type="date" class="form-control" id="tanggal" n aria-describedby="inputGroupPrepend" name="tanggal">
+                                    <input type="hidden" value="<?= $nominal ?>" name="nominal">
+                                </div>
+                            </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal"><i class="fas fa-times-circle"></i> Close</button>
+                        <button type="submit" class="btn btn-success" name="btn-tambah"><i class="fas fa-plus-circle"></i> Tambah</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
         <table class="table table-striped mt-4 ml-3" style="width:96%; text-align:center;">
             <tr>
                 <td>No</td>
@@ -85,8 +133,14 @@
                                     Action
                                 </button>
                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                    <li><a class="dropdown-item" href="#">Bayar</a></li>
-                                    <li><a class="dropdown-item" href="#">Sudah Bayar</a></li>
+                                    <?php
+                                    if ($r_tampil_transaksi['status'] == 1) { ?>
+                                        <li><button class="dropdown-item" onclick="bayar('<?= $r_tampil_transaksi['id_transaksi']; ?>','<?= $nominal ?>','<?= $id ?>')">Bayar</button></li>
+                                        <li><button class="dropdown-item" hidden onclick="belum_bayar('<?= $r_tampil_transaksi['id_transaksi']; ?>','<?= $nominal ?>','<?= $id ?>')">Belum Bayar</button></li>
+                                    <?php } else if ($r_tampil_transaksi['status'] == 2) { ?>
+                                        <li><button class="dropdown-item" hidden onclick="bayar('<?= $r_tampil_transaksi['id_transaksi']; ?>','<?= $nominal ?>','<?= $id ?>')">Bayar</button></li>
+                                        <li><button class="dropdown-item" onclick="belum_bayar('<?= $r_tampil_transaksi['id_transaksi']; ?>','<?= $nominal ?>','<?= $id ?>')">Belum Bayar</button></li>
+                                    <?php } ?>
                                 </ul>
                             </div>
                         </td>
@@ -129,3 +183,50 @@
         ?>
     </div>
 </section>
+<script>
+    function pesan(judul, status) {
+        swal.fire({
+            title: judul,
+            icon: status,
+            confirmButtonColor: '#6777ef',
+        });
+    }
+
+    var nama = document.getElementById('nama');
+    var tanggal = document.getElementById('tanggal');
+
+    function tambah() {
+        if (nama.value == "0") {
+            pesan('Nama Tidak Boleh Kosong', 'warning');
+            return false;
+        } else if (tanggal.value == "") {
+            pesan('Tanggal Tidak Boleh Kosong', 'warning');
+            return false;
+        }
+    }
+
+    function bayar(id, nominal, akun) {
+        window.location.href = "proses/change-bayar.php?id=" + id + "&nominal=" + nominal + "&id_akun=" + akun;
+    }
+
+    function belum_bayar(id, nominal, akun) {
+        window.location.href = "proses/change-belumbayar.php?id=" + id + "&nominal=" + nominal + "&id_akun=" + akun;
+    }
+
+    function konfirmasi(id) {
+        swal.fire({
+            title: "Hapus Data ini?",
+            icon: "warning",
+            closeOnClickOutside: false,
+            showCancelButton: true,
+            confirmButtonText: 'Iya',
+            confirmButtonColor: '#6777ef',
+            cancelButtonText: 'Batal',
+            cancelButtonColor: '#d33',
+        }).then((result) => {
+            if (result.value) {
+                window.location.href = "proses/mading-hapus-proses.php?id=" + id;
+            }
+        });
+    }
+</script>

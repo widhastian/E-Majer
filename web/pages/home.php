@@ -30,7 +30,7 @@
                         <p class="kelas"><?= $row['nama_kelas']; ?></p>
                         <hr>
                         <center>
-                            <a href=""><button><i class="fas fa-landmark"></i> Detail kelas</button></a>
+                            <a href="navbar.php?p=kelas"><button><i class="fas fa-landmark"></i> Detail kelas</button></a>
                         </center>
                     </div>
                 </div>

@@ -1,7 +1,8 @@
+<?php $transaksi = $_GET['id']; ?>
 <section class="home-section">
     <div class="home-content">
         <i class='bx bx-menu'></i>
-        <span class="text">Data Barang</span>
+        <span class="text">Detail Pengeluaran</span>
         <div class="notif">
             <i class="fas fa-bell n"></i>
         </div>
@@ -10,7 +11,6 @@
         </div>
     </div>
     <div class="content">
-        <!-- Button trigger modal -->
         <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
             <i class="fas fa-plus"></i> Tambah
         </button>
@@ -21,47 +21,42 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="staticBackdropLabel">Tambah Barang</h5>
+                        <h5 class="modal-title" id="staticBackdropLabel">Transaksi Pembayaran</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <form action="proses/barang-tambah-proses.php" method="POST" class="row g-3 needs-validation" enctype="multipart/form-data" onsubmit="return tambah();">
+                        <form action="proses/detail-tambah-proses.php" method="POST" class="row g-3 needs-validation" enctype="multipart/form-data" onsubmit="return tambah();">
                             <div class="col-md-12">
                                 <div class="input-group has-validation">
-                                    <input type="hidden" value="<?= $no ?>" name="kelas">
                                     <span class="input-group-text" id="inputGroupPrepend"><i class='bx bx-briefcase-alt'></i></span>
-                                    <input type="text" class="form-control" id="nama_barang" n aria-describedby="inputGroupPrepend" placeholder="Nama Barang" name="nama_barang">
-                                </div>
-                            </div>
-                            <div class="col-md-12">
-                                <div class="input-group has-validation">
-                                    <span class="input-group-text" id="inputGroupPrepend"><i class='bx bx-spreadsheet'></i></span>
-                                    <input type="text" class="form-control" id="jumlah_barang" aria-describedby="inputGroupPrepend" placeholder="Jumlah Barang" name="jumlah_barang">
-                                    <input type="hidden" value="<?= $kelas ?>" name="kelas">
-                                </div>
-                            </div>
-                            <div class="col-md-12">
-                                <div class="input-group has-validation">
-                                    <span class="input-group-text" id="inputGroupPrepend"><i class='bx bx-pie-chart-alt-2'></i></span>
-                                    <select class="form-select" id="kondisi" name="kondisi">
-                                        <option value="0">-- Kondisi --</option>
-                                        <option value="1">Baik</option>
-                                        <option value="2">Kurang Baik</option>
-                                        <option value="3">Rusak</option>
+                                    <select class="form-select" id="barang" name="barang">
+                                        <option value="0">-- Nama Barang --</option>
+                                        <?php
+                                        require('koneksi.php');
+                                        $result = mysqli_query($koneksi, "SELECT * FROM barang WHERE id_kelas = '$kelas'");
+                                        if (mysqli_num_rows($result) > 0) {
+                                            while ($row = mysqli_fetch_array($result)) { ?>
+                                                <option value="<?= $row['id_barang'] ?>"><?= $row['Nama_barang'] ?></option>
+                                        <?php
+                                            }
+                                        }
+                                        ?>
                                     </select>
                                 </div>
                             </div>
                             <div class="col-md-12">
                                 <div class="input-group has-validation">
-                                    <input type="file" class="form-control" name="foto" id="foto" aria-describedby="inputGroupPrepend">
+                                    <input type="hidden" value="<?= $transaksi ?>" name="transaksi">
+                                    <span class="input-group-text" id="inputGroupPrepend"><i class='bx bx-spreadsheet'></i></span>
+                                    <input type="text" class="form-control" id="jumlah" n aria-describedby="inputGroupPrepend" placeholder="Jumlah Barang" name="jumlah">
                                 </div>
                             </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-danger" data-bs-dismiss="modal"><i class="fas fa-times-circle"></i> Close</button>
                         <button type="submit" class="btn btn-success" name="btn-tambah"><i class="fas fa-plus-circle"></i> Tambah</button>
+                        </form>
                     </div>
-                    </form>
                 </div>
             </div>
         </div>
@@ -70,8 +65,6 @@
                 <td>No</td>
                 <td>Nama Barang</td>
                 <td>Jumlah Barang</td>
-                <td>Kondisi</td>
-                <td>Foto</td>
                 <td colspan="2">action</td>
             </tr>
             <?php
@@ -90,52 +83,40 @@
             if ($_SERVER['REQUEST_METHOD'] == "POST") {
                 $pencarian = trim(mysqli_real_escape_string($koneksi, $_POST['pencarian']));
                 if ($pencarian != "") {
-                    $sql = "SELECT * FROM barang WHERE Nama_barang LIKE '%$pencarian%'";
+                    $sql = "SELECT * FROM detail_transaksi INNER JOIN pengeluaran ON detail_transaksi.id_pengeluaran = pengeluaran.id_pengeluaran JOIN 
+                            barang ON detail_transaksi.id_barang = barang.id_barang WHERE Nama_transaksi LIKE '%$pencarian%'";
 
                     $query = $sql;
                     $queryJml = $sql;
                 } else {
-                    $query = "SELECT * FROM barang LIMIT $posisi, $batas";
-                    $queryJml = "SELECT * FROM barang";
+                    $query = "SELECT * FROM detail_transaksi INNER JOIN pengeluaran ON detail_transaksi.id_pengeluaran = pengeluaran.id_pengeluaran JOIN 
+                            barang ON detail_transaksi.id_barang = barang.id_barang WHERE pengeluaran.id_pengeluaran  = '$transaksi'";
+                    $queryJml = "SELECT * FROM detail_transaksi INNER JOIN pengeluaran ON detail_transaksi.id_pengeluaran = pengeluaran.id_pengeluaran JOIN 
+                    barang ON detail_transaksi.id_barang = barang.id_barang WHERE pengeluaran.id_pengeluaran  = '$transaksi'  ";
                     $no = $posisi * 1;
                 }
             } else {
-                $query = "SELECT * FROM barang LIMIT $posisi, $batas";
-                $queryJml = "SELECT * FROM barang ";
+                $query = "SELECT * FROM detail_transaksi INNER JOIN pengeluaran ON detail_transaksi.id_pengeluaran = pengeluaran.id_pengeluaran JOIN 
+                            barang ON detail_transaksi.id_barang = barang.id_barang WHERE pengeluaran.id_pengeluaran  = '$transaksi'  ";
+                $queryJml = "SELECT * FROM detail_transaksi INNER JOIN pengeluaran ON detail_transaksi.id_pengeluaran = pengeluaran.id_pengeluaran JOIN 
+                            barang ON detail_transaksi.id_barang = barang.id_barang WHERE pengeluaran.id_pengeluaran  = '$transaksi' ";
                 $no = $posisi * 1;
             }
 
             //$sql="SELECT * FROM tbtranskasi ORDER BY idanggota DESC";
-            $q_tampil_barang = mysqli_query($koneksi, $query);
-            if (mysqli_num_rows($q_tampil_barang) > 0) {
-                while ($r_tampil_barang = mysqli_fetch_array($q_tampil_barang)) {
-                    if (empty($r_tampil_barang['foto']) or ($r_tampil_barang['foto'] == '-')) {
-                        $foto = "barang.jpg";
-                    } else {
-                        $foto = $r_tampil_barang['foto'];
-                    }
+            $q_tampil_detail = mysqli_query($koneksi, $query);
+            if (mysqli_num_rows($q_tampil_detail) > 0) {
+                while ($r_tampil_detail = mysqli_fetch_array($q_tampil_detail)) {
             ?>
                     <tr>
                         <td><?php echo $nomor; ?></td>
-                        <td><?php echo $r_tampil_barang['Nama_barang']; ?></td>
-                        <td><?php echo $r_tampil_barang['jumlah_barang']; ?></td>
+                        <td><?php echo $r_tampil_detail['Nama_barang']; ?></td>
+                        <td><?php echo $r_tampil_detail['jumlah']; ?></td>
                         <td>
-                            <?php
-                            if ($r_tampil_barang['kondisi'] == 1) {
-                                echo "<div class='status' style='background-color: #1A8708;'>baik</div>";
-                            } else if ($r_tampil_barang['kondisi'] == 2) {
-                                echo "<div class='status' style='background-color: #0F67EC;'>Kurang baik</div>";
-                            } else if ($r_tampil_barang['kondisi'] == 3) {
-                                echo "<div class='status' style='background-color: #A64702;'>Rusak</div>";
-                            }
-                            ?>
-                        </td>
-                        <td><img src="<?php echo "assets/gambar/" . $foto ?>" width=70px height=70px></td>
-                        <td>
-                            <a href="navbar.php?p=barang-edit&id=<?php echo $r_tampil_barang['id_barang']; ?>" style="text-decoration: none; color:white;">
+                            <a href="navbar.php?p=detail-edit&id=<?php echo $r_tampil_detail['id_detail']; ?>" style="text-decoration: none; color:white;">
                                 <div type="button" class="btn btn-primary"><i class="fas fa-edit"></i></div>
                             </a>
-                            <button type="button" class="btn btn-danger" onclick="konfirmasi('<?php echo $r_tampil_barang['id_barang']; ?>')"><i class="fas fa-trash-alt"></i></button>
+                            <button type="button" class="btn btn-danger" onclick="konfirmasi('<?= $r_tampil_detail['id_detail']; ?>','<?= $r_tampil_detail['id_pengeluaran'] ?>')"><i class="fas fa-trash-alt"></i></button>
                         </td>
                     </tr>
             <?php $nomor++;
@@ -164,7 +145,7 @@
                         $jml_hal = ceil($jml / $batas);
                         for ($i = 1; $i <= $jml_hal; $i++) {
                             if ($i != $hal) {
-                                echo "<a href=\"?p=barang&hal=$i\">$i</a>";
+                                echo "<a href=\"?p=transaksi&hal=$i\">$i</a>";
                             } else {
                                 echo "<a class=\"active\">$i</a>";
                             }
@@ -185,29 +166,20 @@
         });
     }
 
-    var nama_barang = document.getElementById('nama_barang');
-    var jumlah_barang = document.getElementById('jumlah_barang');
-    var kondisi = document.getElementById('kondisi');
-    var foto = document.getElementById('foto');
+    var barang = document.getElementById('barang');
+    var jumlah = document.getElementById('jumlah');
 
     function tambah() {
-        if (nama_barang.value == "") {
-            pesan('Nama Barang Tidak Boleh Kosong', 'warning');
+        if (barang.value == "0") {
+            pesan('Barang Tidak Boleh Kosong', 'warning');
             return false;
-        } else if (jumlah_barang.value == "") {
+        } else if (jumlah.value == "") {
             pesan('Jumlah Barang Tidak Boleh Kosong', 'warning');
-            return false;
-        } else if (kondisi.value == "0") {
-            pesan('Pilih Kondisi Barang Dengan Benar', 'warning');
-            return false;
-        } else if (foto.value == "") {
-            pesan('Foto Tidak Boleh Kosong', 'warning');
             return false;
         }
     }
 
-    function konfirmasi(id) {
-
+    function konfirmasi(id, transaksi) {
         swal.fire({
             title: "Hapus Data ini?",
             icon: "warning",
@@ -219,9 +191,8 @@
             cancelButtonColor: '#d33',
         }).then((result) => {
             if (result.value) {
-                window.location.href = "proses/barang-hapus-proses.php?id=" + id;
+                window.location.href = "proses/detail-hapus-proses.php?id=" + id + "&transaksi=" + transaksi;
             }
         });
-
     }
 </script>

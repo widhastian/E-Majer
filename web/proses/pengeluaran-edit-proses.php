@@ -2,10 +2,9 @@
 require '../koneksi.php';
 
 $id = $_POST['id'];
-$nama_barang = $_POST['nama_barang'];
-$jumlah_barang = $_POST['jumlah_barang'];
-$kelas = $_POST['kelas'];
-$kondisi = $_POST['kondisi'];
+$nominal = $_POST['nominal'];
+$tanggal = $_POST['tanggal'];
+$akun = $_POST['akun'];
 $foto_akhir = $_POST['foto_awal'];
 
 if (isset($_POST['btn-edit'])) {
@@ -15,7 +14,7 @@ if (isset($_POST['btn-edit'])) {
         // Baca lokasi file sementar dan nama file dari form (fupload)
         $lokasi_file = $_FILES['foto']['tmp_name'];
         $tipe_file = pathinfo($nama_file, PATHINFO_EXTENSION);
-        $file_foto = "Barang_" . $id . "." . $tipe_file;
+        $file_foto = "Nota_" . $id . "." . $tipe_file;
         // Tentukan folder untuk menyimpan file
         $folder = "../assets/gambar/$file_foto";
         @unlink("$folder");
@@ -24,8 +23,7 @@ if (isset($_POST['btn-edit'])) {
     } else {
         $file_foto = $foto_akhir;
     }
-    $query = "UPDATE barang SET Nama_barang = '$nama_barang', jumlah_barang = '$jumlah_barang', id_kelas = '$kelas', kondisi = '$kondisi', foto = '$file_foto' WHERE id_barang = '$id'";
-
+    $query = "UPDATE pengeluaran SET nominal_pengeluaran = '$nominal', tgl_pengeluaran = '$tanggal', id_akun = '$akun', foto = '$file_foto' WHERE id_pengeluaran = '$id'";
     $result = mysqli_query($koneksi, $query);
-    echo "<meta http-equiv='refresh' content='0; url=../navbar.php?p=barang'>";
+    echo "<meta http-equiv='refresh' content='0; url=../navbar.php?p=pengeluaran'>";
 }

@@ -16,8 +16,7 @@ if (isset($_POST['btn-login'])) {
             $kelas = $row['id_kelas'];
             $level = $row['id_level'];
             $email = $row['email'];
-            $saldo = $row['saldo'];
-            $pwd = $row['password'];;
+            $pwd = $row['password'];
         }
 
         if ($num != 0) {
@@ -26,9 +25,8 @@ if (isset($_POST['btn-login'])) {
                 $_SESSION['nama'] = $nama;
                 $_SESSION['id_kelas'] = $kelas;
                 $_SESSION['id_level'] = $level;
-                $_SESSION['saldo'] = $saldo;
                 echo "<script>alert('Anda Berhasil Login');</script>";
-                echo "<meta http-equiv='refresh' content='0; url=index.php?p=home'>";
+                echo "<meta http-equiv='refresh' content='0; url=navbar.php?p=home'>";
             } else {
                 echo "<script>alert('Anda Gagal Login');</script>";
                 echo "<meta http-equiv='refresh' content='0; url=login.php'>";

@@ -77,7 +77,7 @@ if (empty($data['foto']) or ($data['foto'] == '-')) {
                     <td style="padding-top: 2%;"><label for="validationServer01" class="form-label ">Foto</label></td>
                     <td style="padding-top: 1%;">:</td>
                     <td>
-                        <img src="assets/gambar/<?php echo $foto; ?>" width=70px height=75px>
+                        <img src="assets/gambar/<?php echo $foto; ?>" width=70px height=75px class="mt-3">
                         <div class="input-group has-validation mt-3">
                             <input type="file" class="form-control" name="foto" id="foto" aria-describedby="inputGroupPrepend">
                             <input type="hidden" name="foto_awal" value="<?php echo $data['foto']; ?>">
