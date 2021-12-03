@@ -82,13 +82,13 @@
                     $query = $sql;
                     $queryJml = $sql;
                 } else {
-                    $query = "SELECT * FROM pengeluaran";
-                    $queryJml = "SELECT * FROM pengeluaran ";
+                    $query = "SELECT * FROM pengeluaran WHERE id_akun = '$id'";
+                    $queryJml = "SELECT * FROM pengeluaran WHERE id_akun = '$id'";
                     $no = $posisi * 1;
                 }
             } else {
-                $query = "SELECT * FROM pengeluaran  ";
-                $queryJml = "SELECT * FROM pengeluaran";
+                $query = "SELECT * FROM pengeluaran WHERE id_akun = '$id'";
+                $queryJml = "SELECT * FROM pengeluaran WHERE id_akun = '$id'";
                 $no = $posisi * 1;
             }
 

@@ -1,17 +1,18 @@
 <?php
 require 'koneksi.php';
 
+$id = "M-" . mt_rand(1000, 99999);
+$nama = $_POST['firstname'] . ' ' . $_POST['lastname'];
 $username = $_POST['username'];
 $email = $_POST['email'];
 $password = $_POST['password'];
 $kodeKelas = $_POST['kelas'];
 
-$query = "INSERT INTO akun VALUES('','admin','$email','$username','$password','$kodeKelas',1)";
+$query = "INSERT INTO akun VALUES('$id','$nama','$email','$username','$password','$kodeKelas',1,0)";
 $result = mysqli_query($koneksi, $query);
 
 if ($result) {
-    header('Location:register(admin1).php?email=' . $email);
+    echo "<meta http-equiv='refresh' content='0; url=berhasil-buat-akun.php'>";
 } else {
-    echo "<script>alert('Akun gagal Dibuat');</script>";
-    echo "<meta http-equiv='refresh' content='0; url=register(admin).php'>";
+    echo "<meta http-equiv='refresh' content='0; url=berhasil-buat-akun.php'>";
 }

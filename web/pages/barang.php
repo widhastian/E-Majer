@@ -95,13 +95,13 @@
                     $query = $sql;
                     $queryJml = $sql;
                 } else {
-                    $query = "SELECT * FROM barang LIMIT $posisi, $batas";
-                    $queryJml = "SELECT * FROM barang";
+                    $query = "SELECT * FROM barang WHERE id_kelas = '$kelas' LIMIT $posisi, $batas";
+                    $queryJml = "SELECT * FROM barang WHERE id_kelas = '$kelas'";
                     $no = $posisi * 1;
                 }
             } else {
-                $query = "SELECT * FROM barang LIMIT $posisi, $batas";
-                $queryJml = "SELECT * FROM barang ";
+                $query = "SELECT * FROM barang WHERE id_kelas = '$kelas' LIMIT $posisi, $batas";
+                $queryJml = "SELECT * FROM barang WHERE id_kelas = '$kelas'";
                 $no = $posisi * 1;
             }
 

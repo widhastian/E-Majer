@@ -1,3 +1,15 @@
+<?php
+session_start();
+if (isset($_POST['btn-next'])) {
+    $email = $_POST['email'];
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+    $_SESSION['email'] = $email;
+    $_SESSION['username'] = $username;
+    $_SESSION['password'] = $password;
+    echo "<meta http-equiv='refresh' content='0; url=input-kelas.php'>";
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -18,7 +30,7 @@
     <!-- font awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js"></script>
-
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <title>Document</title>
 </head>
 
@@ -32,7 +44,7 @@
         <hr>
         <div style="display: block;">
             <div class="elips1">2</div>
-            <p class="none" style="margin-left: -10px; position: absolute; top: -5.6rem;">Verifikasi</p>
+            <p class="none" style="margin-left: 2px; position: absolute; top: -6.4rem;">Kelas</p>
         </div>
         <hr>
         <div style="display: block;">
@@ -43,17 +55,24 @@
     <p class="p1">Mendaftar sebagai Pengurus kelas</p>
     <button class="btn-goggle"><img src="assets/gambar/icon google.png"> Lanjutkan dengan Google</button>
     <p class="p2">Atau</p>
-    <form action="register(admin)-proses.php" method="POST" onsubmit="return register()">
+    <form action="" method="POST" onsubmit="return register()">
         <input type="text" style="height:35px" class="input" id="email" name="email" placeholder="Email"><br>
         <input type="text" style="height:35px" class="input" id="username" name="username" placeholder="Username"><br>
         <input type="password" style="height:35px" class="input" id="password" name="password" placeholder="password"><br>
         <input type="password" style="height:35px" class="input" id="cpassword" placeholder="Konfirm password"><br>
-        <input type="text" style="height:35px" class="input" id="kelas" name="kelas" placeholder="Kode kelas(Opsional)"><br>
-        <input type="submit" value="Selanjutnya" style="height:35px">
+        <input type="submit" value="Selanjutnya" style="height:35px" name="btn-next">
         <p class="register">Sudah punya akun? <a href="login.php">Masuk</a></p>
     </form>
     </div>
     <script>
+        function pesan(judul, status) {
+            swal.fire({
+                title: judul,
+                icon: status,
+                confirmButtonColor: '#6777ef',
+            });
+        }
+
         var input = document.querySelectorAll('.input');
         for (let i = 0; i < input.length; i++) {
             input[i].onclick = function() {
@@ -72,22 +91,22 @@
 
             function register() {
                 if (email.value == "") {
-                    alert("Email Tidak Boleh Kosong");
+                    pesan("Email Tidak Boleh Kosong", "warning", "warning");
                     return false;
                 } else if (username.value == "") {
-                    alert("Username Tidak Boleh Kosong");
+                    pesan("Username Tidak Boleh Kosong", "warning");
                     return false;
                 } else if (password.value == "") {
-                    alert("Password Tidak Boleh Kosong");
+                    pesan("Password Tidak Boleh Kosong", "warning");
                     return false;
                 } else if (cpassword.value == "") {
-                    alert("Konfirmasi Password Tidak Boleh Kosong");
+                    pesan("Konfirmasi Password Tidak Boleh Kosong", "warning");
                     return false;
                 } else if (cpassword.value != password.value) {
-                    alert("Masukkan Password yang benar");
+                    pesan("Masukkan Password yang benar", "warning");
                     return false;
                 } else if (kode.value == "") {
-                    alert("Kode Kelas Tidak Boleh Kosong");
+                    pesan("Kode Kelas Tidak Boleh Kosong", "warning");
                     return false;
                 }
             }

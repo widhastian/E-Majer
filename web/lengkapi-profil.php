@@ -1,3 +1,11 @@
+<?php
+session_start();
+
+$kelas = $_SESSION['kelas'];
+$email = $_SESSION['email'];
+$username = $_SESSION['username'];
+$password = $_SESSION['password'];
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,7 +16,7 @@
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <script src="../assets/js/jquery-3.4.1.js"></script>
+    <script src="assets/js/jquery-3.4.1.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Poppins" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
@@ -22,19 +30,36 @@
     <title>Document</title>
 </head>
 
-<body id="login">
-    <div class="container" onsubmit="return clickLogin()">
-        <p class="p1">Selamat Datang kembali!<br>Masuk ke akun E-Majer anda dan nikmati pelayanannya</p>
-        <button class="btn-goggle"><img src="assets/gambar/icon google.png"> Lanjutkan dengan Google</button>
-        <p class="p2">Atau</p>
-        <form action="login-proses.php" method="POST">
-            <input type="text" class="input" id="nama" name="email" placeholder="Email atau Username"><br>
-            <input type="password" class="input" id="password" name="password" placeholder="password"><br>
-            <p class="forgot"><a href="">Lupa password?</a></p><br>
-            <input type="submit" value="Masuk" name="btn-login">
-            <p class="register">Belum punya akun? <a href="register-awal.php">Daftar</a></p>
+<body id="daftar2">
+    <div class="container">
+        <div class="indikator">
+            <div style="display: block;">
+                <div class="elips">1</div>
+                <p class="verified">Email</p>
+            </div>
+            <hr>
+            <div style="display: block;">
+                <div class="elips">2</div>
+                <p class="verified" style="margin-left: 2px; position: absolute; top: -5.6rem;">Kelas</p>
+            </div>
+            <hr>
+            <div style="display: block;">
+                <div class="elips">3</div>
+                <p class="verified">Profil</p>
+            </div>
+        </div>
+        <img src="assets/gambar/loginDone.png" alt="" class="img" width="28%">
+        <form action="register(admin)-proses.php" method="POST">
+            <input type="hidden" name="email" value="<?= $email ?>">
+            <input type="hidden" name="username" value="<?= $username ?>">
+            <input type="hidden" name="password" value="<?= $password ?>">
+            <input type="hidden" name="kelas" value="<?= $kelas ?>">
+            <input type="text" class="input" name="firstname" id="firstname" placeholder="Nama Depan"><br>
+            <input type="text" class="input" name="lastname" id="lastname" placeholder="Nama Belakang"><br>
+            <input type="submit" value="Selesai">
         </form>
     </div>
+
     <script>
         function pesan(judul, status) {
             swal.fire({
@@ -55,15 +80,15 @@
             }
         }
 
-        var nama = document.getElementById('nama');
-        var password = document.getElementById('password');
+        var firstname = document.getElementById('firstname');
+        var lastname = document.getElementById('lastname');
 
         function clickLogin() {
-            if (nama.value == "") {
-                pesan("Email atau Username Tidak Boleh Kosong", "warning");
+            if (firstname.value == "") {
+                pesan("Firstname Tidak Boleh Kosong", "warning");
                 return false;
-            } else if (password.value == "") {
-                pesan("Password Tidak Boleh Kosong", "warning");
+            } else if (lastname.value == "") {
+                pesan("Lastname Tidak Boleh Kosong", "warning");
                 return false;
             }
         }

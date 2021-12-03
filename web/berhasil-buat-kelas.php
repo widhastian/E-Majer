@@ -1,5 +1,8 @@
 <?php
-$email = $_GET['email'];
+session_start();
+
+$kelas = $_SESSION['kelas'];
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -21,7 +24,7 @@ $email = $_GET['email'];
     <!-- font awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js"></script>
-
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <title>Document</title>
 </head>
 
@@ -35,7 +38,7 @@ $email = $_GET['email'];
             <hr>
             <div style="display: block;">
                 <div class="elips">2</div>
-                <p class="verified" style="margin-left: -10px; position: absolute; top: -99%;">Verifikasi</p>
+                <p class="verified" style="margin-left: 2px; position: absolute; top: -5.6rem;">Kelas</p>
             </div>
             <hr>
             <div style="display: block;">
@@ -44,12 +47,9 @@ $email = $_GET['email'];
             </div>
         </div>
         <img src="assets/gambar/verifikasi.png" alt="" class="img" width="28%">
-        <p class="p3">Periksa Email anda untuk memverifikasi</p>
-        <p class="p5">Periksa email anda dan klik link yang sudah di kirimkan ke<br>
-            <b><?= $email ?>.</b> Jika email yang anda masukkan salah,<br>
-            anda bisa mengubahnya <a href="register(admin2).php">disini</a>
-        </p>
-        <p class="p6">Tidak menerima email? <a href="">Kirim ulang</a></p>
+        <p class="p3" style="font-size: 16px;">Sukses!</p>
+        <p class="p5" style="margin-top: -0.3rem; text-align:center;">Kelas Berhasil Dibuat, Bagikan Kode <b><?= $kelas ?></b> Agar<br> Dapat Bergabung Dengan Kelas Anda</p>
+        <a href="lengkapi-profil.php"><button class="next" style="width: 30%;">Selanjutnya</button></a>
     </div>
 
 </html>

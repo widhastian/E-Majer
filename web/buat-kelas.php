@@ -18,7 +18,7 @@
     <!-- font awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js"></script>
-
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <title>Document</title>
 </head>
 
@@ -32,33 +32,51 @@
             <hr>
             <div style="display: block;">
                 <div class="elips">2</div>
-                <p class="verified" style="margin-left: -10px; position: absolute; top: -99%;">Verifikasi</p>
+                <p class="verified" style="margin-left: 2px; position: absolute; top: -5.6rem;">Kelas</p>
             </div>
             <hr>
             <div style="display: block;">
-                <div class="elips">3</div>
-                <p class="verified">Profil</p>
+                <div class="elips1">3</div>
+                <p class="none">Profil</p>
             </div>
         </div>
-        <img src="assets/gambar/loginDone.png" alt="" class="img" width="28%">
-        <form action="" method="POST">
-            <input type="text" class="input" placeholder="Nama Depan"><br>
-            <input type="password" class="input" placeholder="Nama Belakang"><br>
-            <input type="submit" value="Selesai">
+        <img src="assets/gambar/verifikasi.png" alt="" class="img" width="20%">
+        <p class="p3" style="font-size: 16px;">Masukkan Kode Kelas</p>
+        <p class="p5" style="color: #7A7A7A; font-size: 14px; margin-top:0.5%; text-align :center;">Silahkan Masukkan Kode Kelas Atau Jika ingin Membuat<br> Kelas Baru Klik <a href="buat-kelas.php">Disini</a> </u>
+        </p>
+        <form action="tambah-kelas-proses.php" method="POST" onsubmit="return tambah()">
+            <input type="text" class="input2" id="kelas" name="kelas" placeholder="Nama Kelas"><br>
+            <input type="text" class="input2" id="nominal" name="nominal" placeholder="Nominal Uang Kas"><br>
+            <div class="button">
+                <input type="submit" class="kirim" value="Selanjutnya" name="btn-next">
+            </div>
         </form>
-    </div>
-
-    <script>
-        var input = document.querySelectorAll('.input');
-        for (let i = 0; i < input.length; i++) {
-            input[i].onclick = function() {
-                let j = 0;
-                while (j < input.length) {
-                    input[j++].style.outline = "none";
-                }
-                input[i].style.outline = "2px solid #FEBE10";
+        <script>
+            function pesan(judul, status) {
+                swal.fire({
+                    title: judul,
+                    icon: status,
+                    confirmButtonColor: '#6777ef',
+                });
             }
-        }
-    </script>
+
+            var input = document.querySelector('.input2');
+            input.addEventListener("click", function(e) {
+                input.style.outline = "2px solid #FEBE10";
+            });
+
+            var kelas = document.getElementById('kelas');
+            var nominal = document.getElementById('nominal');
+
+            function tambah() {
+                if (kelas.value == "") {
+                    pesan("Nama Kelas Tidak Boleh Kosong", "warning");
+                    return false;
+                } else if (nominal.value == "") {
+                    pesan("Nominal Uang Kas Tidak Boleh Kosong", "warning");
+                    return false;
+                }
+            }
+        </script>
 
 </html>

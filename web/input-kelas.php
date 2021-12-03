@@ -1,3 +1,11 @@
+<?php
+session_start();
+if (isset($_POST['btn-next'])) {
+    $kelas = $_POST['kelas'];
+    $_SESSION['kelas'] = $kelas;
+    echo "<meta http-equiv='refresh' content='0; url=lengkapi-profil.php'>";
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -18,7 +26,7 @@
     <!-- font awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js"></script>
-
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <title>Document</title>
 </head>
 
@@ -32,7 +40,7 @@
             <hr>
             <div style="display: block;">
                 <div class="elips">2</div>
-                <p class="verified" style="margin-left: -10px; position: absolute; top: -99%;">Verifikasi</p>
+                <p class="verified" style="margin-left: 2px; position: absolute; top: -5.6rem;">Kelas</p>
             </div>
             <hr>
             <div style="display: block;">
@@ -41,24 +49,38 @@
             </div>
         </div>
         <img src="assets/gambar/verifikasi.png" alt="" class="img" width="25%">
-        <p class="p3" style="font-size: 16px;">Periksa Email anda untuk memverifikasi</p>
-        <p class="p5" style="color: #7A7A7A; font-size: 14px; margin-top:0.5%;">Periksa email anda dan klik link yang
-            sudah di kirimkan ke<br><b>widha@gmail.com.</b> Jika email yang anda masukkan salah,<br>
-            anda bisa mengubahnya <u>disini</u>
+        <p class="p3" style="font-size: 16px;">Masukkan Kode Kelas</p>
+        <p class="p5" style="color: #7A7A7A; font-size: 14px; margin-top:0.5%; text-align :center;">Silahkan Masukkan Kode Kelas Atau Jika ingin Membuat<br> Kelas Baru Klik <a href="buat-kelas.php">Disini</a> </u>
         </p>
-        <form action="" method="POST" onsubmit="return register()">
-            <input type="email" class="input2" placeholder="Email"><br>
+        <form action="" method="POST" onsubmit="return tambah()">
+            <input type="text" class="input2" id="kelas" name="kelas" placeholder="Kode Kelas"><br>
             <div class="button">
-                <button class="batal">Batal</button>
-                <input type="submit" class="kirim" value="Kirim Ulang">
+                <input type="submit" class="kirim" value="Selanjutnya" name="btn-next">
             </div>
         </form>
     </div>
     <script>
+        function pesan(judul, status) {
+            swal.fire({
+                title: judul,
+                icon: status,
+                confirmButtonColor: '#6777ef',
+            });
+        }
+
         var input = document.querySelector('.input2');
         input.addEventListener("click", function(e) {
             input.style.outline = "2px solid #FEBE10";
         });
+
+        var kelas = document.getElementById('kelas');
+
+        function tambah() {
+            if (kelas.value == "") {
+                pesan("Kode Kelas Tidak Boleh Kosong", "warning");
+                return false;
+            }
+        }
     </script>
 
 </html>

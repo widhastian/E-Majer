@@ -18,7 +18,7 @@
     <!-- font awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js"></script>
-
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <title>Document</title>
 </head>
 
@@ -32,18 +32,18 @@
             <hr>
             <div style="display: block;">
                 <div class="elips">2</div>
-                <p class="verified" style="margin-left: -10px; position: absolute; top: -99%;">Verifikasi</p>
+                <p class="verified" style="margin-left: 2px; position: absolute; top: -5.6rem;">Kelas</p>
             </div>
             <hr>
             <div style="display: block;">
-                <div class="elips1">3</div>
-                <p class="none">Profil</p>
+                <div class="elips">3</div>
+                <p class="verified">Profil</p>
             </div>
         </div>
         <img src="assets/gambar/welcome.png" alt="" class="img" width="28%">
         <p class="p3" style="font-size: 16px;">Sukses!</p>
-        <p class="p5" style="margin-top: -0.3rem;">Email berhasil di verifikasi, silahkan lengkapi profil anda</p>
-        <button class="next">Selanjutnya</button>
+        <p class="p5" style="margin-top: -0.3rem; text-align:center;">Akun berhasil di Dibuat</p>
+        <a href="logout.php"><button class="next">login</button></a>
     </div>
 
 </html>

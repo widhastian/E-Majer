@@ -18,7 +18,7 @@
     <!-- font awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js"></script>
-
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <title>Document</title>
 </head>
 
@@ -40,6 +40,14 @@
         </form>
     </div>
     <script>
+        function pesan(judul, status) {
+            swal.fire({
+                title: judul,
+                icon: status,
+                confirmButtonColor: '#6777ef',
+            });
+        }
+
         var input = document.querySelectorAll('.input');
         for (let i = 0; i < input.length; i++) {
             input[i].onclick = function() {
@@ -59,25 +67,25 @@
 
             function register() {
                 if (nama.value == "") {
-                    alert("Nama Tidak Boleh Kosong");
+                    pesan("Nama Tidak Boleh Kosong", "warning");
                     return false;
                 } else if (username.value == "") {
-                    alert("Username Tidak Boleh Kosong");
+                    pesan("Username Tidak Boleh Kosong", "warning");
                     return false;
                 } else if (email.value == "") {
-                    alert("Email Tidak Boleh Kosong");
+                    pesan("Email Tidak Boleh Kosong", "warning");
                     return false;
                 } else if (password.value == "") {
-                    alert("Password Tidak Boleh Kosong");
+                    pesan("Password Tidak Boleh Kosong", "warning");
                     return false;
                 } else if (cpassword.value == "") {
-                    alert("Konfirmasi Password Tidak Boleh Kosong");
+                    pesan("Konfirmasi Password Tidak Boleh Kosong", "warning");
                     return false;
                 } else if (cpassword.value != password.value) {
-                    alert("Masukkan Password yang benar");
+                    pesan("Masukkan Password yang benar", "warning");
                     return false;
                 } else if (kode.value == "") {
-                    alert("Kode Kelas Tidak Boleh Kosong");
+                    pesan("Kode Kelas Tidak Boleh Kosong", "warning");
                     return false;
                 }
             }
