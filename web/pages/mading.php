@@ -11,10 +11,11 @@
     </div>
     <div class="content" style="padding-bottom: 4%; height:100%">
         <!-- Button trigger modal -->
-        <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-            <i class="fas fa-plus"></i> Tambah
-        </button>
-
+        <?php if ($level == 1) { ?>
+            <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                <i class="fas fa-plus"></i> Tambah
+            </button>
+        <?php } ?>
         <!-- Modal -->
         <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog">
@@ -81,10 +82,12 @@
                         </div>
                         <div class="col-2">
                             <p style="padding-top: 4%;"><?= $row['tgl_pembagian'] ?></p>
-                            <a href="navbar.php?p=mading-edit&id=<?php echo $row['id_mading']; ?>" style="text-decoration: none; color:white;">
-                                <div type="button" class="btn btn-primary button"><i class="fas fa-edit" style="margin-bottom: 5px; margin-left:-5px;"></i></div>
-                            </a>
-                            <button type="button" class="btn btn-danger button" onclick="konfirmasi('<?= $row['id_mading'] ?>')"><i class="fas fa-trash-alt" style="margin-bottom: 4px; margin-left:-4px;"></i></button>
+                            <?php if ($level == 1) { ?>
+                                <a href="navbar.php?p=mading-edit&id=<?php echo $row['id_mading']; ?>" style="text-decoration: none; color:white;">
+                                    <div type="button" class="btn btn-primary button"><i class="fas fa-edit" style="margin-bottom: 5px; margin-left:-5px;"></i></div>
+                                </a>
+                                <button type="button" class="btn btn-danger button" onclick="konfirmasi('<?= $row['id_mading'] ?>')"><i class="fas fa-trash-alt" style="margin-bottom: 4px; margin-left:-4px;"></i></button>
+                            <?php } ?>
                         </div>
                     </div>
                 </div>
