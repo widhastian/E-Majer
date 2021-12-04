@@ -11,11 +11,12 @@
     </div>
     <div class="content">
         <!-- Button trigger modal -->
+        <?php if($level == 1) { ?>
         <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
             <i class="fas fa-plus"></i> Tambah
         </button>
         <button type="button" class="btn btn-secondary"><i class="fas fa-print"></i> Print</button>
-
+        <?php } ?>
         <!-- Modal -->
         <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog">
@@ -72,7 +73,9 @@
                 <td>Jumlah Barang</td>
                 <td>Kondisi</td>
                 <td>Foto</td>
+                <?php if($level == 1) { ?>
                 <td colspan="2">action</td>
+                <?php } ?>
             </tr>
             <?php
             $batas = 5;
@@ -131,12 +134,14 @@
                             ?>
                         </td>
                         <td><img src="<?php echo "assets/gambar/" . $foto ?>" width=70px height=70px></td>
+                        <?php if($level == 1) { ?>
                         <td>
                             <a href="navbar.php?p=barang-edit&id=<?php echo $r_tampil_barang['id_barang']; ?>" style="text-decoration: none; color:white;">
                                 <div type="button" class="btn btn-primary"><i class="fas fa-edit"></i></div>
                             </a>
                             <button type="button" class="btn btn-danger" onclick="konfirmasi('<?php echo $r_tampil_barang['id_barang']; ?>')"><i class="fas fa-trash-alt"></i></button>
                         </td>
+                        <?php } ?>
                     </tr>
             <?php $nomor++;
                 }

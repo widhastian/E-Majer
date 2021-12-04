@@ -10,11 +10,12 @@
         </div>
     </div>
     <div class="content">
+        <?php if($level == 1) { ?>
         <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
             <i class="fas fa-plus"></i> Tambah
         </button>
         <button type="button" class="btn btn-secondary"><i class="fas fa-print"></i> Print</button>
-
+        <?php } ?>
         <!-- Modal -->
         <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog">
@@ -68,7 +69,9 @@
                 <td>Tanggal Transaksi</td>
                 <td>Nominal Transaksi</td>
                 <td>status</td>
+                <?php if($level == 1) { ?>
                 <td colspan="2">action</td>
+                <?php } ?>
             </tr>
             <?php
             $batas = 5;
@@ -128,6 +131,7 @@
                         </td>
                         <td>
                             <!-- Example single danger button -->
+                            <?php if($level == 1) { ?>
                             <div class="dropdown">
                                 <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                                     Action
@@ -143,6 +147,7 @@
                                     <?php } ?>
                                 </ul>
                             </div>
+                            <?php } ?>
                         </td>
                     </tr>
             <?php $nomor++;
