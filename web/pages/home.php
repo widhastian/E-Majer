@@ -14,7 +14,7 @@
         <div style="display: flex;">
             <div class="box1">
                 <p style="font-size: 12px; padding-top:10px;">Transaksi Bendahara</p>
-                <canvas id="myChart" style="height: 1px; position:relative; top:-35px;"></canvas>
+                <canvas id="myChart" style="height: 0.5px; position:relative; top:-35px;"></canvas>
             </div>
             <div style="display: block; width:25%;">
                 <div class="box-saldo" style="margin-bottom: 1rem;">
@@ -43,7 +43,7 @@
         <div style="display: flex; margin-bottom:0.8%;">
             <div class="box2">
                 <p style="font-size: 12px; padding-top:10px;">Transaksi Pengeluaran</p>
-                <canvas id="myChart2" style="height: 1px; position:relative; top:-35px;"></canvas>
+                <canvas id="myChart2" style="height: 0.5px; position:relative; top:-35px;"></canvas>
             </div>
             <div class="box-calender">
                 <?php
