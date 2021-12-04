@@ -5,6 +5,7 @@ $id = "BL-" . mt_rand(1000, 99999);
 $nominal = $_POST['nominal'];
 $tanggal = $_POST['tanggal'];
 $akun = $_POST['akun'];
+$kelas = $_POST['kelas'];
 
 if (isset($_POST['btn-tambah'])) {
     extract($_POST);
@@ -22,7 +23,7 @@ if (isset($_POST['btn-tambah'])) {
     } else
         $file_foto = "-";
 
-    $query = "INSERT INTO pengeluaran VALUES('$id','$nominal','$tanggal','$akun','$file_foto')";
+    $query = "INSERT INTO pengeluaran VALUES('$id','$nominal','$tanggal','$akun','$kelas','$file_foto')";
     $result = mysqli_query($koneksi, $query);
 
     echo "<meta http-equiv='refresh' content='0; url=../navbar.php?p=pengeluaran'>";

@@ -37,6 +37,7 @@
                                     <span class="input-group-text" id="inputGroupPrepend"><i class="fas fa-calendar-alt"></i></span>
                                     <input type="date" class="form-control" id="tanggal" n aria-describedby="inputGroupPrepend" name="tanggal">
                                     <input type="hidden" value="<?= $id ?>" name="akun">
+                                    <input type="hidden" value="<?= $kelas ?>" name="kelas">
                                 </div>
                             </div>
                             <div class="col-md-12">

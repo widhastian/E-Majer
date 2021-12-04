@@ -5,6 +5,7 @@ $id = $_POST['id'];
 $nominal = $_POST['nominal'];
 $tanggal = $_POST['tanggal'];
 $akun = $_POST['akun'];
+$kelas = $_POST['kelas'];
 $foto_akhir = $_POST['foto_awal'];
 
 if (isset($_POST['btn-edit'])) {
@@ -23,7 +24,7 @@ if (isset($_POST['btn-edit'])) {
     } else {
         $file_foto = $foto_akhir;
     }
-    $query = "UPDATE pengeluaran SET nominal_pengeluaran = '$nominal', tgl_pengeluaran = '$tanggal', id_akun = '$akun', foto = '$file_foto' WHERE id_pengeluaran = '$id'";
+    $query = "UPDATE pengeluaran SET nominal_pengeluaran = '$nominal', tgl_pengeluaran = '$tanggal', id_akun = '$akun', nama_kelas = '$kelas', foto = '$file_foto' WHERE id_pengeluaran = '$id'";
     $result = mysqli_query($koneksi, $query);
     echo "<meta http-equiv='refresh' content='0; url=../navbar.php?p=pengeluaran'>";
 }

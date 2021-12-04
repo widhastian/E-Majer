@@ -41,6 +41,7 @@ if (empty($data['foto']) or ($data['foto'] == '-')) {
                             <span class="input-group-text" id="inputGroupPrepend"><i class="fas fa-calendar-alt"></i></span>
                             <input type="date" class="form-control" id="tanggal" aria-describedby="inputGroupPrepend" placeholder="Jumlah Barang" name="tanggal" value="<?= $data['tgl_pengeluaran'] ?>">
                             <input type="hidden" value="<?= $data['id_akun'] ?>" name="akun">
+                            <input type="hidden" value="<?= $kelas ?>" name="kelas">
                         </div>
                     </td>
                 </tr>
