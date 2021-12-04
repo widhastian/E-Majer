@@ -1,4 +1,4 @@
-<section class="home-section">
+<section class="home-section" style="background: #f8f8f8;">
     <div class="home-content">
         <i class='bx bx-menu'></i>
         <span class="text">Mading</span>

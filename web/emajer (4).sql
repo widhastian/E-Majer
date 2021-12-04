@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 02, 2021 at 02:48 PM
+-- Generation Time: Dec 04, 2021 at 11:21 AM
 -- Server version: 10.4.19-MariaDB
 -- PHP Version: 8.0.6
 
@@ -43,7 +43,9 @@ CREATE TABLE `akun` (
 --
 
 INSERT INTO `akun` (`id_akun`, `nama`, `email`, `username`, `password`, `id_kelas`, `id_level`, `saldo`) VALUES
-('M-44732', 'Muh. Yusril Amin', 'yusril@gmail.com', 'yusril', '123', 'K-02', 2, '80000');
+('M-44732', 'Muh. Yusril Amin', 'yusril@gmail.com', 'yusril', '123', 'K-02', 1, '76000'),
+('M-47195', 'Dinda Kusmara', 'dinda@gmail.com', 'dinda', '123', 'K-92735', 1, '0'),
+('M-76642', 'Andi Wijaya', 'yusrilzima28@gmail.com', 'admin4', '123', 'K-26430', 1, '0');
 
 -- --------------------------------------------------------
 
@@ -106,7 +108,9 @@ CREATE TABLE `kelas` (
 
 INSERT INTO `kelas` (`id_kelas`, `nama_kelas`, `nominal_uangkas`) VALUES
 ('K-01', 'TIF A', '2000'),
-('K-02', 'TIF B', '2000');
+('K-02', 'TIF B', '2000'),
+('K-26430', 'TIF D', '2000'),
+('K-92735', 'TIF E', '2000');
 
 -- --------------------------------------------------------
 
@@ -147,8 +151,7 @@ CREATE TABLE `mading` (
 
 INSERT INTO `mading` (`id_mading`, `jenis_mading`, `deskripsi_mading`, `tgl_pembagian`, `id_kelas`) VALUES
 ('MDG-64866', '2', 'wewew', '2021-12-14', 'K-02'),
-('MDG-6490', '1', 'wewew', '2021-12-03', 'K-02'),
-('MDG-81753', '3', 'wewew', '2021-12-07', 'K-02');
+('MDG-6490', '1', 'wewew', '2021-12-03', 'K-02');
 
 -- --------------------------------------------------------
 
@@ -161,6 +164,7 @@ CREATE TABLE `pengeluaran` (
   `nominal_pengeluaran` varchar(25) NOT NULL,
   `tgl_pengeluaran` date NOT NULL,
   `id_akun` varchar(15) NOT NULL,
+  `nama_kelas` varchar(11) NOT NULL,
   `foto` varchar(25) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -168,8 +172,9 @@ CREATE TABLE `pengeluaran` (
 -- Dumping data for table `pengeluaran`
 --
 
-INSERT INTO `pengeluaran` (`id_pengeluaran`, `nominal_pengeluaran`, `tgl_pengeluaran`, `id_akun`, `foto`) VALUES
-('BL-99489', '20000', '2021-12-03', 'M-44732', 'Nota_BL-99489.png');
+INSERT INTO `pengeluaran` (`id_pengeluaran`, `nominal_pengeluaran`, `tgl_pengeluaran`, `id_akun`, `nama_kelas`, `foto`) VALUES
+('BL-85412', '20000', '2021-12-16', 'M-44732', 'K-02', 'Nota_BL-85412.png'),
+('BL-99489', '10000', '2021-12-03', 'M-44732', 'K-02', 'Nota_BL-99489.png');
 
 --
 -- Triggers `pengeluaran`
@@ -243,8 +248,14 @@ CREATE TABLE `transaksi` (
 --
 
 INSERT INTO `transaksi` (`id_transaksi`, `id_akun`, `nama_kelas`, `tanggal_transaksi`, `nominal_transaksi`, `status`) VALUES
+('TR-14455', 'M-44732', 'K-02', '2021-12-25', '2000', 1),
+('TR-37162', 'M-44732', 'K-02', '2021-12-23', '2000', 1),
 ('TR-40620', 'M-44732', 'K-02', '2021-12-10', '2000', 2),
-('TR-61762', 'M-44732', 'K-02', '2021-12-09', '2000', 1);
+('TR-41385', 'M-44732', 'K-02', '2021-12-15', '2000', 1),
+('TR-61762', 'M-44732', 'K-02', '2021-12-09', '2000', 2),
+('TR-72490', 'M-47195', 'K-02', '2021-12-09', '2000', 1),
+('TR-72524', 'M-44732', 'K-02', '2021-12-07', '2000', 2),
+('TR-74130', 'M-44732', 'K-02', '2021-12-09', '2000', 2);
 
 --
 -- Indexes for dumped tables

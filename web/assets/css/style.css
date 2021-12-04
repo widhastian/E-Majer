@@ -4,7 +4,6 @@
     font-family: 'Poppins', sans-serif;
 }
 
-
 #login {
     text-align: center;
     background-color:#F8F8F8;
@@ -818,6 +817,9 @@
   .home-section .dashboard .box1{
     width: 55%;
     height: 38vh;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
     background-color: #FFFFFF;
     border: 1px solid rgba(0, 0, 0, 0.3);
     box-sizing: border-box;
@@ -896,6 +898,9 @@
     position: relative;
     margin-top: 3vh;
     margin-bottom: 4vh;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
     background-color: #FFFFFF;
     border: 1px solid rgba(0, 0, 0, 0.3);
     box-sizing: border-box;

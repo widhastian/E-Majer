@@ -32,7 +32,7 @@
                                         <option value="0">-- Nama Siswa --</option>
                                         <?php
                                         require('koneksi.php');
-                                        $result = mysqli_query($koneksi, "SELECT * FROM akun");
+                                        $result = mysqli_query($koneksi, "SELECT * FROM akun WHERE id_kelas ='$kelas'");
                                         if (mysqli_num_rows($result) > 0) {
                                             while ($row = mysqli_fetch_array($result)) { ?>
                                                 <option value="<?= $row['id_akun'] ?>"><?= $row['nama'] ?></option>
