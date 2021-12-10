@@ -10,12 +10,29 @@
         </div>
     </div>
     <div class="content">
-        <?php if($level == 1) { ?>
-        <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-            <i class="fas fa-plus"></i> Tambah
-        </button>
-        <button type="button" class="btn btn-secondary"><i class="fas fa-print"></i> Print</button>
-        <?php } ?>
+        <div class="row" style="width:97%;">
+            <div class="col-md-5">
+                <?php if ($level == 1) { ?>
+                    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                        <i class="fas fa-plus"></i> Tambah
+                    </button>
+                    <button type="button" class="btn btn-secondary"><i class="fas fa-print"></i> Print</button>
+                <?php } ?>
+            </div>
+            <div class="col-md-7">
+                <form class="row g-3" style="margin-left:12.5%; margin-bottom:-15px;" method="POST">
+                    <div class="col-auto">
+                        <input type="date" name="tanggal" class="form-control" id="inputPassword2">
+                    </div>
+                    <div class="col-auto">
+                        <input type="text" name="pencarian" class="form-control" id="inputPassword2" placeholder="Nama Siswa">
+                    </div>
+                    <div class="col-auto">
+                        <button type="submit" class="btn btn-primary mb-3" name="btn-cari" style="height: 40px; padding-top:8px; width:45px; padding-left:11px;"><i class='bx bx-search-alt fs-4'></i></button>
+                    </div>
+                </form>
+            </div>
+        </div>
         <!-- Modal -->
         <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog">
@@ -69,12 +86,12 @@
                 <td>Tanggal Transaksi</td>
                 <td>Nominal Transaksi</td>
                 <td>status</td>
-                <?php if($level == 1) { ?>
-                <td colspan="2">action</td>
+                <?php if ($level == 1) { ?>
+                    <td colspan="2">action</td>
                 <?php } ?>
             </tr>
             <?php
-            $batas = 5;
+            $batas = 6;
             extract($_GET);
             if (empty($hal)) {
                 $posisi = 0;
@@ -88,22 +105,29 @@
 
             if ($_SERVER['REQUEST_METHOD'] == "POST") {
                 $pencarian = trim(mysqli_real_escape_string($koneksi, $_POST['pencarian']));
+                $tanggal = trim(mysqli_real_escape_string($koneksi, $_POST['tanggal']));
                 if ($pencarian != "") {
-                    $sql = "SELECT * FROM transaksi INNER JOIN akun ON transaksi.id_akun = akun.id_akun JOIN 
-                            kelas On akun.id_kelas = kelas.id_kelas WHERE Nama_transaksi LIKE '%$pencarian%'";
-
-                    $query = $sql;
-                    $queryJml = $sql;
+                    $query = "SELECT * FROM transaksi INNER JOIN akun ON transaksi.id_akun = akun.id_akun JOIN 
+                    kelas On akun.id_kelas = kelas.id_kelas WHERE akun.id_kelas = '$kelas' AND akun.nama LIKE '%$pencarian%' LIMIT $posisi, $batas";
+                    $queryJml = "SELECT * FROM transaksi INNER JOIN akun ON transaksi.id_akun = akun.id_akun JOIN 
+                    kelas On akun.id_kelas = kelas.id_kelas WHERE akun.id_kelas = '$kelas' AND akun.nama LIKE '%$pencarian%'";
+                    $no = $posisi * 1;
+                } else if ($tanggal != "") {
+                    $query = "SELECT * FROM transaksi INNER JOIN akun ON transaksi.id_akun = akun.id_akun JOIN 
+                    kelas On akun.id_kelas = kelas.id_kelas WHERE akun.id_kelas = '$kelas' AND transaksi.tanggal_transaksi LIKE '%$tanggal%' LIMIT $posisi, $batas";
+                    $queryJml = "SELECT * FROM transaksi INNER JOIN akun ON transaksi.id_akun = akun.id_akun JOIN 
+                    kelas On akun.id_kelas = kelas.id_kelas WHERE akun.id_kelas = '$kelas' AND transaksi.tanggal_transaksi LIKE '%$tanggal%'";
+                    $no = $posisi * 1;
                 } else {
                     $query = "SELECT * FROM transaksi INNER JOIN akun ON transaksi.id_akun = akun.id_akun JOIN 
-                            kelas On akun.id_kelas = kelas.id_kelas WHERE akun.id_kelas = '$kelas'";
+                            kelas On akun.id_kelas = kelas.id_kelas WHERE akun.id_kelas = '$kelas' LIMIT $posisi, $batas";
                     $queryJml = "SELECT * FROM transaksi INNER JOIN akun ON transaksi.id_akun = akun.id_akun JOIN 
-                    kelas On akun.id_kelas = kelas.id_kelas WHERE akun.id_kelas = '$kelas'  ";
+                    kelas On akun.id_kelas = kelas.id_kelas WHERE akun.id_kelas = '$kelas'";
                     $no = $posisi * 1;
                 }
             } else {
                 $query = "SELECT * FROM transaksi INNER JOIN akun ON transaksi.id_akun = akun.id_akun JOIN 
-                            kelas On akun.id_kelas = kelas.id_kelas WHERE akun.id_kelas = '$kelas'  ";
+                            kelas On akun.id_kelas = kelas.id_kelas WHERE akun.id_kelas = '$kelas'  LIMIT $posisi, $batas";
                 $queryJml = "SELECT * FROM transaksi INNER JOIN akun ON transaksi.id_akun = akun.id_akun JOIN 
                             kelas On akun.id_kelas = kelas.id_kelas WHERE akun.id_kelas = '$kelas' ";
                 $no = $posisi * 1;
@@ -131,22 +155,22 @@
                         </td>
                         <td>
                             <!-- Example single danger button -->
-                            <?php if($level == 1) { ?>
-                            <div class="dropdown">
-                                <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                                    Action
-                                </button>
-                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                    <?php
-                                    if ($r_tampil_transaksi['status'] == 1) { ?>
-                                        <li><button class="dropdown-item" onclick="bayar('<?= $r_tampil_transaksi['id_transaksi']; ?>','<?= $nominal ?>','<?= $id ?>')">Bayar</button></li>
-                                        <li><button class="dropdown-item" hidden onclick="belum_bayar('<?= $r_tampil_transaksi['id_transaksi']; ?>','<?= $nominal ?>','<?= $id ?>')">Belum Bayar</button></li>
-                                    <?php } else if ($r_tampil_transaksi['status'] == 2) { ?>
-                                        <li><button class="dropdown-item" hidden onclick="bayar('<?= $r_tampil_transaksi['id_transaksi']; ?>','<?= $nominal ?>','<?= $id ?>')">Bayar</button></li>
-                                        <li><button class="dropdown-item" onclick="belum_bayar('<?= $r_tampil_transaksi['id_transaksi']; ?>','<?= $nominal ?>','<?= $id ?>')">Belum Bayar</button></li>
-                                    <?php } ?>
-                                </ul>
-                            </div>
+                            <?php if ($level == 1) { ?>
+                                <div class="dropdown">
+                                    <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                        Action
+                                    </button>
+                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                        <?php
+                                        if ($r_tampil_transaksi['status'] == 1) { ?>
+                                            <li><button class="dropdown-item" onclick="bayar('<?= $r_tampil_transaksi['id_transaksi']; ?>','<?= $nominal ?>','<?= $id ?>')">Bayar</button></li>
+                                            <li><button class="dropdown-item" hidden onclick="belum_bayar('<?= $r_tampil_transaksi['id_transaksi']; ?>','<?= $nominal ?>','<?= $id ?>')">Belum Bayar</button></li>
+                                        <?php } else if ($r_tampil_transaksi['status'] == 2) { ?>
+                                            <li><button class="dropdown-item" hidden onclick="bayar('<?= $r_tampil_transaksi['id_transaksi']; ?>','<?= $nominal ?>','<?= $id ?>')">Bayar</button></li>
+                                            <li><button class="dropdown-item" onclick="belum_bayar('<?= $r_tampil_transaksi['id_transaksi']; ?>','<?= $nominal ?>','<?= $id ?>')">Belum Bayar</button></li>
+                                        <?php } ?>
+                                    </ul>
+                                </div>
                             <?php } ?>
                         </td>
                     </tr>
@@ -157,12 +181,28 @@
             } ?>
         </table>
         <?php
-        if (isset($_POST['pencarian'])) {
-            if ($_POST['pencarian'] != '') {
+        if (isset($_POST['btn-cari'])) {
+            if ($_POST['pencarian'] != '' || $_POST['tanggal'] != '') {
                 echo "<div style=\"float:left;\">";
                 $jml = mysqli_num_rows(mysqli_query($koneksi, $queryJml));
                 echo "Data Hasil Pencarian: <b>$jml</b>";
                 echo "</div>";
+        ?>
+                <div class="pagination">
+                    <?php
+                    $jml_hal = ceil($jml / $batas);
+                    for ($i = 1; $i <= $jml_hal; $i++) {
+                        if ($i != $hal) {
+                            echo "<a href=\"?p=pembayaran&hal=$i\">$i</a>";
+                        } else {
+                            echo "<a class=\"active\">$i</a>";
+                        }
+                    }
+                    ?>
+                </div>
+            <?php
+            } else {
+                echo "<meta http-equiv='refresh' content='0; url=navbar.php?p=pembayaran'>";
             }
         } else { ?>
             <div style="float: left;">
@@ -172,16 +212,16 @@
                 ?>
             </div>
             <div class="pagination">
-                <!-- <?php
-                        $jml_hal = ceil($jml / $batas);
-                        for ($i = 1; $i <= $jml_hal; $i++) {
-                            if ($i != $hal) {
-                                echo "<a href=\"?p=transaksi&hal=$i\">$i</a>";
-                            } else {
-                                echo "<a class=\"active\">$i</a>";
-                            }
-                        }
-                        ?> -->
+                <?php
+                $jml_hal = ceil($jml / $batas);
+                for ($i = 1; $i <= $jml_hal; $i++) {
+                    if ($i != $hal) {
+                        echo "<a href=\"?p=pembayaran&hal=$i\">$i</a>";
+                    } else {
+                        echo "<a class=\"active\">$i</a>";
+                    }
+                }
+                ?>
             </div>
         <?php
         }

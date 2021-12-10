@@ -62,36 +62,14 @@
             data: {
                 labels: [
                     <?php
-                    $result = mysqli_query($koneksi, "SELECT * FROM transaksi WHERE nama_kelas='$kelas' AND status ='2' GROUP BY tanggal_transaksi");
+                    $result = mysqli_query($koneksi, "SELECT * FROM transaksi WHERE nama_kelas='$kelas' GROUP BY tanggal_transaksi");
                     while ($row = mysqli_fetch_array($result)) {
-                        $date   =  Date($row['tanggal_transaksi']); ?> "<?= $date ?>",
+                        $date   =  $row['tanggal_transaksi']; ?> "<?= $date ?>",
                     <?php
                     }
                     ?>
                 ],
                 datasets: [{
-                    label: 'Bayar',
-                    data: [
-                        <?php
-                        $result = mysqli_query($koneksi, "SELECT *, COUNT( * ) AS total FROM transaksi WHERE nama_kelas='$kelas' AND status ='2' GROUP BY tanggal_transaksi");
-                        if (mysqli_num_rows($result) > 0) {
-                            while ($row = mysqli_fetch_array($result)) {
-                                $bayar = $row['total'];
-                        ?>
-                                <?= $bayar ?>,
-                        <?php
-                            }
-                        }
-                        ?>
-                    ],
-                    backgroundColor: [
-                        'rgba(75, 192, 192, 0.2)'
-                    ],
-                    borderColor: [
-                        'rgba(75, 192, 192, 1)'
-                    ],
-                    borderWidth: 1
-                }, {
                     label: 'Belum Bayar',
                     data: [
                         <?php
@@ -111,6 +89,28 @@
                     ],
                     borderColor: [
                         'rgba(255,99,132,1)',
+                    ],
+                    borderWidth: 1
+                }, {
+                    label: 'Bayar',
+                    data: [
+                        <?php
+                        $result = mysqli_query($koneksi, "SELECT *, COUNT( * ) AS total FROM transaksi WHERE nama_kelas='$kelas' and status = '2'  GROUP BY tanggal_transaksi");
+                        if (mysqli_num_rows($result) > 0) {
+                            while ($row = mysqli_fetch_array($result)) {
+                                $bayar = $row['total'];
+                        ?>
+                                <?= $bayar ?>,
+                        <?php
+                            }
+                        }
+                        ?>
+                    ],
+                    backgroundColor: [
+                        'rgba(75, 192, 192, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(75, 192, 192, 1)'
                     ],
                     borderWidth: 1
                 }]

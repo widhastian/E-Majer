@@ -11,11 +11,26 @@
     </div>
     <div class="content">
         <!-- Button trigger modal -->
-        <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-            <i class="fas fa-plus"></i> Tambah
-        </button>
-        <button type="button" class="btn btn-secondary"><i class="fas fa-print"></i> Print</button>
-
+        <div class="row" style="width:97%;">
+            <div class="col-md-8">
+                <?php if ($level == 1) { ?>
+                    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                        <i class="fas fa-plus"></i> Tambah
+                    </button>
+                    <button type="button" class="btn btn-secondary"><i class="fas fa-print"></i> Print</button>
+                <?php } ?>
+            </div>
+            <div class="col-md-4">
+                <form class="row g-3" style="margin-left: 17%; margin-bottom:-15px;" method="POST">
+                    <div class="col-auto">
+                        <input type="date" name="pencarian" class="form-control" id="inputPassword2" placeholder="Nama Barang">
+                    </div>
+                    <div class="col-auto">
+                        <button type="submit" class="btn btn-primary mb-3" style="height: 40px; padding-top:8px; width:45px; padding-left:11px;"><i class='bx bx-search-alt fs-4'></i></button>
+                    </div>
+                </form>
+            </div>
+        </div>
         <!-- Modal -->
         <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog">
@@ -63,7 +78,7 @@
                 <td colspan="2">action</td>
             </tr>
             <?php
-            $batas = 5;
+            $batas = 4;
             extract($_GET);
             if (empty($hal)) {
                 $posisi = 0;
@@ -78,18 +93,17 @@
             if ($_SERVER['REQUEST_METHOD'] == "POST") {
                 $pencarian = trim(mysqli_real_escape_string($koneksi, $_POST['pencarian']));
                 if ($pencarian != "") {
-                    $sql = "SELECT * FROM pengeluaran WHERE Nama_transaksi LIKE '%$pencarian%'";
-
-                    $query = $sql;
-                    $queryJml = $sql;
+                    $query = "SELECT * FROM pengeluaran WHERE nama_kelas = '$kelas' AND tgl_pengeluaran LIKE '%$pencarian%' LIMIT $posisi, $batas";
+                    $queryJml = "SELECT * FROM pengeluaran WHERE nama_kelas = '$kelas' AND tgl_pengeluaran LIKE '%$pencarian%'";
+                    $no = $posisi * 1;
                 } else {
-                    $query = "SELECT * FROM pengeluaran WHERE id_akun = '$id'";
-                    $queryJml = "SELECT * FROM pengeluaran WHERE id_akun = '$id'";
+                    $query = "SELECT * FROM pengeluaran WHERE nama_kelas = '$kelas' LIMIT $posisi, $batas";
+                    $queryJml = "SELECT * FROM pengeluaran WHERE nama_kelas = '$kelas'";
                     $no = $posisi * 1;
                 }
             } else {
-                $query = "SELECT * FROM pengeluaran WHERE id_akun = '$id'";
-                $queryJml = "SELECT * FROM pengeluaran WHERE id_akun = '$id'";
+                $query = "SELECT * FROM pengeluaran WHERE nama_kelas = '$kelas' LIMIT $posisi, $batas";
+                $queryJml = "SELECT * FROM pengeluaran WHERE nama_kelas = '$kelas'";
                 $no = $posisi * 1;
             }
 
@@ -135,6 +149,22 @@
                 $jml = mysqli_num_rows(mysqli_query($koneksi, $queryJml));
                 echo "Data Hasil Pencarian: <b>$jml</b>";
                 echo "</div>";
+        ?>
+                <div class="pagination">
+                    <?php
+                    $jml_hal = ceil($jml / $batas);
+                    for ($i = 1; $i <= $jml_hal; $i++) {
+                        if ($i != $hal) {
+                            echo "<a href=\"?p=transaksi&hal=$i\">$i</a>";
+                        } else {
+                            echo "<a class=\"active\">$i</a>";
+                        }
+                    }
+                    ?>
+                </div>
+            <?php
+            } else {
+                echo "<meta http-equiv='refresh' content='0; url=navbar.php?p=pengeluaran'>";
             }
         } else { ?>
             <div style="float: left;">
@@ -144,16 +174,16 @@
                 ?>
             </div>
             <div class="pagination">
-                <!-- <?php
-                        $jml_hal = ceil($jml / $batas);
-                        for ($i = 1; $i <= $jml_hal; $i++) {
-                            if ($i != $hal) {
-                                echo "<a href=\"?p=transaksi&hal=$i\">$i</a>";
-                            } else {
-                                echo "<a class=\"active\">$i</a>";
-                            }
-                        }
-                        ?> -->
+                <?php
+                $jml_hal = ceil($jml / $batas);
+                for ($i = 1; $i <= $jml_hal; $i++) {
+                    if ($i != $hal) {
+                        echo "<a href=\"?p=transaksi&hal=$i\">$i</a>";
+                    } else {
+                        echo "<a class=\"active\">$i</a>";
+                    }
+                }
+                ?>
             </div>
         <?php
         }

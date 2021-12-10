@@ -44,7 +44,7 @@ if (isset($_POST['btn-next'])) {
         <hr>
         <div style="display: block;">
             <div class="elips1">2</div>
-            <p class="none" style="margin-left: 2px; position: absolute; top: -6.4rem;">Kelas</p>
+            <p class="none">Kelas</p>
         </div>
         <hr>
         <div style="display: block;">

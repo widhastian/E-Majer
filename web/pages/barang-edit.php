@@ -39,7 +39,7 @@ if (empty($data['foto']) or ($data['foto'] == '-')) {
                     <td>
                         <div class="input-group has-validation mt-3">
                             <span class="input-group-text" id="inputGroupPrepend"><i class='bx bx-spreadsheet'></i></span>
-                            <input type="text" class="form-control" id="jumlah_barang" aria-describedby="inputGroupPrepend" placeholder="Jumlah Barang" name="jumlah_barang" value="<?= $data['jumlah_barang'] ?>">
+                            <input type="number" class="form-control" id="jumlah_barang" aria-describedby="inputGroupPrepend" placeholder="Jumlah Barang" name="jumlah_barang" value="<?= $data['jumlah_barang'] ?>">
                             <input type="hidden" value="<?= $data['id_kelas'] ?>" name="kelas">
                         </div>
                     </td>

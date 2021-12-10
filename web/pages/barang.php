@@ -11,12 +11,25 @@
     </div>
     <div class="content">
         <!-- Button trigger modal -->
-        <?php if($level == 1) { ?>
-        <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-            <i class="fas fa-plus"></i> Tambah
-        </button>
-        <button type="button" class="btn btn-secondary"><i class="fas fa-print"></i> Print</button>
-        <?php } ?>
+        <div class="row" style="width:97%;">
+            <div class="col-md-8">
+                <?php if ($level == 1) { ?>
+                    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                        <i class="fas fa-plus"></i> Tambah
+                    </button>
+                <?php } ?>
+            </div>
+            <div class="col-md-4">
+                <form class="row g-3" style="margin-left: 13%; margin-bottom:-15px;" method="POST">
+                    <div class="col-auto">
+                        <input type="text" name="pencarian" class="form-control" id="inputPassword2" placeholder="Nama Barang">
+                    </div>
+                    <div class="col-auto">
+                        <button type="submit" class="btn btn-primary mb-3" style="height: 40px; padding-top:8px; width:45px; padding-left:11px;"><i class='bx bx-search-alt fs-4'></i></button>
+                    </div>
+                </form>
+            </div>
+        </div>
         <!-- Modal -->
         <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog">
@@ -37,7 +50,7 @@
                             <div class="col-md-12">
                                 <div class="input-group has-validation">
                                     <span class="input-group-text" id="inputGroupPrepend"><i class='bx bx-spreadsheet'></i></span>
-                                    <input type="text" class="form-control" id="jumlah_barang" aria-describedby="inputGroupPrepend" placeholder="Jumlah Barang" name="jumlah_barang">
+                                    <input type="number" class="form-control" id="jumlah_barang" aria-describedby="inputGroupPrepend" placeholder="Jumlah Barang" name="jumlah_barang">
                                     <input type="hidden" value="<?= $kelas ?>" name="kelas">
                                 </div>
                             </div>
@@ -73,12 +86,12 @@
                 <td>Jumlah Barang</td>
                 <td>Kondisi</td>
                 <td>Foto</td>
-                <?php if($level == 1) { ?>
-                <td colspan="2">action</td>
+                <?php if ($level == 1) { ?>
+                    <td colspan="2">action</td>
                 <?php } ?>
             </tr>
             <?php
-            $batas = 5;
+            $batas = 4;
             extract($_GET);
             if (empty($hal)) {
                 $posisi = 0;
@@ -93,10 +106,9 @@
             if ($_SERVER['REQUEST_METHOD'] == "POST") {
                 $pencarian = trim(mysqli_real_escape_string($koneksi, $_POST['pencarian']));
                 if ($pencarian != "") {
-                    $sql = "SELECT * FROM barang WHERE Nama_barang LIKE '%$pencarian%'";
-
-                    $query = $sql;
-                    $queryJml = $sql;
+                    $query = "SELECT * FROM barang WHERE Nama_barang LIKE '%$pencarian%' LIMIT $posisi, $batas";
+                    $queryJml = "SELECT * FROM barang WHERE Nama_barang LIKE '%$pencarian%'";
+                    $no = $posisi * 1;
                 } else {
                     $query = "SELECT * FROM barang WHERE id_kelas = '$kelas' LIMIT $posisi, $batas";
                     $queryJml = "SELECT * FROM barang WHERE id_kelas = '$kelas'";
@@ -134,13 +146,13 @@
                             ?>
                         </td>
                         <td><img src="<?php echo "assets/gambar/" . $foto ?>" width=70px height=70px></td>
-                        <?php if($level == 1) { ?>
-                        <td>
-                            <a href="navbar.php?p=barang-edit&id=<?php echo $r_tampil_barang['id_barang']; ?>" style="text-decoration: none; color:white;">
-                                <div type="button" class="btn btn-primary"><i class="fas fa-edit"></i></div>
-                            </a>
-                            <button type="button" class="btn btn-danger" onclick="konfirmasi('<?php echo $r_tampil_barang['id_barang']; ?>')"><i class="fas fa-trash-alt"></i></button>
-                        </td>
+                        <?php if ($level == 1) { ?>
+                            <td>
+                                <a href="navbar.php?p=barang-edit&id=<?php echo $r_tampil_barang['id_barang']; ?>" style="text-decoration: none; color:white;">
+                                    <div type="button" class="btn btn-primary"><i class="fas fa-edit"></i></div>
+                                </a>
+                                <button type="button" class="btn btn-danger" onclick="konfirmasi('<?php echo $r_tampil_barang['id_barang']; ?>')"><i class="fas fa-trash-alt"></i></button>
+                            </td>
                         <?php } ?>
                     </tr>
             <?php $nomor++;
@@ -156,6 +168,22 @@
                 $jml = mysqli_num_rows(mysqli_query($koneksi, $queryJml));
                 echo "Data Hasil Pencarian: <b>$jml</b>";
                 echo "</div>";
+        ?>
+                <div class="pagination">
+                    <?php
+                    $jml_hal = ceil($jml / $batas);
+                    for ($i = 1; $i <= $jml_hal; $i++) {
+                        if ($i != $hal) {
+                            echo "<a href=\"?p=barang&hal=$i\">$i</a>";
+                        } else {
+                            echo "<a class=\"active\">$i</a>";
+                        }
+                    }
+                    ?>
+                </div>
+            <?php
+            } else {
+                echo "<meta http-equiv='refresh' content='0; url=navbar.php?p=barang'>";
             }
         } else { ?>
             <div style="float: left;">
@@ -165,16 +193,16 @@
                 ?>
             </div>
             <div class="pagination">
-                <!-- <?php
-                        $jml_hal = ceil($jml / $batas);
-                        for ($i = 1; $i <= $jml_hal; $i++) {
-                            if ($i != $hal) {
-                                echo "<a href=\"?p=barang&hal=$i\">$i</a>";
-                            } else {
-                                echo "<a class=\"active\">$i</a>";
-                            }
-                        }
-                        ?> -->
+                <?php
+                $jml_hal = ceil($jml / $batas);
+                for ($i = 1; $i <= $jml_hal; $i++) {
+                    if ($i != $hal) {
+                        echo "<a href=\"?p=barang&hal=$i\">$i</a>";
+                    } else {
+                        echo "<a class=\"active\">$i</a>";
+                    }
+                }
+                ?>
             </div>
         <?php
         }

@@ -409,6 +409,11 @@
     padding: 15px;
 }
 
+#daftar2 input[type=number]{ 
+  margin-top: 1%;
+  padding: 15px;
+}
+
 #daftar2 input[type=submit]{ 
     color: black;
     background: #FEBE10;
@@ -804,6 +809,7 @@
     font-family: 'Poppins';
   }
 
+  
   .home-section .dashboard {
     margin-left: 3%;
   }
@@ -961,6 +967,35 @@
     padding-left: 3%;
     padding-top: 4%;
   }
+
+    .home-section .content .pagination  {
+    float: right;
+    padding-right: 40px;
+  }
+  
+  .home-section .content .form-inline {
+    top: 1rem;
+    position: relative;
+  }
+
+    .home-section .content .pagination  a {
+    color: black;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+  }
+  
+    .home-section .content .pagination  a.active {
+    background-color: #4CAF50;
+    color: white;
+    border-radius: 5px;
+  }
+  
+    .home-section .content .pagination  a:hover:not(.active) {
+    background-color: #ddd;
+    border-radius: 5px;
+  }
+  
 
   .home-section .content .status{
     width: 100%;

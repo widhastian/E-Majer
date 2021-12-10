@@ -46,7 +46,7 @@
         </p>
         <form action="tambah-kelas-proses.php" method="POST" onsubmit="return tambah()">
             <input type="text" class="input2" id="kelas" name="kelas" placeholder="Nama Kelas"><br>
-            <input type="text" class="input2" id="nominal" name="nominal" placeholder="Nominal Uang Kas"><br>
+            <input type="number" class="input2" id="nominal" name="nominal" placeholder="Nominal Uang Kas"><br>
             <div class="button">
                 <input type="submit" class="kirim" value="Selanjutnya" name="btn-next">
             </div>

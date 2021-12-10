@@ -32,7 +32,11 @@ $data = mysqli_fetch_array($query);
                     <td>
                         <div class="input-group mt-3">
                             <span class="input-group-text" id="inputGroupPrepend"><i class="fas fa-landmark"></i></span>
-                            <input type="text" class="form-control" id="nama_kelas" n aria-describedby="inputGroupPrepend" placeholder="Nama Kelas" name="nama_kelas" value="<?= $data['nama_kelas'] ?>">
+                            <?php if ($level == 1) { ?>
+                                <input type="text" class="form-control" id="nama_kelas" n aria-describedby="inputGroupPrepend" placeholder="Nama Kelas" name="nama_kelas" value="<?= $data['nama_kelas'] ?>">
+                            <?php } else { ?>
+                                <input type="text" class="form-control" id="nama_kelas" n aria-describedby="inputGroupPrepend" placeholder="Nama Kelas" name="nama_kelas" value="<?= $data['nama_kelas'] ?>" readonly>
+                            <?php } ?>
                         </div>
                     </td>
                 </tr>
@@ -42,17 +46,27 @@ $data = mysqli_fetch_array($query);
                     <td>
                         <div class="input-group mt-3">
                             <span class="input-group-text" id="inputGroupPrepend"><i class='bx bxs-dollar-circle'></i></span>
-                            <input type="text" class="form-control" id="nominal" n aria-describedby="inputGroupPrepend" placeholder="Nominal Uang Kas" name="nominal" value="<?= $data['nominal_uangkas'] ?>">
+                            <?php if ($level == 1) { ?>
+                                <input type="text" class="form-control" id="nominal" n aria-describedby="inputGroupPrepend" placeholder="Nominal Uang Kas" name="nominal" value="<?= $data['nominal_uangkas'] ?>">
+                            <?php } else { ?>
+                                <input type="text" class="form-control" id="nominal" n aria-describedby="inputGroupPrepend" placeholder="Nominal Uang Kas" name="nominal" value="<?= $data['nominal_uangkas'] ?>" readonly>
+                            <?php } ?>
                         </div>
                     </td>
                 </tr>
-                <?php if($level == 1) { ?>
-                <tr>
-                    <td>
-                        <button class="btn btn-danger mt-3"" data-bs-dismiss=" modal" onclick="home()"><i class="fas fa-times-circle"></i> Batal</button>
-                        <button type="submit" class="btn btn-primary mt-3" name="btn-edit"><i class='bx bx-edit'></i> Edit</button>
-                    </td>
-                </tr>
+                <?php if ($level == 1) { ?>
+                    <tr>
+                        <td>
+                            <button class="btn btn-danger mt-3"" data-bs-dismiss=" modal" onclick="home()"><i class="fas fa-times-circle"></i> Batal</button>
+                            <button type="submit" class="btn btn-primary mt-3" name="btn-edit"><i class='bx bx-edit'></i> Edit</button>
+                        </td>
+                    </tr>
+                <?php } else { ?>
+                    <tr>
+                        <td>
+                            <button class="btn btn-danger mt-3"" data-bs-dismiss=" modal" onclick="home()"><i class='bx bxs-left-arrow-circle' style="font-size: 18px; position:relative; top:2px"></i> Kembali</button>
+                        </td>
+                    </tr>
                 <?php } ?>
             </form>
         </table>

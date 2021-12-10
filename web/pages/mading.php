@@ -1,4 +1,4 @@
-<section class="home-section" style="background: #f8f8f8;">
+<section class="home-section" style="background-color: #f8f8f8;">
     <div class="home-content">
         <i class='bx bx-menu'></i>
         <span class="text">Mading</span>
@@ -9,13 +9,34 @@
             <i class="fas fa-cog s"></i>
         </div>
     </div>
-    <div class="content" style="padding-bottom: 4%; height:100%">
-        <!-- Button trigger modal -->
-        <?php if ($level == 1) { ?>
-            <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-                <i class="fas fa-plus"></i> Tambah
-            </button>
-        <?php } ?>
+    <div class="content" style="padding-bottom: 4%; height:90vh;">
+        <div class="row" style="width:97%;">
+            <div class="col-md-5">
+                <?php if ($level == 1) { ?>
+                    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                        <i class="fas fa-plus"></i> Tambah
+                    </button>
+                <?php } ?>
+            </div>
+            <div class="col-md-7">
+                <form class="row g-3" style="margin-left:10%; margin-bottom:-15px;" method="POST">
+                    <div class="col-auto">
+                        <input type="date" name="pencarian" class="form-control" id="inputPassword2">
+                    </div>
+                    <div class="col-auto">
+                        <select class="form-select" id="pengumuman" name="pengumuman">
+                            <option value="0">-- Jenis Pengumuman --</option>
+                            <option value="1">Pengumuman</option>
+                            <option value="2">Informasi</option>
+                            <option value="3">Pemberitahuan</option>
+                        </select>
+                    </div>
+                    <div class="col-auto">
+                        <button type="submit" class="btn btn-primary mb-3" name="btn-cari" style="height: 40px; padding-top:8px; width:45px; padding-left:11px;"><i class='bx bx-search-alt fs-4'></i></button>
+                    </div>
+                </form>
+            </div>
+        </div>
         <!-- Modal -->
         <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog">
@@ -59,10 +80,44 @@
             </div>
         </div>
         <?php
-        $query = "SELECT * FROM mading WHERE id_kelas = '$kelas'";
-        $result = mysqli_query($koneksi, $query);
-        if (mysqli_num_rows($result) > 0) {
-            while ($row = mysqli_fetch_array($result)) {
+        $batas = 2;
+        extract($_GET);
+        if (empty($hal)) {
+            $posisi = 0;
+            $hal = 1;
+            $nomor = 1;
+        } else {
+            $posisi = ($hal - 1) * $batas;
+            $nomor = $posisi + 1;
+        }
+        // SELECT * FROM tbtransaksi INNER JOIN tbanggota ON tbtransaksi.idanggota = tbanggota.idanggota INNER JOIN akun ON tbtransaksi.idbuku = tbbuku.idbuku
+
+        if ($_SERVER['REQUEST_METHOD'] == "POST") {
+            $pencarian = trim(mysqli_real_escape_string($koneksi, $_POST['pencarian']));
+            $pengumuman = trim(mysqli_real_escape_string($koneksi, $_POST['pengumuman']));
+            if ($pencarian != "") {
+                $query = "SELECT * FROM mading INNER JOIN kelas ON mading.id_kelas = kelas.id_kelas WHERE mading.id_kelas= '$kelas' AND mading.tgl_pembagian LIKE '%$pencarian%' LIMIT $posisi, $batas";
+                $queryJml = "SELECT * FROM mading INNER JOIN kelas ON mading.id_kelas = kelas.id_kelas WHERE mading.id_kelas= '$kelas' AND mading.tgl_pembagian LIKE '%$pencarian%'";
+                $no = $posisi * 1;
+            } else if ($pengumuman != "") {
+                $query =  "SELECT * FROM mading INNER JOIN kelas ON mading.id_kelas = kelas.id_kelas WHERE mading.id_kelas= '$kelas' AND mading.jenis_mading LIKE '%$pengumuman%' LIMIT $posisi, $batas";
+                $queryJml = "SELECT * FROM mading INNER JOIN kelas ON mading.id_kelas = kelas.id_kelas WHERE mading.id_kelas= '$kelas' AND mading.jenis_mading LIKE '%$pengumuman%'";
+                $no = $posisi * 1;
+            } else {
+                $query = "SELECT * FROM mading INNER JOIN kelas ON mading.id_kelas = kelas.id_kelas WHERE mading.id_kelas= '$kelas' LIMIT $posisi, $batas";
+                $queryJml = "SELECT * FROM mading INNER JOIN kelas ON mading.id_kelas = kelas.id_kelas WHERE mading.id_kelas = '$kelas'  ";
+                $no = $posisi * 1;
+            }
+        } else {
+            $query = "SELECT * FROM mading INNER JOIN kelas ON mading.id_kelas = kelas.id_kelas WHERE mading.id_kelas= '$kelas'  LIMIT $posisi, $batas";
+            $queryJml = "SELECT * FROM mading INNER JOIN kelas ON mading.id_kelas = kelas.id_kelas WHERE mading.id_kelas = '$kelas' ";
+            $no = $posisi * 1;
+        }
+
+        //$sql="SELECT * FROM tbtranskasi ORDER BY idanggota DESC";
+        $q_tampil_transaksi = mysqli_query($koneksi, $query);
+        if (mysqli_num_rows($q_tampil_transaksi) > 0) {
+            while ($row = mysqli_fetch_array($q_tampil_transaksi)) {
         ?>
                 <div class="mading">
                     <div class="row">
@@ -91,12 +146,59 @@
                         </div>
                     </div>
                 </div>
-        <?php
+        <?php $nomor++;
             }
+        } else {
+            echo "<p align='center' style='margin-top:2rem; font-weight:bold;'>Data Mading Tidak Ditemukan</p>";
+        } ?>
+        </table>
+        <?php
+        if (isset($_POST['btn-cari'])) {
+            if ($_POST['pencarian'] != '' || $_POST['pengumuman'] != '0') {
+                echo "<div style=\"float:left;\">";
+                $jml = mysqli_num_rows(mysqli_query($koneksi, $queryJml));
+                echo "<center>Data Hasil Pencarian: <b>$jml</b><center>";
+                echo "</div>";
+        ?>
+                <div class="pagination">
+                    <?php
+                    $jml_hal = ceil($jml / $batas);
+                    for ($i = 1; $i <= $jml_hal; $i++) {
+                        if ($i != $hal) {
+                            echo "<a href=\"?p=mading&hal=$i\">$i</a>";
+                        } else {
+                            echo "<a class=\"active\">$i</a>";
+                        }
+                    }
+                    ?>
+                </div>
+            <?php
+            } else {
+                echo "<meta http-equiv='refresh' content='0; url=navbar.php?p=mading'>";
+            }
+        } else { ?>
+            <div style="float: left; margin-top:15px;">
+                <?php
+                $jml = mysqli_num_rows(mysqli_query($koneksi, $queryJml));
+                echo "Jumlah Data : <b>$jml</b>";
+                ?>
+            </div>
+            <div class="pagination">
+                <?php
+                $jml_hal = ceil($jml / $batas);
+                for ($i = 1; $i <= $jml_hal; $i++) {
+                    if ($i != $hal) {
+                        echo "<a href=\"?p=mading&hal=$i\">$i</a>";
+                    } else {
+                        echo "<a class=\"active\">$i</a>";
+                    }
+                }
+                ?>
+            </div>
+        <?php
         }
         ?>
     </div>
-
 </section>
 <script>
     function pesan(judul, status) {
