@@ -75,7 +75,9 @@
                 <td>Nominal Pengeluaran</td>
                 <td>Tanggal Pengeluaran</td>
                 <td>Foto</td>
+                <?php if($level == 1) { ?>
                 <td colspan="2">action</td>
+                <?php } ?>
             </tr>
             <?php
             $batas = 4;
@@ -122,6 +124,7 @@
                         <td><?php echo $r_tampil_transaksi['nominal_pengeluaran']; ?></td>
                         <td><?php echo $r_tampil_transaksi['tgl_pengeluaran']; ?></td>
                         <td><img src="<?php echo "assets/gambar/" . $foto ?>" width=70px height=70px></td>
+                        <?php if($level == 1) { ?>
                         <td>
                             <!-- Example single danger button -->
                             <div class="dropdown">
@@ -135,6 +138,7 @@
                                 </ul>
                             </div>
                         </td>
+                        <?php } ?>
                     </tr>
             <?php $nomor++;
                 }
