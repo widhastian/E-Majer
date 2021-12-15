@@ -11,7 +11,7 @@ $query = "INSERT INTO transaksi VALUES('$id','$nama','$kelas','$tanggal','$nomin
 $result = mysqli_query($koneksi, $query);
 
 if ($result) {
-    echo "<meta http-equiv='refresh' content='0; url=../navbar.php?p=pembayaran'>";
+    echo "<meta http-equiv='refresh' content='0; url=../navbar.php?p=pembayaran&tanggal=$tanggal'>";
 } else {
-    echo "<meta http-equiv='refresh' content='0; url=../navbar.php?p=pembayaran'>";
+    echo "<meta http-equiv='refresh' content='0; url=../navbar.php?p=pembayaran&tanggal=$tanggal'>";
 }

@@ -7,12 +7,6 @@ $data = mysqli_fetch_array($query);
     <div class="home-content">
         <i class='bx bx-menu'></i>
         <span class="text">Edit Detail Transaksi</span>
-        <div class="notif">
-            <i class="fas fa-bell n"></i>
-        </div>
-        <div class="setting">
-            <i class="fas fa-cog s"></i>
-        </div>
     </div>
     <div class="content">
         <table width="80%">

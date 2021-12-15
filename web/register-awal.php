@@ -40,7 +40,7 @@
         </a>
         <p class="p2">Pelajari lebih lanjut tentang akun E-Majer?<br><a href="">Klik disini</a></p>
         <hr>
-        <p class="p3">Sudah punya akun? <a href="">Masuk</a></p>
+        <p class="p3">Sudah punya akun? <a href="login.php">Masuk</a></p>
     </div>
     <script>
         var input = document.querySelectorAll('.input');

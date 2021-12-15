@@ -2,12 +2,6 @@
     <div class="home-content">
         <i class='bx bx-menu'></i>
         <span class="text">Data Pengeluaran</span>
-        <div class="notif">
-            <i class="fas fa-bell n"></i>
-        </div>
-        <div class="setting">
-            <i class="fas fa-cog s"></i>
-        </div>
     </div>
     <div class="content">
         <!-- Button trigger modal -->
@@ -75,8 +69,8 @@
                 <td>Nominal Pengeluaran</td>
                 <td>Tanggal Pengeluaran</td>
                 <td>Foto</td>
-                <?php if($level == 1) { ?>
-                <td colspan="2">action</td>
+                <?php if ($level == 1) { ?>
+                    <td colspan="2">action</td>
                 <?php } ?>
             </tr>
             <?php
@@ -124,20 +118,20 @@
                         <td><?php echo $r_tampil_transaksi['nominal_pengeluaran']; ?></td>
                         <td><?php echo $r_tampil_transaksi['tgl_pengeluaran']; ?></td>
                         <td><img src="<?php echo "assets/gambar/" . $foto ?>" width=70px height=70px></td>
-                        <?php if($level == 1) { ?>
-                        <td>
-                            <!-- Example single danger button -->
-                            <div class="dropdown">
-                                <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                                    Action
-                                </button>
-                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                    <li><a class="dropdown-item" href="navbar.php?p=detail&id=<?= $r_tampil_transaksi['id_pengeluaran'] ?>">Detail Transaksi</a></li>
-                                    <li><a class="dropdown-item" href="navbar.php?p=pengeluaran-edit&id=<?= $r_tampil_transaksi['id_pengeluaran'] ?>">Update</a></li>
-                                    <li><button class="dropdown-item" onclick="konfirmasi('<?php echo $r_tampil_transaksi['id_pengeluaran']; ?>')">Delete</button></li>
-                                </ul>
-                            </div>
-                        </td>
+                        <?php if ($level == 1) { ?>
+                            <td>
+                                <!-- Example single danger button -->
+                                <div class="dropdown">
+                                    <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                        Action
+                                    </button>
+                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                        <li><a class="dropdown-item" href="navbar.php?p=detail&id=<?= $r_tampil_transaksi['id_pengeluaran'] ?>">Detail Transaksi</a></li>
+                                        <li><a class="dropdown-item" href="navbar.php?p=pengeluaran-edit&id=<?= $r_tampil_transaksi['id_pengeluaran'] ?>">Update</a></li>
+                                        <li><button class="dropdown-item" onclick="konfirmasi('<?php echo $r_tampil_transaksi['id_pengeluaran']; ?>')">Delete</button></li>
+                                    </ul>
+                                </div>
+                            </td>
                         <?php } ?>
                     </tr>
             <?php $nomor++;

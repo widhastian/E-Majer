@@ -2,12 +2,6 @@
     <div class="home-content">
         <i class='bx bx-menu'></i>
         <span class="text">Mading</span>
-        <div class="notif">
-            <i class="fas fa-bell n"></i>
-        </div>
-        <div class="setting">
-            <i class="fas fa-cog s"></i>
-        </div>
     </div>
     <div class="content" style="padding-bottom: 4%; height:90vh;">
         <div class="row" style="width:97%;">

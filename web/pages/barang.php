@@ -2,12 +2,7 @@
     <div class="home-content">
         <i class='bx bx-menu'></i>
         <span class="text">Data Barang</span>
-        <div class="notif">
-            <i class="fas fa-bell n"></i>
-        </div>
-        <div class="setting">
-            <i class="fas fa-cog s"></i>
-        </div>
+    </div>
     </div>
     <div class="content">
         <!-- Button trigger modal -->

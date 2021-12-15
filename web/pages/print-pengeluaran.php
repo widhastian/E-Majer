@@ -1,43 +1,144 @@
-<?php
-date_default_timezone_set('Asia/Jakarta');
-require_once("../assets/dompdf/autoload.inc.php");
-include "../koneksi.php";
+<?php include '../koneksi.php'; ?>
+<!DOCTYPE html>
+<html lang="en">
 
-use Dompdf\Dompdf;
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../assets/css/kalender.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <script src="../assets/js/jquery-3.4.1.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins" rel="stylesheet">
 
-$dompdf = new Dompdf();
-$html = '<center><h3>Daftar Transaksi Peminjaman</h3></center><br/>';
-$html .= '<table border="1" width="100%">
- <tr>
- <th>Nomor</th>
- <th>ID Transaksi</th>
- <th>Nama</th>
- <th>Judul Buku</th>
- <th>Tanggal Peminjaman</th>
- </tr>';
-$nomor = 1;
-$query = "SELECT tr.idtransaksi, tag.nama, tb.judulbuku, tr.tglpinjam, tr.tglkembali FROM tbtransaksi tr INNER JOIN tbanggota tag ON tr.idanggota = tag.idanggota INNER JOIN tbbuku tb ON tr.idbuku = tb.idbuku ORDER BY tr.idtransaksi ASC";
-$q_tampil_peminjaman = mysqli_query($koneksi, $query);
-if (mysqli_num_rows($q_tampil_peminjaman) > 0) {
-    while ($r_tampil_peminjaman = mysqli_fetch_array($q_tampil_peminjaman)) {
-        $html .= "<tr>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.6.1/chart.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+    </script>
 
- <td>" . $nomor . "</td>
- <td>" . $r_tampil_peminjaman['idtransaksi'] . "</td>
- <td>" . $r_tampil_peminjaman['nama'] . "</td>
- <td>" . $r_tampil_peminjaman['judulbuku'] . "</td>
- <td>" . $r_tampil_peminjaman['tglpinjam'] . "</td>
+    <!-- font awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <title>Document</title>
+    <style>
+        .box1 {
+            width: 100%;
+            height: 38vh;
+            padding-left: 10px;
+            padding-right: 10px;
+            padding-bottom: 10px;
+            background-color: #FFFFFF;
+            border: 1px solid rgba(0, 0, 0, 0.3);
+            box-sizing: border-box;
+            box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.25);
+            border-radius: 10px;
+        }
+    </style>
+</head>
 
- </tr>";
-        $nomor++;
-    }
-}
-$html .= "</html>";
+<body>
+    <div class="container">
+        <p class="mt-4"><b>Pembayaran Uang Kas</b><br>
+            TIF B - Muh Yusril Amin</p>
+        <p align="right">Tanggal : 8 November 2021</p>
+        <table class="table table-bordered">
+            <tr align="center">
+                <th>No</th>
+                <th>Nama Siswa</th>
+                <th>Kelas</th>
+                <th>Nominal Uang Kas</th>
+                <th>Status</th>
+            </tr>
+            <tr align="center">
+                <td>No</td>
+                <td>Nama Siswa</td>
+                <td>Kelas</td>
+                <td>Nominal Uang Kas</td>
+                <td>Status</td>
+            </tr>
+        </table>
+        <div class="box1">
+            <p style="font-size: 12px; padding-top:10px; " align="center">Transaksi Bendahara</p>
+            <canvas id="myChart"></canvas>
+        </div>
+        <script>
+            var ctx = document.getElementById("myChart").getContext('2d');
+            var myChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: [
+                        <?php
+                        $result = mysqli_query($koneksi, "SELECT * FROM transaksi GROUP BY tanggal_transaksi");
+                        while ($row = mysqli_fetch_array($result)) {
+                            $date   =  $row['tanggal_transaksi']; ?> "<?= $date ?>",
+                        <?php
+                        }
+                        ?>
+                    ],
+                    datasets: [{
+                        label: 'Belum Bayar',
+                        data: [
+                            <?php
+                            $result = mysqli_query($koneksi, "SELECT *, COUNT( * ) AS total FROM transaksi status ='1' GROUP BY tanggal_transaksi");
+                            if (mysqli_num_rows($result) > 0) {
+                                while ($row = mysqli_fetch_array($result)) {
+                                    $bayar = $row['total'];
+                            ?>
+                                    <?= $bayar ?>,
+                            <?php
+                                }
+                            }
+                            ?>
+                        ],
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.2)'
+                        ],
+                        borderColor: [
+                            'rgba(255,99,132,1)',
+                        ],
+                        borderWidth: 1
+                    }, {
+                        label: 'Bayar',
+                        data: [
+                            <?php
+                            $result = mysqli_query($koneksi, "SELECT *, COUNT( * ) AS total FROM transaksi status = '2'  GROUP BY tanggal_transaksi");
+                            if (mysqli_num_rows($result) > 0) {
+                                while ($row = mysqli_fetch_array($result)) {
+                                    $bayar = $row['total'];
+                            ?>
+                                    <?= $bayar ?>,
+                            <?php
+                                }
+                            }
+                            ?>
+                        ],
+                        backgroundColor: [
+                            'rgba(75, 192, 192, 0.2)'
+                        ],
+                        borderColor: [
+                            'rgba(75, 192, 192, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }]
+                    }
+                }
+            });
+        </script>
+    </div>
+</body>
 
-//download pdf
-$dompdf->loadHtml($html);
-$dompdf->setPaper('A4', 'landscape');
-$dompdf->render();
-$pdf = $dompdf->output();
-$time = date("Y-m-d h:i:sa");
-$dompdf->stream($time . '_laporan.pdf', array('Attachment' => 0));
+</html>

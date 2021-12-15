@@ -85,10 +85,17 @@ if (mysqli_num_rows($result) > 0) {
                     </li>
                     <li>
                         <div class="li">
-                            <a href="navbar.php?p=pembayaran">
-                                <i class='bx bxs-credit-card'></i>
-                                <span class="link_name">Transaksi Pembayaran</span>
-                            </a>
+                            <?php if ($level == 1) { ?>
+                                <a href="navbar.php?p=buku-transaksi">
+                                    <i class='bx bxs-credit-card'></i>
+                                    <span class="link_name">Transaksi Pembayaran</span>
+                                </a>
+                            <?php } else { ?>
+                                <a href="navbar.php?p=pembayaran-siswa">
+                                    <i class='bx bxs-credit-card'></i>
+                                    <span class="link_name">Transaksi Pembayaran</span>
+                                </a>
+                            <?php } ?>
                             <ul class="sub-menu blank">
                                 <li><a class="link_name" href="#">Transaksi Pembayaran</a></li>
                             </ul>
@@ -96,10 +103,17 @@ if (mysqli_num_rows($result) > 0) {
                     </li>
                     <li>
                         <div class="li">
-                            <a href="navbar.php?p=pengeluaran">
-                                <i class='bx bx-credit-card'></i>
-                                <span class="link_name">Transaksi Pengeluaran</span>
-                            </a>
+                            <?php if ($level == 1) { ?>
+                                <a href="navbar.php?p=pengeluaran">
+                                    <i class='bx bx-credit-card'></i>
+                                    <span class="link_name">Transaksi Pengeluaran</span>
+                                </a>
+                            <?php } else { ?>
+                                <a href="navbar.php?p=pengeluaran-siswa">
+                                    <i class='bx bx-credit-card'></i>
+                                    <span class="link_name">Riwayat Transaksi</span>
+                                </a>
+                            <?php } ?>
                             <ul class="sub-menu blank">
                                 <li><a class="link_name" href="#">Transaksi Pengeluaran</a></li>
                             </ul>
@@ -170,13 +184,13 @@ if (mysqli_num_rows($result) > 0) {
 
                 var list = document.querySelectorAll('.li');
                 for (let i = 0; i < list.length; i++) {
-                    if (pages === "home" || pages === "kelas") {
+                    if (pages === "home" || pages === "kelas" || pages === "profil") {
                         list[0].className = 'li active';
                     } else if (pages === "barang" || pages === "barang-edit") {
                         list[1].className = 'li active';
-                    } else if (pages === "pembayaran") {
+                    } else if (pages === "pembayaran" || pages === "pembayaran-siswa" || pages === "buku-transaksi") {
                         list[2].className = 'li active';
-                    } else if (pages === "pengeluaran" || pages === "pengeluaran-edit" || pages === "detail" || pages === "detail-edit") {
+                    } else if (pages === "pengeluaran" || pages === "pengeluaran-edit" || pages === "detail" || pages === "detail-edit" || pages == "pengeluaran-siswa") {
                         list[3].className = 'li active';
                     } else if (pages === "mading" || pages === "mading-edit") {
                         list[4].className = 'li active';

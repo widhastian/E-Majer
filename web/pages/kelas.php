@@ -4,14 +4,8 @@ $data = mysqli_fetch_array($query);
 ?>
 <section class="home-section">
     <div class="home-content">
+        <h5 class="text">Kelas</h5>
         <i class='bx bx-menu'></i>
-        <span class="text">Kelas</span>
-        <div class="notif">
-            <i class="fas fa-bell n"></i>
-        </div>
-        <div class="setting">
-            <i class="fas fa-cog s"></i>
-        </div>
     </div>
     <div class="content">
         <table width="80%">

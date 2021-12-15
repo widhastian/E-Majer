@@ -2,13 +2,74 @@
     <div class="home-content">
         <i class='bx bx-menu'></i>
         <h5 class="text">Dashboard</h5>
-        <div class="notif">
+        <button class="notif" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
             <i class="fas fa-bell n"></i>
+        </button>
+        <!-- Scrollable modal -->
+        <!-- Modal -->
+        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-scrollable">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="staticBackdropLabel">Notification</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <?php if ($level == 1) {
+                            $result = mysqli_query($koneksi, "SELECT * FROM transaksi INNER JOIN akun ON transaksi.id_akun = akun.id_akun WHERE transaksi.nama_kelas = '$kelas' AND status='2' ORDER BY transaksi.tanggal_transaksi ASC ");
+                            if (mysqli_num_rows($result) > 0) {
+                                while ($data = mysqli_fetch_array($result)) { ?>
+                                    <div class="isi-notif">
+                                        <div class="row">
+                                            <div class="col-md-2">
+                                                <img src="assets/gambar/transfer.png" alt="" width="70px">
+                                            </div>
+                                            <div class="col-md-8">
+                                                <p class="p"><?= $data['nama'] ?> Telah Membayar Kas Dengan Nominal <?= "Rp. " . number_format($data['nominal_transaksi'], 0, ".", ".") ?></p>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <p class="tanggal1"><?= $data['tanggal_transaksi'] ?></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                <?php
+                                }
+                            } else {
+                                echo "<p align='center'>Tidak Ada Notification</p>";
+                            }
+                        } else if ($level == 2) {
+                            $result = mysqli_query($koneksi, "SELECT * FROM saldo WHERE id_akun ='$id' ORDER BY tgl_topup ASC ");
+                            if (mysqli_num_rows($result) > 0) {
+                                while ($data = mysqli_fetch_array($result)) { ?>
+                                    <div class="isi-notif">
+                                        <div class="row">
+                                            <div class="col-md-2">
+                                                <img src="assets/gambar/transfer.png" alt="" width="70px">
+                                            </div>
+                                            <div class="col-md-7">
+                                                <p class="p">Berhasil Tambah Saldo Dengan Nominal <?= "Rp. " . number_format($data['jumlah_saldo'], 0, ".", ".") ?></p>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <p class="tanggal"><?= $data['tgl_topup'] ?></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                        <?php
+                                }
+                            } else {
+                                echo "<p align='center'>Tidak Ada Notification</p>";
+                            }
+                        }
+                        ?>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="setting">
-            <i class="fas fa-cog s"></i>
+            <a href="navbar.php?p=profil" style="color: black;"><i class="fas fa-cog s"></i></a>
         </div>
     </div>
+
     <div class="dashboard">
         <p class="p">Selamat Datang <?= $nama ?></p>
         <div style="display: flex;">
