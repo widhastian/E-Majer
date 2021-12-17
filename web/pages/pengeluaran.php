@@ -11,7 +11,7 @@
                     <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
                         <i class="fas fa-plus"></i> Tambah
                     </button>
-                    <button type="button" class="btn btn-secondary"><i class="fas fa-print"></i> Print</button>
+                    <a href="pages/print-pengeluaran.php?id=<?= $id ?>&kelas=<?= $kelas ?>"><button type=" button" class="btn btn-secondary"><i class="fas fa-print"></i> Print</button></a>
                 <?php } ?>
             </div>
             <div class="col-md-4">
