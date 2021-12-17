@@ -1,13 +1,11 @@
 <?php
 require '../koneksi.php';
 
-$id = "TR-" . mt_rand(1000, 99999);
-$nama = $_POST['nama'];
-$kelas = $_POST['kelas'];
+$minggu = $_POST['minggu'];
 $tanggal = $_POST['tanggal'];
-$nominal = $_POST['nominal'];
+$kelas = $_POST['kelas'];
 
-$query = "INSERT INTO transaksi VALUES('$id','$nama','$kelas','$tanggal',0,0)";
+$query = "INSERT INTO minggu VALUES('','$minggu','$tanggal','$kelas')";
 $result = mysqli_query($koneksi, $query);
 
 if ($result) {

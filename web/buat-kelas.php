@@ -32,7 +32,7 @@
             <hr>
             <div style="display: block;">
                 <div class="elips">2</div>
-                <p class="verified" style="margin-left: 2px; position: absolute; top: -5.6rem;">Kelas</p>
+                <p class="verified">Kelas</p>
             </div>
             <hr>
             <div style="display: block;">

@@ -27,9 +27,9 @@ $data = mysqli_fetch_array($query);
                         <div class="input-group mt-3">
                             <span class="input-group-text" id="inputGroupPrepend"><i class="fas fa-landmark"></i></span>
                             <?php if ($level == 1) { ?>
-                                <input type="text" class="form-control" id="nama_kelas" n aria-describedby="inputGroupPrepend" placeholder="Nama Kelas" name="nama_kelas" value="<?= $data['nama_kelas'] ?>">
+                                <input type="text" class="form-control" id="nama_kelas" n aria-describedby="inputGroupPrepend" placeholder="Nama Kelas" name="nama_kelas" value="<?= $data['nama_kelass'] ?>">
                             <?php } else { ?>
-                                <input type="text" class="form-control" id="nama_kelas" n aria-describedby="inputGroupPrepend" placeholder="Nama Kelas" name="nama_kelas" value="<?= $data['nama_kelas'] ?>" readonly>
+                                <input type="text" class="form-control" id="nama_kelas" n aria-describedby="inputGroupPrepend" placeholder="Nama Kelas" name="nama_kelas" value="<?= $data['nama_kelass'] ?>" readonly>
                             <?php } ?>
                         </div>
                     </td>

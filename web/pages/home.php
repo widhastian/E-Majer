@@ -16,7 +16,7 @@
                     </div>
                     <div class="modal-body">
                         <?php if ($level == 1) {
-                            $result = mysqli_query($koneksi, "SELECT * FROM transaksi INNER JOIN akun ON transaksi.id_akun = akun.id_akun WHERE transaksi.nama_kelas = '$kelas' AND status='2' ORDER BY transaksi.tanggal_transaksi ASC ");
+                            $result = mysqli_query($koneksi, "SELECT * FROM transaksi INNER JOIN akun ON transaksi.id_akun = akun.id_akun WHERE transaksi.nama_kelas = '$kelas' AND status='2' ORDER BY transaksi.tanggal_pembayaran ASC");
                             if (mysqli_num_rows($result) > 0) {
                                 while ($data = mysqli_fetch_array($result)) { ?>
                                     <div class="isi-notif">
@@ -28,7 +28,7 @@
                                                 <p class="p"><?= $data['nama'] ?> Telah Membayar Kas Dengan Nominal <?= "Rp. " . number_format($data['nominal_transaksi'], 0, ".", ".") ?></p>
                                             </div>
                                             <div class="col-md-2">
-                                                <p class="tanggal1"><?= $data['tanggal_transaksi'] ?></p>
+                                                <p class="tanggal1"><?= $data['tanggal_pembayaran'] ?></p>
                                             </div>
                                         </div>
                                     </div>
@@ -38,7 +38,8 @@
                                 echo "<p align='center'>Tidak Ada Notification</p>";
                             }
                         } else if ($level == 2) {
-                            $result = mysqli_query($koneksi, "SELECT * FROM saldo WHERE id_akun ='$id' ORDER BY tgl_topup ASC ");
+                            $result = mysqli_query($koneksi, "SELECT * FROM saldo WHERE id_akun ='$id' ORDER BY tgl_topup ASC");
+                            var_dump($result);
                             if (mysqli_num_rows($result) > 0) {
                                 while ($data = mysqli_fetch_array($result)) { ?>
                                     <div class="isi-notif">
@@ -83,7 +84,7 @@
                     </div>
                     <div class="text">
                         <p class="judul">Jumlah saldo</p>
-                        <p class="kelas"><?= $row['nama_kelas']; ?></p>
+                        <p class="kelas"><?= $row['nama_kelass']; ?></p>
                         <p class="saldo">Rp. <?= number_format($saldo, 0, ".", ".") ?>;-</p>
                     </div>
                 </div>
@@ -92,7 +93,7 @@
                     </div>
                     <div class="text">
                         <p class="judul">Kelas Saya</p>
-                        <p class="kelas"><?= $row['nama_kelas']; ?></p>
+                        <p class="kelas"><?= $row['nama_kelass']; ?></p>
                         <hr>
                         <center>
                             <a href="navbar.php?p=kelas"><button><i class="fas fa-landmark"></i> Detail kelas</button></a>
@@ -123,9 +124,9 @@
             data: {
                 labels: [
                     <?php
-                    $result = mysqli_query($koneksi, "SELECT * FROM transaksi WHERE nama_kelas='$kelas' GROUP BY tanggal_transaksi");
+                    $result = mysqli_query($koneksi, "SELECT * FROM transaksi WHERE nama_kelas='$kelas' GROUP BY tanggal_pembayaran");
                     while ($row = mysqli_fetch_array($result)) {
-                        $date   =  $row['tanggal_transaksi']; ?> "<?= $date ?>",
+                        $date   =  $row['tanggal_pembayaran']; ?> "<?= $date ?>",
                     <?php
                     }
                     ?>
@@ -134,7 +135,7 @@
                     label: 'Belum Bayar',
                     data: [
                         <?php
-                        $result = mysqli_query($koneksi, "SELECT *, COUNT( * ) AS total FROM transaksi WHERE nama_kelas='$kelas' AND status ='1' GROUP BY tanggal_transaksi");
+                        $result = mysqli_query($koneksi, "SELECT *, COUNT( * ) AS total FROM transaksi WHERE nama_kelas='$kelas' AND status ='1' GROUP BY tanggal_pembayaran");
                         if (mysqli_num_rows($result) > 0) {
                             while ($row = mysqli_fetch_array($result)) {
                                 $bayar = $row['total'];
@@ -156,7 +157,7 @@
                     label: 'Bayar',
                     data: [
                         <?php
-                        $result = mysqli_query($koneksi, "SELECT *, COUNT( * ) AS total FROM transaksi WHERE nama_kelas='$kelas' and status = '2'  GROUP BY tanggal_transaksi");
+                        $result = mysqli_query($koneksi, "SELECT *, COUNT( * ) AS total FROM transaksi WHERE nama_kelas='$kelas' and status = '2'  GROUP BY tanggal_pembayaran");
                         if (mysqli_num_rows($result) > 0) {
                             while ($row = mysqli_fetch_array($result)) {
                                 $bayar = $row['total'];
