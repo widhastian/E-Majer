@@ -1,0 +1,235 @@
+*{
+    padding: 0px;
+    margin: 0px;
+}
+
+body {
+    background-color: #f4f4f4;
+    width: 100%;
+    height: 100%;
+}
+
+.content1{
+    background-color: #f4f4f4;
+    background-image: url('../gbr_landing/bg33.png');
+    background-repeat: no-repeat;
+    background-size: 100%;
+    width: 100%;
+    height: 120vh;
+}
+
+.content1 img{
+    margin-top: 4%;
+    margin-left: 3%;
+}
+
+.navbar .nav-item .nav-link{
+    color: #515151;
+    width: 20vh;
+    margin-top: 3%;
+    font-weight: bold;
+    margin-right: 5%;
+    font-size: 16px;
+    font-family: 'Poppins', sans-serif;
+}
+
+.navbar .d-flex a {
+    font-size: 16px;
+    color: #515151;
+    margin-top: 5%;
+    margin-right: 10%;
+    font-family: 'Poppins', sans-serif;
+    text-decoration: none;
+}
+
+.navbar .d-flex .btn {
+    margin-right: 15vh;
+    width: 9rem;
+    height: 2.5rem;
+    margin-top: 3%;
+    font-family: 'Poppins', sans-serif;
+    color: #FFFFFF;
+    background: #FDD95F;
+    border-radius: 15px;
+}
+
+.content1 .p2 {
+    font-family: 'Petrona', serif;
+    font-size: 40px;
+    width: 50%;
+    font-weight: bold;
+    line-height: 48px;
+    margin-left: 24%;
+    margin-top: 10%;
+}
+
+.content1 .p3 {
+    font-family: 'Petrona', serif;
+    font-style: normal;
+    font-weight: normal;
+    width: 50%;
+    font-size: 20px;
+    line-height: 32px;
+    margin-left: 24%;
+}
+.content1 .btn2 {
+    margin-right: 15vh;
+    width: 9rem;
+    height: 2.5rem;
+    margin-left: 24%;
+    margin-top: 3%;
+    font-family: 'Poppins', sans-serif;
+    color:#FFFFFF;
+    background: #FDD95F;
+    border-radius: 15px;
+    border: none;
+}
+.content2{
+    background-color: #f4f4f4;
+    width: 100%;
+    height: 100vh;
+}
+
+.content2 img{
+    margin-left: 10%;
+}
+
+.content2 .p2 {
+    font-family: 'Petrona', serif;
+    font-size: 40px;
+    width: 50%;
+    font-weight: bold;
+    line-height: 48px;
+    margin-left: 13%;
+    margin-top: 15%;
+}
+
+.content2 .p3 {
+    font-family: 'Petrona', serif;
+    font-style: normal;
+    font-weight: normal;
+    width: 40%;
+    font-size: 20px;
+    line-height: 32px;
+    margin-left: 13%;
+}
+
+.content3{
+    background-color: #f4f4f4;
+    background-image: url('../gbr_landing/bg90.png');
+    background-repeat: no-repeat;
+    background-size: 100%;
+    width: 100%;
+    height: 100vh;
+}
+
+.content3 p{
+    font-family: 'Petrona', serif;
+    text-align: center;
+    font-weight: bold;
+    line-height: 20px;
+    font-size: 30px;
+    padding-top: 3%;
+}
+
+.content3 hr{
+    background-color: black;
+    float: center;
+    width: 8%;
+    border: 1.5px solid #0000;
+    border-radius: 15px;
+    margin-left: 46%;
+}
+
+.content3 .card {
+    background: #FFFFFF;
+    border-radius: 20px;
+    border: none;
+    width: 70%;
+    margin-top: 5%;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
+    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.25);
+    height: 55vh;
+    margin-left: 18%;
+}
+
+.content3 .card img {
+    margin-top: 10%;
+    margin-bottom: 5%;
+    margin-left: 44%;
+}
+.content3 .card .judul {
+    font-family: 'Petrona', serif;
+    font-weight: bold;
+    font-size: 20px;
+}
+.content3 .card .content {
+    font-family: 'Petrona', serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+}
+.content4 {
+    width: 100%;
+    background: #FFFFFF;
+    height: 100vh;
+}
+.content4 img{
+    margin-top: 4%;
+    margin-left: 20%;
+}
+
+.content4 .p2 {
+    font-family: 'Petrona', serif;
+    font-size: 40px;
+    width: 50%;
+    font-weight: bold;
+    line-height: 48px;
+    margin-left: 30%;
+    margin-top: 20%;
+}
+
+.content4 .p3 {
+    font-family: 'Petrona', serif;
+    font-style: normal;
+    font-weight: normal;
+    width: 50%;
+    font-size: 20px;
+    line-height: 32px;
+    margin-left: 30%;
+}
+
+.content5 {
+    background-color: #f4f4f4;
+    background-image: url('../gbr_landing/bg92.png');
+    background-repeat: no-repeat;
+    background-size: 100%;
+    width: 100%;
+    height: 110vh;
+}
+
+.content5 .p1{
+    padding-top: 15%;
+    font-family: 'Petrona', serif;
+    font-weight: 700;
+    font-size: 40px;
+}
+
+.content5 .p2{
+    font-family: 'Petrona', serif;
+    color: rgba(75, 75, 75, 1); 
+    font-size: 18px;
+}
+
+.content5 button{
+    font-family: 'Petrona', serif;
+    width: 10%;
+    height: 2.3rem;
+    font-size: 16px;
+    margin-top: 3%;
+    background: #000000;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 20px;
+    color: #FFFFFF;
+}
