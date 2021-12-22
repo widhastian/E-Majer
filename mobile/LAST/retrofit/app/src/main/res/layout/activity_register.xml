@@ -115,7 +115,7 @@
             android:maxLines="1"/>
     </com.google.android.material.textfield.TextInputLayout>
 
-    <!-- Confirm Password -->
+    <!-- Username -->
     <TextView
         android:id="@+id/confirm_pas"
         android:layout_width="128dp"
@@ -124,13 +124,13 @@
         android:layout_marginLeft="54dp"
         android:layout_alignParentTop="true"
         android:layout_marginTop="383dp"
-        android:text="@string/confirm_pas"
+        android:text="Username"
         android:textAppearance="@style/confirm_pas"
         android:gravity="top" />
 
-    <!-- field confirm password -->
+    <!-- field username -->
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textRegisterConfirmPassword"
+        android:id="@+id/textRegisterUsername"
         android:layout_width="322dp"
         android:layout_height="46dp"
         android:layout_alignParentTop="true"
@@ -139,9 +139,9 @@
         android:background="@drawable/bg_input_email">
 
         <EditText
-            android:id="@+id/editTextConfirmRegisterPassword"
+            android:id="@+id/editTextRegisterUsername"
             style="@style/modifiedEditText"
-            android:inputType="textPassword"
+            android:inputType="text"
             android:maxLines="1"/>
     </com.google.android.material.textfield.TextInputLayout>
 

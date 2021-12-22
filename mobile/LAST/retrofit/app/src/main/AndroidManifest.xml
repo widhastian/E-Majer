@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.kelompok.e_majer">
 
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
@@ -32,7 +33,16 @@
         <activity
             android:name="com.kelompok.e_majer.MainActivity"
             android:exported="true"/>
-
+        <activity android:name=".catatanpengeluaran"
+            android:exported="true"/>
+        <activity android:name=".pembayarankas"
+            android:exported="true"/>
+        <activity android:name=".riwayattransaksi"
+            android:exported="true"/>
+        <activity android:name=".databarang"
+            android:exported="true"/>
+        <activity android:name=".TentangAplikasiActivity"
+            android:exported="true"/>
 
         <meta-data
             android:name="preloaded_fonts"

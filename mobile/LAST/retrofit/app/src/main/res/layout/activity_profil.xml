@@ -137,15 +137,15 @@
         android:layout_marginRight="10dp"
         android:background="@color/white"
         android:drawableLeft="@drawable/ic_tentang_aplikasi"
-        android:paddingLeft="10dp"
         android:drawableRight="@drawable/ic_arrow_right"
-        android:paddingRight="10dp"
         android:fontFamily="@font/poppins"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
         android:text="Tentang Aplikasi"
         android:textAlignment="textStart"
         android:textAllCaps="false"
         android:textColor="@color/black"
-        android:textSize="16sp"/>
+        android:textSize="16sp" />
 
     <Button
         android:id="@+id/btn_share_emajer"

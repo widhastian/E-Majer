@@ -5,16 +5,22 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.gson.JsonObject;
 import com.kelompok.e_majer.api.ApiClient;
 import com.kelompok.e_majer.api.ApiInterface;
 import com.kelompok.e_majer.model.login.Login;
 import com.kelompok.e_majer.model.login.LoginData;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -64,6 +70,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         loginCall.enqueue(new Callback<Login>() {
             @Override
             public void onResponse(Call<Login> call, Response<Login> response) {
+
                 if (response.body() != null && response.isSuccessful() && response.body().isStatus()) {
                     System.out.println(response.body());
                     //untuk menyimpan sesi

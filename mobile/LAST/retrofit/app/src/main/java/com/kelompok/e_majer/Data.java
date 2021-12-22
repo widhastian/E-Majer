@@ -7,7 +7,7 @@ public class Data{
 	@SerializedName("user_id")
 	private String userId;
 
-	@SerializedName("name")
+	@SerializedName("nama")
 	private String name;
 
 	@SerializedName("username")

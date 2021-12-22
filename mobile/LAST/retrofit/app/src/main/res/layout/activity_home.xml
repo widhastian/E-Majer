@@ -58,31 +58,43 @@
         android:layout_marginTop="85dp"
         android:background="@drawable/rectangle_1" />
 
-    <!-- Rectangle 14 -->
-    <View
-        android:id="@+id/rectangle_14"
-        android:layout_width="54.26dp"
-        android:layout_height="61.11dp"
+<!--    &lt;!&ndash; Rectangle 14 &ndash;&gt;-->
+<!--    <View-->
+<!--        android:id="@+id/rectangle_14"-->
+<!--        android:layout_width="54.26dp"-->
+<!--        android:layout_height="61.11dp"-->
+<!--        android:layout_alignParentLeft="true"-->
+<!--        android:layout_alignParentTop="true"-->
+<!--        android:layout_marginLeft="40dp"-->
+<!--        android:layout_marginTop="164dp"-->
+<!--        android:background="@drawable/rectangle_1"-->
+<!--        android:onClick=""/>-->
+
+<!--    &lt;!&ndash; ic bayar kas &ndash;&gt;-->
+<!--    <View-->
+<!--        android:id="@+id/ic_bayar_kas"-->
+<!--        android:layout_width="25dp"-->
+<!--        android:layout_height="25dp"-->
+<!--        android:layout_alignParentLeft="true"-->
+<!--        android:layout_alignParentTop="true"-->
+<!--        android:layout_centerInParent="true"-->
+<!--        android:layout_marginLeft="55dp"-->
+<!--        android:layout_marginTop="180.67dp"-->
+<!--        android:background="@drawable/ic_bayarkas" />-->
+
+    <Button
+        android:id="@+id/btn_bayar_kas"
+        android:layout_width="73dp"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:drawableTop="@drawable/ic_bayarkas"
+        android:layout_below="@+id/line_8"
+        android:layout_marginTop="20dp"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginLeft="40dp"
-        android:layout_marginTop="164dp"
-        android:background="@drawable/rectangle_1" />
-
-    <!-- ic bayar kas -->
-    <View
-        android:id="@+id/ic_bayar_kas"
-        android:layout_width="25dp"
-        android:layout_height="25dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_centerInParent="true"
-        android:layout_marginLeft="55dp"
-        android:layout_marginTop="180.67dp"
-        android:background="@drawable/ic_bayarkas" />
-
-
-
+        android:layout_marginLeft="20dp"
+        android:text="Bayar Kas"
+        android:textAllCaps="false"
+        android:textSize="10sp"/>
     <!-- E-Majer Pay -->
     <TextView
         android:id="@+id/e_majer_pay"
@@ -98,129 +110,192 @@
         android:fontFamily="@font/lato"
         />
 
-    <!-- Bayar Kas -->
     <TextView
-        android:id="@+id/bayar_kas"
-        android:layout_width="73dp"
-        android:layout_height="13.33dp"
-        android:layout_alignParentLeft="true"
+        android:id="@+id/saldo_akun"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="230.67dp"
-        android:gravity="center_horizontal|top"
-        android:text="@string/bayar_kas"
-        android:textAppearance="@style/bayar_kas" />
-
-    <!-- Rectangle 2 -->
-    <View
-        android:id="@+id/rectangle_2"
-        android:layout_width="54.26dp"
-        android:layout_height="61.11dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginLeft="130dp"
-        android:layout_marginTop="164dp"
-        android:background="@drawable/rectangle_1" />
-
-    <!-- Data Barang -->
-    <TextView
-        android:id="@+id/data_barang"
-        android:layout_width="49dp"
-        android:layout_height="24dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginLeft="133dp"
-        android:layout_marginTop="230.67dp"
-        android:fontFamily="@font/lato"
-        android:gravity="center_horizontal|top"
-        android:text="@string/data_barang"
-        android:textAppearance="@style/data_barang" />
-
-    <!-- ic data barang -->
-    <View
-        android:id="@+id/ic_data_barang"
-        android:layout_width="25dp"
-        android:layout_height="25dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_centerInParent="true"
-        android:layout_marginLeft="145dp"
-        android:layout_marginTop="181dp"
-        android:background="@drawable/ic_databarang" />
-
-    <!-- Riwayat Transaksi -->
-    <TextView
-        android:id="@+id/riwayat_tra"
-        android:layout_width="79dp"
-        android:layout_height="11.5dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginLeft="208dp"
-        android:layout_marginTop="230.67dp"
-        android:fontFamily="@font/lato"
-        android:gravity="center_horizontal|top"
-        android:text="@string/riwayat_tra"
-        android:textAppearance="@style/riwayat_tra" />
-
-    <!-- Rectangle 21 -->
-    <View
-        android:id="@+id/rectangle_21"
-        android:layout_width="55dp"
-        android:layout_height="60dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginLeft="220dp"
-        android:layout_marginTop="165dp"
-        android:background="@drawable/rectangle_1" />
-
-    <!-- ic riwayat transaksi -->
-    <View
-        android:id="@+id/ic_riwayat_transaksi"
-        android:layout_width="25dp"
-        android:layout_height="25dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_centerInParent="true"
-        android:layout_marginLeft="235dp"
-        android:layout_marginTop="181dp"
-        android:background="@drawable/ic_riwayattransaksi" />
-
-    <!-- Catatan Pengeluaran -->
-    <TextView
-        android:id="@+id/catatan_pen"
-        android:layout_width="93dp"
-        android:layout_height="12dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginLeft="297dp"
-        android:layout_marginTop="230.67dp"
-        android:fontFamily="@font/lato"
-        android:gravity="center_horizontal|top"
-        android:text="@string/catatan_pen"
-        android:textAppearance="@style/catatan_pen" />
-
-    <!-- Rectangle catatan pengeluaran -->
-    <View
-        android:id="@+id/rectangle_catatan_pengeluaran"
-        android:layout_width="55dp"
-        android:layout_height="60dp"
+        android:layout_marginTop="102dp"
         android:layout_alignParentRight="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="165dp"
         android:layout_marginRight="40dp"
-        android:background="@drawable/rectangle_1" />
+        android:text="Saldo"
+        android:textColor="@color/black"
+        android:fontFamily="@font/lato"
+        android:textSize="23sp"
+        />
 
-    <!-- ic catatan pengeluaran -->
-    <View
-        android:id="@+id/ic_catatan_pengeluaran"
-        android:layout_width="25dp"
-        android:layout_height="25dp"
+<!--    &lt;!&ndash; Bayar Kas &ndash;&gt;-->
+<!--    <TextView-->
+<!--        android:id="@+id/bayar_kas"-->
+<!--        android:layout_width="73dp"-->
+<!--        android:layout_height="13.33dp"-->
+<!--        android:layout_alignParentLeft="true"-->
+<!--        android:layout_alignParentTop="true"-->
+<!--        android:layout_marginLeft="30dp"-->
+<!--        android:layout_marginTop="230.67dp"-->
+<!--        android:gravity="center_horizontal|top"-->
+<!--        android:text="@string/bayar_kas"-->
+<!--        android:textAppearance="@style/bayar_kas" />-->
+
+<!--    &lt;!&ndash; Rectangle 2 &ndash;&gt;-->
+<!--    <View-->
+<!--        android:id="@+id/rectangle_2"-->
+<!--        android:layout_width="54.26dp"-->
+<!--        android:layout_height="61.11dp"-->
+<!--        android:layout_alignParentLeft="true"-->
+<!--        android:layout_alignParentTop="true"-->
+<!--        android:layout_marginLeft="130dp"-->
+<!--        android:layout_marginTop="164dp"-->
+<!--        android:background="@drawable/rectangle_1" />-->
+
+<!--    &lt;!&ndash; Data Barang &ndash;&gt;-->
+<!--    <TextView-->
+<!--        android:id="@+id/data_barang"-->
+<!--        android:layout_width="49dp"-->
+<!--        android:layout_height="24dp"-->
+<!--        android:layout_alignParentLeft="true"-->
+<!--        android:layout_alignParentTop="true"-->
+<!--        android:layout_marginLeft="133dp"-->
+<!--        android:layout_marginTop="230.67dp"-->
+<!--        android:fontFamily="@font/lato"-->
+<!--        android:gravity="center_horizontal|top"-->
+<!--        android:text="@string/data_barang"-->
+<!--        android:textAppearance="@style/data_barang" />-->
+
+<!--    &lt;!&ndash; ic data barang &ndash;&gt;-->
+<!--    <View-->
+<!--        android:id="@+id/ic_data_barang"-->
+<!--        android:layout_width="25dp"-->
+<!--        android:layout_height="25dp"-->
+<!--        android:layout_alignParentLeft="true"-->
+<!--        android:layout_alignParentTop="true"-->
+<!--        android:layout_centerInParent="true"-->
+<!--        android:layout_marginLeft="145dp"-->
+<!--        android:layout_marginTop="181dp"-->
+<!--        android:background="@drawable/ic_databarang" />-->
+
+<!--    &lt;!&ndash; Riwayat Transaksi &ndash;&gt;-->
+<!--    <TextView-->
+<!--        android:id="@+id/riwayat_tra"-->
+<!--        android:layout_width="79dp"-->
+<!--        android:layout_height="11.5dp"-->
+<!--        android:layout_alignParentLeft="true"-->
+<!--        android:layout_alignParentTop="true"-->
+<!--        android:layout_marginLeft="208dp"-->
+<!--        android:layout_marginTop="230.67dp"-->
+<!--        android:fontFamily="@font/lato"-->
+<!--        android:gravity="center_horizontal|top"-->
+<!--        android:text="@string/riwayat_tra"-->
+<!--        android:textAppearance="@style/riwayat_tra" />-->
+
+<!--    &lt;!&ndash; Rectangle 21 &ndash;&gt;-->
+<!--    <View-->
+<!--        android:id="@+id/rectangle_21"-->
+<!--        android:layout_width="55dp"-->
+<!--        android:layout_height="60dp"-->
+<!--        android:layout_alignParentLeft="true"-->
+<!--        android:layout_alignParentTop="true"-->
+<!--        android:layout_marginLeft="220dp"-->
+<!--        android:layout_marginTop="165dp"-->
+<!--        android:background="@drawable/rectangle_1" />-->
+
+<!--    &lt;!&ndash; ic riwayat transaksi &ndash;&gt;-->
+<!--    <View-->
+<!--        android:id="@+id/ic_riwayat_transaksi"-->
+<!--        android:layout_width="25dp"-->
+<!--        android:layout_height="25dp"-->
+<!--        android:layout_alignParentLeft="true"-->
+<!--        android:layout_alignParentTop="true"-->
+<!--        android:layout_centerInParent="true"-->
+<!--        android:layout_marginLeft="235dp"-->
+<!--        android:layout_marginTop="181dp"-->
+<!--        android:background="@drawable/ic_riwayattransaksi" />-->
+
+    <Button
+        android:id="@+id/btn_data_barang"
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/line_8"
+        android:layout_marginTop="20dp"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_centerInParent="true"
-        android:layout_marginLeft="331dp"
-        android:layout_marginTop="180dp"
-        android:background="@drawable/ic_catatanpengeluaran" />
+        android:layout_marginLeft="112dp"
+        android:background="@color/white"
+        android:drawableTop="@drawable/ic_databarang"
+        android:text="Data Barang"
+        android:textAllCaps="false"
+        android:textSize="10sp"/>
+    <Button
+        android:id="@+id/btn_riwayat_transaksi"
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/line_8"
+        android:layout_marginTop="20dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="120dp"
+        android:background="@color/white"
+        android:drawableTop="@drawable/ic_riwayat_transaksi"
+        android:text="Riwayat Transaksi"
+        android:textAllCaps="false"
+        android:textSize="10sp"
+        />
+    <Button
+        android:id="@+id/btn_catatan_pengeluaran"
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/line_8"
+        android:layout_marginTop="20dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="20dp"
+        android:background="@color/white"
+        android:drawableTop="@drawable/ic_catatanpengeluaran"
+        android:text="Catatan Pengeluaran"
+        android:textAllCaps="false"
+        android:textSize="10sp"/>
+<!--    <ImageButton-->
+<!--        android:id="@+id/btn_catatan_pengeluaran"-->
+<!--        android:layout_width="83dp"-->
+<!--        android:layout_height="80dp"-->
+<!--        android:background="@drawable/ic_catatan_pengeluaran"-->
+<!--        android:layout_below="@+id/line_8"-->
+<!--        android:layout_marginTop="20dp"-->
+<!--        android:layout_alignParentRight="true"-->
+<!--        android:layout_marginRight="35dp"/>-->
+<!--    &lt;!&ndash; Catatan Pengeluaran &ndash;&gt;-->
+<!--    <TextView-->
+<!--        android:id="@+id/catatan_pen"-->
+<!--        android:layout_width="93dp"-->
+<!--        android:layout_height="12dp"-->
+<!--        android:layout_alignParentLeft="true"-->
+<!--        android:layout_alignParentTop="true"-->
+<!--        android:layout_marginLeft="297dp"-->
+<!--        android:layout_marginTop="230.67dp"-->
+<!--        android:fontFamily="@font/lato"-->
+<!--        android:gravity="center_horizontal|top"-->
+<!--        android:text="@string/catatan_pen"-->
+<!--        android:textAppearance="@style/catatan_pen" />-->
+
+<!--    &lt;!&ndash; Rectangle catatan pengeluaran &ndash;&gt;-->
+<!--    <View-->
+<!--        android:id="@+id/rectangle_catatan_pengeluaran"-->
+<!--        android:layout_width="55dp"-->
+<!--        android:layout_height="60dp"-->
+<!--        android:layout_alignParentRight="true"-->
+<!--        android:layout_alignParentTop="true"-->
+<!--        android:layout_marginTop="165dp"-->
+<!--        android:layout_marginRight="40dp"-->
+<!--        android:background="@drawable/rectangle_1" />-->
+
+<!--    &lt;!&ndash; ic catatan pengeluaran &ndash;&gt;-->
+<!--    <View-->
+<!--        android:id="@+id/ic_catatan_pengeluaran"-->
+<!--        android:layout_width="25dp"-->
+<!--        android:layout_height="25dp"-->
+<!--        android:layout_alignParentLeft="true"-->
+<!--        android:layout_alignParentTop="true"-->
+<!--        android:layout_centerInParent="true"-->
+<!--        android:layout_marginLeft="331dp"-->
+<!--        android:layout_marginTop="180dp"-->
+<!--        android:background="@drawable/ic_catatanpengeluaran" />-->
 
 
     <!-- Line 8 -->
@@ -256,9 +331,8 @@
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_centerInParent="true"
-            app:srcCompat="@drawable/ic_mading_off"
             android:background="@color/white"
-            />
+            app:srcCompat="@drawable/ic_mading_off" />
 
         <ImageButton
             android:id="@+id/btn_account_home"
@@ -271,4 +345,36 @@
             app:srcCompat="@drawable/ic_account_off" />
     </RelativeLayout>
 
+    <com.smarteist.autoimageslider.SliderView
+        android:id="@+id/image_slider"
+        android:layout_width="match_parent"
+        android:layout_height="190dp"
+        android:layout_below="@+id/rectangle_1"
+        android:layout_marginTop="20dp"
+        app:sliderAnimationDuration="600"
+        app:sliderAutoCycleDirection="back_and_forth"
+        app:sliderAutoCycleEnabled="true"
+        app:sliderIndicatorAnimationDuration="600"
+        app:sliderIndicatorGravity="center_horizontal|bottom"
+        app:sliderIndicatorMargin="15dp"
+        app:sliderIndicatorOrientation="horizontal"
+        app:sliderIndicatorPadding="3dp"
+        app:sliderIndicatorRadius="2dp"
+        app:sliderIndicatorSelectedColor="#5A5A5A"
+        app:sliderIndicatorUnselectedColor="#FFF"
+        app:sliderScrollTimeInSec="5"
+        app:sliderStartAutoCycle="true" />
+
+    <ScrollView
+        android:layout_below="@id/image_slider"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="80dp">
+    <CalendarView
+        android:id="@+id/kalender"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        />
+    </ScrollView>
 </RelativeLayout>

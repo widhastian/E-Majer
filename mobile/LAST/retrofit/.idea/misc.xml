@@ -15,11 +15,14 @@
         <entry key="..\:/Users/Anton/Downloads/TugasAndroid-main/TugasAndroid-main/retrofit/retrofit/app/src/main/res/drawable/ic_back_edit_profile.xml" value="0.13958333333333334" />
         <entry key="..\:/Users/Anton/Downloads/TugasAndroid-main/TugasAndroid-main/retrofit/retrofit/app/src/main/res/drawable/ic_bayar_kas.xml" value="0.771875" />
         <entry key="..\:/Users/Anton/Downloads/TugasAndroid-main/TugasAndroid-main/retrofit/retrofit/app/src/main/res/drawable/ic_bayarkas.xml" value="0.2175925925925926" />
+        <entry key="..\:/Users/Anton/Downloads/TugasAndroid-main/TugasAndroid-main/retrofit/retrofit/app/src/main/res/drawable/ic_catatanpengeluaran.xml" value="0.18611111111111112" />
         <entry key="..\:/Users/Anton/Downloads/TugasAndroid-main/TugasAndroid-main/retrofit/retrofit/app/src/main/res/drawable/ic_databarang.xml" value="0.22685185185185186" />
         <entry key="..\:/Users/Anton/Downloads/TugasAndroid-main/TugasAndroid-main/retrofit/retrofit/app/src/main/res/drawable/ic_home.xml" value="0.22037037037037038" />
         <entry key="..\:/Users/Anton/Downloads/TugasAndroid-main/TugasAndroid-main/retrofit/retrofit/app/src/main/res/drawable/ic_launcher_background.xml" value="0.21481481481481482" />
         <entry key="..\:/Users/Anton/Downloads/TugasAndroid-main/TugasAndroid-main/retrofit/retrofit/app/src/main/res/drawable/ic_mading.xml" value="0.22037037037037038" />
         <entry key="..\:/Users/Anton/Downloads/TugasAndroid-main/TugasAndroid-main/retrofit/retrofit/app/src/main/res/drawable/ic_person.xml" value="0.22037037037037038" />
+        <entry key="..\:/Users/Anton/Downloads/TugasAndroid-main/TugasAndroid-main/retrofit/retrofit/app/src/main/res/drawable/ic_riwayat_transaksi.xml" value="0.18611111111111112" />
+        <entry key="..\:/Users/Anton/Downloads/TugasAndroid-main/TugasAndroid-main/retrofit/retrofit/app/src/main/res/drawable/ic_riwayattransaksi.xml" value="0.18611111111111112" />
         <entry key="..\:/Users/Anton/Downloads/TugasAndroid-main/TugasAndroid-main/retrofit/retrofit/app/src/main/res/drawable/item_selector.xml" value="0.12604166666666666" />
         <entry key="..\:/Users/Anton/Downloads/TugasAndroid-main/TugasAndroid-main/retrofit/retrofit/app/src/main/res/drawable/item_selector_nav.xml" value="0.22037037037037038" />
         <entry key="..\:/Users/Anton/Downloads/TugasAndroid-main/TugasAndroid-main/retrofit/retrofit/app/src/main/res/drawable/rectangle7.xml" value="0.18611111111111112" />
@@ -35,23 +38,26 @@
         <entry key="..\:/Users/Anton/Downloads/TugasAndroid-main/TugasAndroid-main/retrofit/retrofit/app/src/main/res/layout/activity_catatanpengeluaran.xml" value="0.25" />
         <entry key="..\:/Users/Anton/Downloads/TugasAndroid-main/TugasAndroid-main/retrofit/retrofit/app/src/main/res/layout/activity_databarang.xml" value="0.10888157894736843" />
         <entry key="..\:/Users/Anton/Downloads/TugasAndroid-main/TugasAndroid-main/retrofit/retrofit/app/src/main/res/layout/activity_detail_transaksi.xml" value="0.10888157894736843" />
-        <entry key="..\:/Users/Anton/Downloads/TugasAndroid-main/TugasAndroid-main/retrofit/retrofit/app/src/main/res/layout/activity_detailpembayarankas.xml" value="0.1" />
+        <entry key="..\:/Users/Anton/Downloads/TugasAndroid-main/TugasAndroid-main/retrofit/retrofit/app/src/main/res/layout/activity_detailpembayarankas.xml" value="0.2" />
         <entry key="..\:/Users/Anton/Downloads/TugasAndroid-main/TugasAndroid-main/retrofit/retrofit/app/src/main/res/layout/activity_edit_profil.xml" value="0.14" />
-        <entry key="..\:/Users/Anton/Downloads/TugasAndroid-main/TugasAndroid-main/retrofit/retrofit/app/src/main/res/layout/activity_home.xml" value="0.22447916666666667" />
-        <entry key="..\:/Users/Anton/Downloads/TugasAndroid-main/TugasAndroid-main/retrofit/retrofit/app/src/main/res/layout/activity_login.xml" value="0.33" />
+        <entry key="..\:/Users/Anton/Downloads/TugasAndroid-main/TugasAndroid-main/retrofit/retrofit/app/src/main/res/layout/activity_home.xml" value="0.2" />
+        <entry key="..\:/Users/Anton/Downloads/TugasAndroid-main/TugasAndroid-main/retrofit/retrofit/app/src/main/res/layout/activity_login.xml" value="0.22" />
         <entry key="..\:/Users/Anton/Downloads/TugasAndroid-main/TugasAndroid-main/retrofit/retrofit/app/src/main/res/layout/activity_mading.xml" value="0.22447916666666667" />
         <entry key="..\:/Users/Anton/Downloads/TugasAndroid-main/TugasAndroid-main/retrofit/retrofit/app/src/main/res/layout/activity_main.xml" value="0.22" />
-        <entry key="..\:/Users/Anton/Downloads/TugasAndroid-main/TugasAndroid-main/retrofit/retrofit/app/src/main/res/layout/activity_pembayarankas.xml" value="0.10888157894736843" />
+        <entry key="..\:/Users/Anton/Downloads/TugasAndroid-main/TugasAndroid-main/retrofit/retrofit/app/src/main/res/layout/activity_pembayarankas.xml" value="0.21" />
         <entry key="..\:/Users/Anton/Downloads/TugasAndroid-main/TugasAndroid-main/retrofit/retrofit/app/src/main/res/layout/activity_profil.xml" value="0.18" />
         <entry key="..\:/Users/Anton/Downloads/TugasAndroid-main/TugasAndroid-main/retrofit/retrofit/app/src/main/res/layout/activity_register.xml" value="0.18" />
         <entry key="..\:/Users/Anton/Downloads/TugasAndroid-main/TugasAndroid-main/retrofit/retrofit/app/src/main/res/layout/activity_riwayattransaksi.xml" value="0.1" />
+        <entry key="..\:/Users/Anton/Downloads/TugasAndroid-main/TugasAndroid-main/retrofit/retrofit/app/src/main/res/layout/activity_tentang_aplikasi.xml" value="0.22" />
         <entry key="..\:/Users/Anton/Downloads/TugasAndroid-main/TugasAndroid-main/retrofit/retrofit/app/src/main/res/layout/alert_dialog_simpan.xml" value="0.1417763157894737" />
+        <entry key="..\:/Users/Anton/Downloads/TugasAndroid-main/TugasAndroid-main/retrofit/retrofit/app/src/main/res/layout/asdasd.xml" value="0.22447916666666667" />
         <entry key="..\:/Users/Anton/Downloads/TugasAndroid-main/TugasAndroid-main/retrofit/retrofit/app/src/main/res/layout/dashboard.xml" value="0.14" />
         <entry key="..\:/Users/Anton/Downloads/TugasAndroid-main/TugasAndroid-main/retrofit/retrofit/app/src/main/res/layout/fragment_home.xml" value="0.2616033755274262" />
         <entry key="..\:/Users/Anton/Downloads/TugasAndroid-main/TugasAndroid-main/retrofit/retrofit/app/src/main/res/layout/fragment_mading.xml" value="0.22327898550724637" />
         <entry key="..\:/Users/Anton/Downloads/TugasAndroid-main/TugasAndroid-main/retrofit/retrofit/app/src/main/res/layout/fragment_profil.xml" value="0.2" />
         <entry key="..\:/Users/Anton/Downloads/TugasAndroid-main/TugasAndroid-main/retrofit/retrofit/app/src/main/res/layout/row_list_databarang.xml" value="0.10888157894736843" />
         <entry key="..\:/Users/Anton/Downloads/TugasAndroid-main/TugasAndroid-main/retrofit/retrofit/app/src/main/res/layout/row_list_transaksikelas.xml" value="0.33" />
+        <entry key="..\:/Users/Anton/Downloads/TugasAndroid-main/TugasAndroid-main/retrofit/retrofit/app/src/main/res/layout/slider_item.xml" value="0.22447916666666667" />
         <entry key="..\:/Users/Anton/Downloads/TugasAndroid-main/TugasAndroid-main/retrofit/retrofit/app/src/main/res/menu/bottom_navigation.xml" value="0.22447916666666667" />
         <entry key="..\:/Users/Anton/Downloads/TugasAndroid-main/TugasAndroid-main/retrofit/retrofit/app/src/main/res/menu/menu.xml" value="0.22447916666666667" />
         <entry key="..\:/Users/Anton/Downloads/TugasAndroid-main/TugasAndroid-main/retrofit/retrofit/app/src/main/res/xml/button_keluar.xml" value="0.22447916666666667" />

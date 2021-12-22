@@ -22,6 +22,9 @@ public class LoginData {
     @SerializedName("password")
     private String password;
 
+    @SerializedName("saldo")
+    private String saldo;
+
     public void setUserId(String userId){
         this.userId = userId;
     }
@@ -56,4 +59,7 @@ public class LoginData {
 
     public void setPassword(String password){this.password = password; }
     public String getPassword() { return password; }
+
+    public void setSaldo(String saldo){this.saldo = saldo; }
+    public String getSaldo() { return saldo; }
 }

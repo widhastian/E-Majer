@@ -18,8 +18,7 @@ public class pembayarankas extends AppCompatActivity {
         btnDetailkas.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(getBaseContext(), detailpembayarankas.class);
-                getBaseContext().startActivity(i);
+                startActivity(new Intent(pembayarankas.this, detailpembayarankas.class));
             }
         });
     }

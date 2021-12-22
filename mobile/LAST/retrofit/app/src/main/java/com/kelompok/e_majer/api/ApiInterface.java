@@ -1,5 +1,6 @@
 package com.kelompok.e_majer.api;
 
+import com.kelompok.e_majer.model.ResponseModel;
 import com.kelompok.e_majer.model.login.Login;
 import com.kelompok.e_majer.model.register.Register;
 
@@ -21,9 +22,28 @@ public interface ApiInterface {
     @POST("register.php")
     Call<Register> registerResponse(
             @Field("email") String email,
+            @Field("username") String username,
             @Field("password") String password,
-            @Field("name") String name,
-            String kelas);
+            @Field("nama") String nama,
+            @Field("kelas") String kelas
+    );
+
+    @FormUrlEncoded
+    @POST("update.php")
+    Call<ResponseModel> ardUpdateData(
+            @Field("id_akun") String id_akun,
+            @Field("nama") String nama,
+            @Field("email") String email,
+            @Field("username") String username,
+            @Field("password") String password,
+            @Field("id_kelas") String id_kelas
+    );
+
+    @FormUrlEncoded
+    @POST("get.php")
+    Call<ResponseModel> ardGetData(
+            @Field("id_akun") String id_akun
+    );
 
 }
 
