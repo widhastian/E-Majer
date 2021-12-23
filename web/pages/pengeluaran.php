@@ -89,17 +89,17 @@
             if ($_SERVER['REQUEST_METHOD'] == "POST") {
                 $pencarian = trim(mysqli_real_escape_string($koneksi, $_POST['pencarian']));
                 if ($pencarian != "") {
-                    $query = "SELECT * FROM pengeluaran WHERE nama_kelas = '$kelas' AND tgl_pengeluaran LIKE '%$pencarian%' LIMIT $posisi, $batas";
-                    $queryJml = "SELECT * FROM pengeluaran WHERE nama_kelas = '$kelas' AND tgl_pengeluaran LIKE '%$pencarian%'";
+                    $query = "SELECT * FROM pengeluaran WHERE nama_kelas = '$kelas' AND tgl_pengeluaran LIKE '%$pencarian%' ORDER BY tgl_pengeluaran DESC LIMIT $posisi, $batas";
+                    $queryJml = "SELECT * FROM pengeluaran WHERE nama_kelas = '$kelas' AND tgl_pengeluaran LIKE '%$pencarian%' ORDER BY tgl_pengeluaran DESC";
                     $no = $posisi * 1;
                 } else {
-                    $query = "SELECT * FROM pengeluaran WHERE nama_kelas = '$kelas' LIMIT $posisi, $batas";
-                    $queryJml = "SELECT * FROM pengeluaran WHERE nama_kelas = '$kelas'";
+                    $query = "SELECT * FROM pengeluaran WHERE nama_kelas = '$kelas' ORDER BY tgl_pengeluaran DESC  LIMIT $posisi, $batas";
+                    $queryJml = "SELECT * FROM pengeluaran WHERE nama_kelas = '$kelas' ORDER BY tgl_pengeluaran DESC ";
                     $no = $posisi * 1;
                 }
             } else {
-                $query = "SELECT * FROM pengeluaran WHERE nama_kelas = '$kelas' LIMIT $posisi, $batas";
-                $queryJml = "SELECT * FROM pengeluaran WHERE nama_kelas = '$kelas'";
+                $query = "SELECT * FROM pengeluaran WHERE nama_kelas = '$kelas' ORDER BY tgl_pengeluaran DESC  LIMIT $posisi, $batas";
+                $queryJml = "SELECT * FROM pengeluaran WHERE nama_kelas = '$kelas' ORDER BY tgl_pengeluaran DESC";
                 $no = $posisi * 1;
             }
 

@@ -58,11 +58,6 @@
                                     <input type="hidden" name="kelas" value="<?= $kelas ?>">
                                     <span class="input-group-text" id="inputGroupPrepend"><i class="fas fa-calendar-alt"></i></span>
                                     <input type="date" class="form-control" id="tanggal" n aria-describedby="inputGroupPrepend" name="tanggal">
-                                </div>
-                            </div>
-                            <div class="col-md-12">
-                                <div class="input-group has-validation">
-                                    <input type="hidden" value="<?= $nominal ?>" name="nominal">
                                     <input type="hidden" value="<?= $date ?>" name="minggu">
                                 </div>
                             </div>
@@ -82,14 +77,14 @@
                 <td>Kelas</td>
                 <td>Tanggal Pembayaran</td>
                 <td>Tanggal Transaksi</td>
-                <td>Nominal Transaksi</td>
                 <td>status</td>
+                <td>Foto Bukti</td>
                 <?php if ($level == 1) { ?>
                     <td colspan="2">action</td>
                 <?php } ?>
             </tr>
             <?php
-            $batas = 6;
+            $batas = 4;
             extract($_GET);
             if (empty($hal)) {
                 $posisi = 0;
@@ -104,23 +99,17 @@
             if ($_SERVER['REQUEST_METHOD'] == "POST") {
                 $pencarian = trim(mysqli_real_escape_string($koneksi, $_POST['pencarian']));
                 if ($pencarian != "") {
-                    $query = "SELECT * FROM transaksi INNER JOIN akun ON transaksi.id_akun = akun.id_akun INNER JOIN kelas On akun.id_kelas = kelas.id_kelas INNER JOIN minggu ON transaksi.id_minggu = minggu.id_minggu  WHERE akun.id_kelas = '$kelas' AND 
-                    minggu.id_minggu = '$date' AND transaksi.status >= 1 AND akun.nama LIKE '%$pencarian%' ORDER BY akun.nama ASC  LIMIT $posisi, $batas";
-                    $queryJml = "SELECT * FROM transaksi INNER JOIN akun ON transaksi.id_akun = akun.id_akun INNER JOIN kelas On akun.id_kelas = kelas.id_kelas INNER JOIN minggu ON transaksi.id_minggu = minggu.id_minggu  WHERE akun.id_kelas = '$kelas' AND 
-                    minggu.id_minggu = '$date' AND transaksi.status >= 1 AND akun.nama LIKE '%$pencarian%' ORDER BY akun.nama ASC";
+                    $query = "SELECT * FROM transaksi INNER JOIN transaksi_detail ON transaksi.id_transaksi = transaksi_detail.id_transaksi INNER JOIN minggu ON transaksi_detail.id_minggu = minggu.id_minggu INNER JOIN akun ON transaksi.id_akun = akun.id_akun INNER JOIN kelas ON akun.id_kelas = kelas.id_kelas WHERE minggu.id_minggu = $date AND transaksi.id_kelas = '$kelas' AND akun.nama LIKE '%$pencarian%' ORDER BY akun.nama ASC  LIMIT $posisi, $batas";
+                    $queryJml = "SELECT * FROM transaksi INNER JOIN transaksi_detail ON transaksi.id_transaksi = transaksi_detail.id_transaksi INNER JOIN minggu ON transaksi_detail.id_minggu = minggu.id_minggu INNER JOIN akun ON transaksi.id_akun = akun.id_akun INNER JOIN kelas ON akun.id_kelas = kelas.id_kelas WHERE minggu.id_minggu = $date AND transaksi.id_kelas = '$kelas' AND akun.nama LIKE '%$pencarian%' ORDER BY akun.nama ASC";
                     $no = $posisi * 1;
                 } else {
-                    $query = "SELECT * FROM transaksi INNER JOIN akun ON transaksi.id_akun = akun.id_akun INNER JOIN kelas On akun.id_kelas = kelas.id_kelas INNER JOIN minggu ON transaksi.id_minggu = minggu.id_minggu  WHERE akun.id_kelas = '$kelas' AND 
-                    minggu.id_minggu = '$date' AND transaksi.status >= 1 ORDER BY akun.nama ASC LIMIT $posisi, $batas";
-                    $queryJml = "SELECT * FROM transaksi INNER JOIN akun ON transaksi.id_akun = akun.id_akun INNER JOIN kelas On akun.id_kelas = kelas.id_kelas INNER JOIN minggu ON transaksi.id_minggu = minggu.id_minggu  WHERE akun.id_kelas = '$kelas' AND 
-                    minggu.id_minggu = '$date' AND transaksi.status >= 1 ORDER BY akun.nama ASC";
+                    $query = "SELECT * FROM transaksi INNER JOIN transaksi_detail ON transaksi.id_transaksi = transaksi_detail.id_transaksi INNER JOIN minggu ON transaksi_detail.id_minggu = minggu.id_minggu INNER JOIN akun ON transaksi.id_akun = akun.id_akun INNER JOIN kelas ON akun.id_kelas = kelas.id_kelas WHERE minggu.id_minggu = $date AND transaksi.id_kelas = '$kelas' ORDER BY akun.nama ASC LIMIT $posisi, $batas";
+                    $queryJml = "SELECT * FROM transaksi INNER JOIN transaksi_detail ON transaksi.id_transaksi = transaksi_detail.id_transaksi INNER JOIN minggu ON transaksi_detail.id_minggu = minggu.id_minggu INNER JOIN akun ON transaksi.id_akun = akun.id_akun INNER JOIN kelas ON akun.id_kelas = kelas.id_kelas WHERE minggu.id_minggu = $date AND transaksi.id_kelas = '$kelas' ORDER BY akun.nama ASC";
                     $no = $posisi * 1;
                 }
             } else {
-                $query = "SELECT * FROM transaksi INNER JOIN akun ON transaksi.id_akun = akun.id_akun INNER JOIN kelas On akun.id_kelas = kelas.id_kelas INNER JOIN minggu ON transaksi.id_minggu = minggu.id_minggu  WHERE akun.id_kelas = '$kelas' AND 
-                minggu.id_minggu = '$date' AND transaksi.status >= 1  ORDER BY akun.nama ASC LIMIT $posisi, $batas";
-                $queryJml = "SELECT * FROM transaksi INNER JOIN akun ON transaksi.id_akun = akun.id_akun INNER JOIN kelas On akun.id_kelas = kelas.id_kelas INNER JOIN minggu ON transaksi.id_minggu = minggu.id_minggu  WHERE akun.id_kelas = '$kelas' AND 
-                minggu.id_minggu = '$date' AND transaksi.status >= 1  ORDER BY akun.nama ASC";
+                $query = "SELECT * FROM transaksi INNER JOIN transaksi_detail ON transaksi.id_transaksi = transaksi_detail.id_transaksi INNER JOIN minggu ON transaksi_detail.id_minggu = minggu.id_minggu INNER JOIN akun ON transaksi.id_akun = akun.id_akun INNER JOIN kelas ON akun.id_kelas = kelas.id_kelas WHERE minggu.id_minggu = $date AND transaksi.id_kelas = '$kelas' ORDER BY akun.nama ASC LIMIT $posisi, $batas";
+                $queryJml = "SELECT * FROM transaksi INNER JOIN transaksi_detail ON transaksi.id_transaksi = transaksi_detail.id_transaksi INNER JOIN minggu ON transaksi_detail.id_minggu = minggu.id_minggu INNER JOIN akun ON transaksi.id_akun = akun.id_akun INNER JOIN kelas ON akun.id_kelas = kelas.id_kelas WHERE minggu.id_minggu = $date AND transaksi.id_kelas = '$kelas' ORDER BY akun.nama ASC";
                 $no = $posisi * 1;
             }
 
@@ -128,23 +117,30 @@
             $q_tampil_transaksi = mysqli_query($koneksi, $query);
             if (mysqli_num_rows($q_tampil_transaksi) > 0) {
                 while ($r_tampil_transaksi = mysqli_fetch_array($q_tampil_transaksi)) {
+                    if (empty($r_tampil_transaksi['foto']) or ($r_tampil_transaksi['foto'] == '-')) {
+                        $foto = "bayar.png";
+                    } else {
+                        $foto = $r_tampil_transaksi['foto'];
+                    }
             ?>
                     <tr>
                         <td><?php echo $nomor; ?></td>
                         <td><?php echo $r_tampil_transaksi['nama']; ?></td>
-                        <td><?php echo $r_tampil_transaksi['nama_kelass']; ?></td>
-                        <td><?php echo $r_tampil_transaksi['tanggal_pembayaran']; ?></td>
+                        <td><?php echo $r_tampil_transaksi['nama_kelas']; ?></td>
+                        <td><?php echo $r_tampil_transaksi['tanggal_bayar']; ?></td>
                         <td><?php echo $r_tampil_transaksi['tanggal']; ?></td>
-                        <td><?php echo $r_tampil_transaksi['nominal_transaksi']; ?></td>
                         <td>
                             <?php
-                            if ($r_tampil_transaksi['status'] == 1) {
+                            if ($r_tampil_transaksi['status'] === 'belum bayar') {
                                 echo "<div class='status' style='background-color: #DB0909;'>Belum Bayar</div>";
-                            } else if ($r_tampil_transaksi['status'] == 2) {
+                            } else if ($r_tampil_transaksi['status'] === 'veirifikasi') {
+                                echo "<div class='status' style='background-color: #2A07FF;'>Verifikasi</div>";
+                            } else if ($r_tampil_transaksi['status'] === 'sudah bayar') {
                                 echo "<div class='status' style='background-color: #1A8708;'>Sudah Bayar</div>";
                             }
                             ?>
                         </td>
+                        <td><img src="<?php echo "assets/gambar/" . $foto ?>" width=70px height=70px></td>
                         <td>
                             <!-- Example single danger button -->
                             <?php if ($level == 1) { ?>
@@ -154,14 +150,14 @@
                                     </button>
                                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                                         <?php
-                                        if ($r_tampil_transaksi['status'] == 1) { ?>
-                                            <li><button class="dropdown-item" onclick="bayar('<?= $r_tampil_transaksi['id_transaksi']; ?>','<?= $nominal ?>','<?= $id ?>','<?= $date ?>')">Bayar</button></li>
-                                            <li><button class="dropdown-item" hidden onclick="belum_bayar('<?= $r_tampil_transaksi['id_transaksi']; ?>','<?= $nominal ?>','<?= $id ?>','<?= $date ?>')">Belum Bayar</button></li>
-                                            <li><button class="dropdown-item" onclick="konfirmasi('<?= $r_tampil_transaksi['id_transaksi'] ?>','<?= $date ?>','<?= $r_tampil_transaksi['status'] ?>','<?= $nominal ?>','<?= $id ?>')">Hapus</button></li>
-                                        <?php } else if ($r_tampil_transaksi['status'] == 2) { ?>
-                                            <li><button class=" dropdown-item" hidden onclick="bayar('<?= $r_tampil_transaksi['id_transaksi']; ?>','<?= $nominal ?>','<?= $id ?>','<?= $date ?>')">Bayar</button></li>
-                                            <li><button class="dropdown-item" onclick="belum_bayar('<?= $r_tampil_transaksi['id_transaksi']; ?>','<?= $nominal ?>','<?= $id ?>','<?= $date ?>')">Belum Bayar</button></li>
-                                            <li><button class="dropdown-item" onclick="konfirmasi('<?= $r_tampil_transaksi['id_transaksi']  ?>','<?= $date ?>','<?= $r_tampil_transaksi['status'] ?>','<?= $nominal ?>','<?= $id ?>')">Hapus</button></li>
+                                        if ($r_tampil_transaksi['status'] === 'belum bayar' || $r_tampil_transaksi['status'] === 'veirifikasi') { ?>
+                                            <li><button class="dropdown-item" onclick="bayar('<?= $r_tampil_transaksi['id_transaksi']; ?>','<?= $nominal ?>','<?= $kelas ?>','<?= $date ?>')">Bayar</button></li>
+                                            <li><button class="dropdown-item" hidden onclick="belum_bayar('<?= $r_tampil_transaksi['id_transaksi']; ?>','<?= $nominal ?>','<?= $kelas ?>','<?= $date ?>')">Belum Bayar</button></li>
+                                            <li><button class="dropdown-item" onclick="konfirmasi('<?= $r_tampil_transaksi['id_transaksi'] ?>','<?= $date ?>','<?= $r_tampil_transaksi['status'] ?>','<?= $nominal ?>','<?= $kelas ?>')">Hapus</button></li>
+                                        <?php } else if ($r_tampil_transaksi['status'] === 'sudah bayar') { ?>
+                                            <li><button class=" dropdown-item" hidden onclick="bayar('<?= $r_tampil_transaksi['id_transaksi']; ?>','<?= $nominal ?>','<?= $kelas ?>','<?= $date ?>')">Bayar</button></li>
+                                            <li><button class="dropdown-item" onclick="belum_bayar('<?= $r_tampil_transaksi['id_transaksi']; ?>','<?= $nominal ?>','<?= $kelas ?>','<?= $date ?>')">Belum Bayar</button></li>
+                                            <li><button class="dropdown-item" onclick="konfirmasi('<?= $r_tampil_transaksi['id_transaksi']  ?>','<?= $date ?>','<?= $r_tampil_transaksi['status'] ?>','<?= $nominal ?>','<?= $kelas ?>')">Hapus</button></li>
                                         <?php } ?>
                                     </ul>
                                 </div>
@@ -244,15 +240,15 @@
         }
     }
 
-    function bayar(id, nominal, akun, minggu) {
-        window.location.href = "proses/change-bayar.php?id=" + id + "&nominal=" + nominal + "&minggu=" + minggu + "&id_akun=" + akun;
+    function bayar(id, nominal, kelas, minggu) {
+        window.location.href = "proses/change-bayar.php?id=" + id + "&nominal=" + nominal + "&minggu=" + minggu + "&id_kelas=" + kelas;
     }
 
-    function belum_bayar(id, nominal, akun, minggu) {
-        window.location.href = "proses/change-belumbayar.php?id=" + id + "&nominal=" + nominal + "&minggu=" + minggu + "&id_akun=" + akun;
+    function belum_bayar(id, nominal, kelas, minggu) {
+        window.location.href = "proses/change-belumbayar.php?id=" + id + "&nominal=" + nominal + "&minggu=" + minggu + "&id_kelas=" + kelas;
     }
 
-    function konfirmasi(id, minggu, status, nominal, akun) {
+    function konfirmasi(id, minggu, status, nominal, kelas) {
         swal.fire({
             title: "Hapus Data ini?",
             icon: "warning",
@@ -264,7 +260,7 @@
             cancelButtonColor: '#d33',
         }).then((result) => {
             if (result.value) {
-                window.location.href = "proses/pembayaran-hapus-proses.php?id=" + id + "&minggu=" + minggu + "&status=" + status + "&nominal=" + nominal + "&id_akun=" + akun;
+                window.location.href = "proses/pembayaran-hapus-proses.php?id=" + id + "&minggu=" + minggu + "&status=" + status + "&nominal=" + nominal + "&id_kelas=" + kelas;
             }
         });
     }

@@ -51,7 +51,7 @@
                     </ul>
                     <form class="d-flex">
                         <a href="login.php">Login</a>
-                        <a href="register-awal.php" class="btn" type="submit">Daftar</a>
+                        <a href="register(admin).php" class="btn" type="submit">Daftar</a>
                     </form>
                 </div>
             </div>
@@ -137,7 +137,7 @@
     </div>
     <script>
         function register() {
-            window.location.href = "register-awal.php";
+            window.location.href = "register(admin).php";
         }
     </script>
 </body>

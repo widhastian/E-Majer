@@ -3,7 +3,7 @@ require '../koneksi.php';
 $id = $_GET['id'];
 $transaksi = $_GET['transaksi'];
 
-$query = "DELETE FROM detail_transaksi WHERE id_detail='$id'";
+$query = "DELETE FROM detail_pengeluaran WHERE id_detail='$id'";
 $result = mysqli_query($koneksi, $query);
 
 if ($result) {

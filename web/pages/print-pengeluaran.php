@@ -12,7 +12,7 @@ $kelas = $_GET['kelas'];
 $query = mysqli_query($koneksi, "SELECT * FROM akun INNER JOIN kelas ON akun.id_kelas = kelas.id_kelas WHERE akun.id_akun = '$id'");
 $r_data = mysqli_fetch_array($query);
 $nama = $r_data['nama'];
-$kelass = $r_data['nama_kelass'];
+$kelass = $r_data['nama_kelas'];
 
 $html = '
 <!DOCTYPE html>

@@ -6,17 +6,17 @@ if (!isset($_SESSION['id_akun'])) {
     header("Location :login.php");
 }
 $id = $_SESSION['id_akun'];
-$nama = $_SESSION['nama'];
 $kelas = $_SESSION['id_kelas'];
 $level = $_SESSION['id_level'];
 
-$query = "SELECT * FROM akun INNER JOIN kelas ON akun.id_kelas = kelas.id_kelas INNER JOIN level ON akun.id_level = level.id_level WHERE akun.id_akun = '$id'";
+$query = "SELECT * FROM akun INNER JOIN kelas ON akun.id_kelas = kelas.id_kelas INNER JOIN level ON akun.id_level = level.id_level INNER JOIN saldo ON kelas.id_kelas = saldo.id_kelas WHERE akun.id_akun = '$id'";
 $result = mysqli_query($koneksi, $query);
 $no = 1;
 if (mysqli_num_rows($result) > 0) {
     while ($row = mysqli_fetch_array($result)) {
         $nominal = $row['nominal_uangkas'];
-        $saldo = $row['saldo'];
+        $saldo = $row['jumlah_saldo'];
+        $nama = $row['nama'];
 ?>
         <!DOCTYPE html>
         <html lang="en">
@@ -29,7 +29,6 @@ if (mysqli_num_rows($result) > 0) {
             <link rel="stylesheet" href="assets/css/style.css">
             <link rel="preconnect" href="https://fonts.googleapis.com">
             <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-            <script src="../assets/js/jquery-3.4.1.js"></script>
             <link href="https://fonts.googleapis.com/css2?family=Poppins" rel="stylesheet">
 
             <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.6.1/chart.min.js"></script>

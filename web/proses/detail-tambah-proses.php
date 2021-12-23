@@ -6,7 +6,7 @@ $barang = $_POST['barang'];
 $transaksi = $_POST['transaksi'];
 $jumlah = $_POST['jumlah'];
 
-$query = "INSERT INTO detail_transaksi VALUES('$id','$barang','$transaksi','$jumlah')";
+$query = "INSERT INTO detail_pengeluaran VALUES('$id','$barang','$transaksi','$jumlah')";
 $result = mysqli_query($koneksi, $query);
 
 if ($result) {

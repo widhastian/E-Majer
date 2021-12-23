@@ -36,20 +36,15 @@
                         <form action="proses/buku-transaksi.php" method="POST" class="row g-3 needs-validation" enctype="multipart/form-data" onsubmit="return tambah();">
                             <div class="col-md-12">
                                 <div class="input-group has-validation">
+                                    <input type="hidden" name="nominal" value="<?= $nominal; ?>">
                                     <span class="input-group-text" id="inputGroupPrepend"><i class="fas fa-calendar-alt"></i></span>
-                                    <select class="form-select" id="minggu" name="minggu">
-                                        <option value="0">-- Minggu Ke --</option>
-                                        <option value="Minggu 1">Minggu 1</option>
-                                        <option value="Minggu 2">Minggu 2</option>
-                                        <option value="Minggu 3">Minggu 3</option>
-                                        <option value="Minggu 4">Minggu 4</option>
-                                    </select>
+                                    <input type="date" class="form-control" id="tanggal" n aria-describedby="inputGroupPrepend" name="tanggal">
                                 </div>
                             </div>
                             <div class="col-md-12">
                                 <div class="input-group has-validation">
-                                    <span class="input-group-text" id="inputGroupPrepend"><i class="fas fa-calendar-alt"></i></span>
-                                    <input type="date" class="form-control" id="tanggal" n aria-describedby="inputGroupPrepend" name="tanggal">
+                                    <span class="input-group-text" id="inputGroupPrepend"><i class="far fa-clipboard"></i></span>
+                                    <input type="text" class="form-control" id="keterangan" n aria-describedby="inputGroupPrepend" placeholder="Keterangan" name="keterangan">
                                     <input type="hidden" name="kelas" value="<?= $kelas ?>">
                                 </div>
                             </div>
@@ -63,7 +58,7 @@
             </div>
         </div>
         <?php
-        $batas = 3;
+        $batas = 2;
         extract($_GET);
         if (empty($hal)) {
             $posisi = 0;
@@ -78,17 +73,17 @@
         if ($_SERVER['REQUEST_METHOD'] == "POST") {
             $tanggal = trim(mysqli_real_escape_string($koneksi, $_POST['tanggal']));
             if ($tanggal != "") {
-                $query = "SELECT * FROM minggu WHERE nama_kelas ='$kelas' AND tanggal LIKE '%$tanggal%'  ORDER BY tanggal LIMIT $posisi, $batas ";
-                $queryJml = "SELECT * FROM minggu WHERE nama_kelas ='$kelas' AND tanggal LIKE '%$tanggal%'  ORDER BY tanggal";
+                $query = "SELECT * FROM minggu WHERE id_kelas = '$kelas' AND tanggal LIKE '%$tanggal%'  ORDER BY tanggal DESC LIMIT $posisi, $batas ";
+                $queryJml = "SELECT * FROM minggu WHERE id_kelas = '$kelas' AND tanggal LIKE '%$tanggal%'  ORDER BY tanggal DESC";
                 $no = $posisi * 1;
             } else {
-                $query = "SELECT * FROM minggu WHERE nama_kelas ='$kelas' ORDER BY tanggal ASC LIMIT $posisi, $batas";
-                $queryJml = "SELECT * FROM minggu WHERE nama_kelas ='$kelas' ORDER BY tanggal ASC";
+                $query = "SELECT * FROM minggu WHERE id_kelas = '$kelas' ORDER BY tanggal DESC LIMIT $posisi, $batas";
+                $queryJml = "SELECT * FROM minggu WHERE id_kelas = '$kelas' ORDER BY tanggal DESC";
                 $no = $posisi * 1;
             }
         } else {
-            $query = "SELECT * FROM minggu WHERE nama_kelas ='$kelas' ORDER BY tanggal ASC LIMIT $posisi, $batas";
-            $queryJml = "SELECT * FROM minggu WHERE nama_kelas ='$kelas' ORDER BY tanggal ASC";
+            $query = "SELECT * FROM minggu WHERE id_kelas = '$kelas' ORDER BY tanggal DESC LIMIT $posisi, $batas";
+            $queryJml = "SELECT * FROM minggu WHERE id_kelas = '$kelas' ORDER BY tanggal DESC";
             $no = $posisi * 1;
         }
 
@@ -102,18 +97,23 @@
                         <div class="col-10">
                             <table>
                                 <tr>
-                                    <td><?= $row['nama_minggu'] ?></td>
+                                    <td><?= $row['keterangan'] ?></td>
                                     <td>:</td>
                                     <td><?php
                                         $tanggal = $row['tanggal'];
                                         echo convertDateDBtoIndo($tanggal) ?></td>
                                 </tr>
                                 <tr>
+                                    <td>Nominal</td>
+                                    <td>:</td>
+                                    <td><?= $row['nominal']; ?></td>
+                                </tr>
+                                <tr>
                                     <td>Jumlah Siswa Bayar</td>
                                     <td>:</td>
                                     <td><?php
-                                        $tanggal =  $row['tanggal'];
-                                        $result = mysqli_query($koneksi, "SELECT *, COUNT( * ) AS total FROM minggu INNER JOIN transaksi ON minggu.id_minggu = transaksi.id_minggu WHERE transaksi.nama_kelas = '$kelas' AND minggu.tanggal = '$tanggal' AND transaksi.status = '2'");
+                                        $id_minggu = $row['id_minggu'];
+                                        $result = mysqli_query($koneksi, "SELECT *, COUNT( * ) AS total FROM transaksi_detail INNER JOIN transaksi ON transaksi_detail.id_transaksi = transaksi.id_transaksi INNER JOIN minggu ON minggu.id_minggu = transaksi_detail.id_minggu WHERE transaksi.id_kelas ='$kelas' AND transaksi.status ='sudah bayar' AND minggu.id_minggu = $id_minggu GROUP BY minggu.tanggal DESC");
                                         if (mysqli_num_rows($result) > 0) {
                                             while ($data = mysqli_fetch_array($result)) {
                                                 echo $data['total'];
@@ -123,10 +123,25 @@
                                         } ?></td>
                                 </tr>
                                 <tr>
-                                    <td style="width: 14rem;">Jumlah Siswa Tidak Bayar</td>
+                                    <td style="width: 17rem;">Jumlah Siswa Perlu Diverifikasi</td>
                                     <td style="width: 1rem;">:</td>
                                     <td><?php
-                                        $result = mysqli_query($koneksi, "SELECT *, COUNT( * ) AS total FROM minggu INNER JOIN transaksi ON minggu.id_minggu = transaksi.id_minggu WHERE transaksi.nama_kelas = '$kelas' AND minggu.tanggal = '$tanggal' AND transaksi.status = '1'");
+                                        $id_minggu = $row['id_minggu'];
+                                        $result = mysqli_query($koneksi, "SELECT *, COUNT( * ) AS total FROM transaksi INNER JOIN transaksi_detail ON transaksi.id_transaksi = transaksi_detail.id_transaksi INNER JOIN minggu ON minggu.id_minggu = transaksi_detail.id_minggu WHERE transaksi.id_kelas ='$kelas' AND transaksi.status ='veirifikasi' AND minggu.id_minggu = $id_minggu GROUP BY minggu.tanggal DESC");
+                                        if (mysqli_num_rows($result) > 0) {
+                                            while ($data = mysqli_fetch_array($result)) {
+                                                echo $data['total'];
+                                            }
+                                        } else {
+                                            echo "0";
+                                        } ?></td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 17rem;">Jumlah Siswa Tidak Bayar</td>
+                                    <td style="width: 1rem;">:</td>
+                                    <td><?php
+                                        $id_minggu = $row['id_minggu'];
+                                        $result = mysqli_query($koneksi, "SELECT *, COUNT( * ) AS total FROM transaksi INNER JOIN transaksi_detail ON transaksi.id_transaksi = transaksi_detail.id_transaksi INNER JOIN minggu ON minggu.id_minggu = transaksi_detail.id_minggu WHERE transaksi.id_kelas ='$kelas' AND transaksi.status ='belum bayar' AND minggu.id_minggu = $id_minggu GROUP BY minggu.tanggal DESC");
                                         if (mysqli_num_rows($result) > 0) {
                                             while ($data = mysqli_fetch_array($result)) {
                                                 echo $data['total'];
@@ -139,7 +154,7 @@
                         </div>
                         <div class="col-2">
                             <a href="navbar.php?p=pembayaran&minggu=<?php echo $row['id_minggu'] ?>">
-                                <div type="button" class="btn btn-primary button" style="width: 85%; margin-bottom:5px;">Detail</div>
+                                <div type="button" class="btn btn-primary button" style="width: 85%; margin-bottom:5px; margin-top:3.5vh;">Detail</div>
                             </a>
                             <button type="button" class="btn btn-danger button" onclick="konfirmasi('<?= $row['id_minggu'] ?>')">Hapus</button>
                         </div>
@@ -207,12 +222,12 @@
         });
     }
 
-    var minggu = document.getElementById('minggu');
+    var keterangan = document.getElementById('keterangan');
     var tanggal = document.getElementById('tanggal');
 
     function tambah() {
-        if (minggu.value == "0") {
-            pesan('Pilih Minggu Yang Benar', 'warning');
+        if (keterangan.value == "") {
+            pesan('Keterangan Tidak Boleh Kosong', 'warning');
             return false;
         } else if (tanggal.value == "") {
             pesan('Tanggal Tidak Boleh Kosong', 'warning');

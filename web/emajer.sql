@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 17, 2021 at 08:16 AM
+-- Generation Time: Dec 23, 2021 at 03:12 PM
 -- Server version: 10.4.19-MariaDB
 -- PHP Version: 8.0.6
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `emajer`
+-- Database: `emajer3`
 --
 
 -- --------------------------------------------------------
@@ -34,18 +34,20 @@ CREATE TABLE `akun` (
   `username` varchar(50) NOT NULL,
   `password` varchar(50) NOT NULL,
   `id_kelas` varchar(15) NOT NULL,
-  `id_level` int(11) NOT NULL,
-  `saldo` varchar(25) NOT NULL
+  `id_level` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `akun`
 --
 
-INSERT INTO `akun` (`id_akun`, `nama`, `email`, `username`, `password`, `id_kelas`, `id_level`, `saldo`) VALUES
-('M-44732', 'Muh. Yusril Amin', 'yusril@gmail.com', 'yusrilamin23', '123', 'K-02', 1, '86000'),
-('M-46346', 'yusril111', 'yusril123@gmail.com', 'akuyusril', '123', 'K-02', 2, '0'),
-('M-47195', 'Dinda Kusmara', 'dinda@gmail.com', 'dinda', '123', 'K-02', 2, '0');
+INSERT INTO `akun` (`id_akun`, `nama`, `email`, `username`, `password`, `id_kelas`, `id_level`) VALUES
+('M-25188', 'yusril', 'yusril5555@gmail.com', 'user123', 'user123', 'K-02', 2),
+('M-44732', 'Muh. Yusril Amim', 'admin@gmail.com', 'yusrilamin23', '123', 'K-02', 1),
+('M-46346', 'yusril111', 'yusril123@gmail.com', 'akuyusril', '123', 'K-02', 2),
+('M-47195', 'Dinda Kusmara23', 'dinda@gmail.com', 'dinda', '123', 'K-02', 2),
+('M-76642', 'Andi Wijaya', 'admin4@gmail.com', 'admin4', '123', 'K-26430', 1),
+('M-83652', 'Muhammad Yusril  Amin', 'yusrilzima28@gmail.com', 'e41200772', '123', 'K-29092', 1);
 
 -- --------------------------------------------------------
 
@@ -101,7 +103,7 @@ INSERT INTO `detail_pengeluaran` (`id_detail`, `id_barang`, `id_pengeluaran`, `j
 
 CREATE TABLE `kelas` (
   `id_kelas` varchar(15) NOT NULL,
-  `nama_kelass` varchar(50) NOT NULL,
+  `nama_kelas` varchar(50) NOT NULL,
   `nominal_uangkas` varchar(25) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -109,12 +111,11 @@ CREATE TABLE `kelas` (
 -- Dumping data for table `kelas`
 --
 
-INSERT INTO `kelas` (`id_kelas`, `nama_kelass`, `nominal_uangkas`) VALUES
+INSERT INTO `kelas` (`id_kelas`, `nama_kelas`, `nominal_uangkas`) VALUES
 ('K-01', 'TIF A', '2000'),
-('K-02', 'TIF B', '2000'),
+('K-02', 'TIF B', '3000'),
 ('K-26430', 'TIF D', '2000'),
 ('K-29092', 'TIF G', '2000'),
-('K-54609', 'TIF D', '2000'),
 ('K-92735', 'TIF E', '2000');
 
 -- --------------------------------------------------------
@@ -155,7 +156,7 @@ CREATE TABLE `mading` (
 --
 
 INSERT INTO `mading` (`id_mading`, `jenis_mading`, `deskripsi_mading`, `tgl_pembagian`, `id_kelas`) VALUES
-('MDG-64866', '2', 'wewew', '2021-12-14', 'K-02'),
+('MDG-64866', '2', 'sayang\r\n', '2021-12-14', 'K-02'),
 ('MDG-6490', '1', 'wewew', '2021-12-03', 'K-02'),
 ('MDG-72122', '1', 'ssss', '2021-12-09', 'K-02');
 
@@ -167,18 +168,21 @@ INSERT INTO `mading` (`id_mading`, `jenis_mading`, `deskripsi_mading`, `tgl_pemb
 
 CREATE TABLE `minggu` (
   `id_minggu` int(11) NOT NULL,
-  `nama_minggu` varchar(20) NOT NULL,
+  `nominal` int(11) NOT NULL,
+  `keterangan` varchar(20) NOT NULL,
   `tanggal` date NOT NULL,
-  `nama_kelas` varchar(20) NOT NULL
+  `id_kelas` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `minggu`
 --
 
-INSERT INTO `minggu` (`id_minggu`, `nama_minggu`, `tanggal`, `nama_kelas`) VALUES
-(1, 'Minggu 1', '2021-12-15', 'K-02'),
-(2, 'Minggu 2', '2021-12-22', 'K-02');
+INSERT INTO `minggu` (`id_minggu`, `nominal`, `keterangan`, `tanggal`, `id_kelas`) VALUES
+(1, 2000, 'minggu 1 (Des 2021)', '2021-12-01', 'K-02'),
+(2, 2000, 'minggu 2 (Des 2021)', '2021-12-08', 'K-02'),
+(3, 2000, 'minggu 3 (Des 2021)', '2021-12-15', 'K-02'),
+(4, 2000, 'minggu 4(Des 2021)', '2021-12-22', 'K-02');
 
 -- --------------------------------------------------------
 
@@ -200,6 +204,7 @@ CREATE TABLE `pengeluaran` (
 --
 
 INSERT INTO `pengeluaran` (`id_pengeluaran`, `nominal_pengeluaran`, `tgl_pengeluaran`, `id_akun`, `nama_kelas`, `foto`) VALUES
+('BL-20797', '20000', '2021-12-23', 'M-44732', 'K-02', 'Nota_BL-20797.PNG'),
 ('BL-21871', '10000', '2021-12-10', 'M-44732', 'K-02', 'Nota_BL-21871.jpg'),
 ('BL-74195', '20000', '2021-12-12', 'M-44732', 'K-02', 'Nota_BL-74195.jpg'),
 ('BL-80022', '10000', '2021-12-15', 'M-44732', 'K-02', 'Nota_BL-80022.png'),
@@ -209,15 +214,15 @@ INSERT INTO `pengeluaran` (`id_pengeluaran`, `nominal_pengeluaran`, `tgl_pengelu
 -- Triggers `pengeluaran`
 --
 DELIMITER $$
-CREATE TRIGGER `Hapus Pengeluaran` AFTER DELETE ON `pengeluaran` FOR EACH ROW UPDATE akun SET saldo = saldo+OLD.nominal_pengeluaran WHERE id_akun = OLD.id_akun
+CREATE TRIGGER `Hapus Pengeluaran` AFTER DELETE ON `pengeluaran` FOR EACH ROW UPDATE saldo SET jumlah_saldo = jumlah_saldo+OLD.nominal_pengeluaran WHERE id_kelas = OLD.nama_kelas
 $$
 DELIMITER ;
 DELIMITER $$
-CREATE TRIGGER `Tambah Pengeluaran` AFTER INSERT ON `pengeluaran` FOR EACH ROW UPDATE akun SET saldo = saldo-NEW.nominal_pengeluaran WHERE id_akun = NEW.id_akun
+CREATE TRIGGER `Tambah Pengeluaran` AFTER INSERT ON `pengeluaran` FOR EACH ROW UPDATE saldo SET jumlah_saldo = jumlah_saldo-NEW.nominal_pengeluaran WHERE id_kelas = NEW.nama_kelas
 $$
 DELIMITER ;
 DELIMITER $$
-CREATE TRIGGER `Update Pengeluaran` AFTER UPDATE ON `pengeluaran` FOR EACH ROW UPDATE akun SET saldo = saldo+OLD.nominal_pengeluaran-NEW.nominal_pengeluaran WHERE id_akun = NEW.id_akun
+CREATE TRIGGER `Update Pengeluaran` AFTER UPDATE ON `pengeluaran` FOR EACH ROW UPDATE saldo SET jumlah_saldo = jumlah_saldo+OLD.nominal_pengeluaran-NEW.nominal_pengeluaran WHERE id_kelas = NEW.nama_kelas
 $$
 DELIMITER ;
 
@@ -229,8 +234,7 @@ DELIMITER ;
 
 CREATE TABLE `saldo` (
   `id_saldo` int(11) NOT NULL,
-  `id_akun` varchar(15) NOT NULL,
-  `tgl_topup` date NOT NULL,
+  `id_kelas` varchar(15) NOT NULL,
   `jumlah_saldo` varchar(15) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -238,24 +242,8 @@ CREATE TABLE `saldo` (
 -- Dumping data for table `saldo`
 --
 
-INSERT INTO `saldo` (`id_saldo`, `id_akun`, `tgl_topup`, `jumlah_saldo`) VALUES
-(1, 'M-44732', '2021-12-09', '100000');
-
---
--- Triggers `saldo`
---
-DELIMITER $$
-CREATE TRIGGER `Hapus Saldo` AFTER DELETE ON `saldo` FOR EACH ROW UPDATE akun SET saldo = saldo-OLD.jumlah_saldo WHERE id_akun = OLD.id_akun
-$$
-DELIMITER ;
-DELIMITER $$
-CREATE TRIGGER `Tambah Saldo` AFTER INSERT ON `saldo` FOR EACH ROW UPDATE akun SET saldo = saldo+NEW.jumlah_saldo WHERE id_akun = NEW.id_akun
-$$
-DELIMITER ;
-DELIMITER $$
-CREATE TRIGGER `Update Saldo` AFTER UPDATE ON `saldo` FOR EACH ROW UPDATE akun SET saldo = saldo-OLD.jumlah_saldo+NEW.jumlah_saldo WHERE id_akun = NEW.id_akun
-$$
-DELIMITER ;
+INSERT INTO `saldo` (`id_saldo`, `id_kelas`, `jumlah_saldo`) VALUES
+(1, 'K-02', '88000');
 
 -- --------------------------------------------------------
 
@@ -264,23 +252,45 @@ DELIMITER ;
 --
 
 CREATE TABLE `transaksi` (
-  `id_transaksi` varchar(15) NOT NULL,
+  `id_transaksi` int(11) NOT NULL,
   `id_akun` varchar(15) NOT NULL,
-  `nama_kelas` varchar(25) NOT NULL,
-  `tanggal_pembayaran` date NOT NULL,
-  `nominal_transaksi` varchar(20) NOT NULL,
-  `status` int(11) NOT NULL,
-  `id_minggu` int(11) NOT NULL
+  `id_kelas` varchar(25) NOT NULL,
+  `tanggal_bayar` date NOT NULL,
+  `status` enum('belum bayar','veirifikasi','sudah bayar') NOT NULL,
+  `bukti_bayar` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `transaksi`
 --
 
-INSERT INTO `transaksi` (`id_transaksi`, `id_akun`, `nama_kelas`, `tanggal_pembayaran`, `nominal_transaksi`, `status`, `id_minggu`) VALUES
-('TR-25026', 'M-44732', 'K-02', '2021-12-18', '2000', 2, 2),
-('TR-68829', 'M-44732', 'K-02', '2021-12-30', '2000', 2, 1),
-('TR-91294', 'M-47195', 'K-02', '2021-12-18', '2000', 1, 1);
+INSERT INTO `transaksi` (`id_transaksi`, `id_akun`, `id_kelas`, `tanggal_bayar`, `status`, `bukti_bayar`) VALUES
+(1, 'M-47195', 'K-02', '2021-12-05', 'veirifikasi', ''),
+(2, 'M-44732', 'K-02', '2021-12-14', 'belum bayar', 'jfvvtrtfg'),
+(6956, 'M-44732', 'K-02', '2021-12-03', 'sudah bayar', 'bayar'),
+(27355, 'M-47195', 'K-02', '2021-12-17', 'sudah bayar', 'bayar');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `transaksi_detail`
+--
+
+CREATE TABLE `transaksi_detail` (
+  `id_transaksi_detail` int(11) NOT NULL,
+  `id_transaksi` int(11) NOT NULL,
+  `id_minggu` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `transaksi_detail`
+--
+
+INSERT INTO `transaksi_detail` (`id_transaksi_detail`, `id_transaksi`, `id_minggu`) VALUES
+(3, 1, 1),
+(4, 1, 1),
+(5, 6956, 1),
+(10, 27355, 4);
 
 --
 -- Indexes for dumped tables
@@ -346,14 +356,21 @@ ALTER TABLE `pengeluaran`
 --
 ALTER TABLE `saldo`
   ADD PRIMARY KEY (`id_saldo`),
-  ADD KEY `id_akun` (`id_akun`);
+  ADD KEY `id_akun` (`id_kelas`);
 
 --
 -- Indexes for table `transaksi`
 --
 ALTER TABLE `transaksi`
   ADD PRIMARY KEY (`id_transaksi`),
-  ADD KEY `id_akun` (`id_akun`),
+  ADD KEY `id_akun` (`id_akun`);
+
+--
+-- Indexes for table `transaksi_detail`
+--
+ALTER TABLE `transaksi_detail`
+  ADD PRIMARY KEY (`id_transaksi_detail`),
+  ADD KEY `id_transaksi` (`id_transaksi`),
   ADD KEY `id_minggu` (`id_minggu`);
 
 --
@@ -377,6 +394,18 @@ ALTER TABLE `minggu`
 --
 ALTER TABLE `saldo`
   MODIFY `id_saldo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `transaksi`
+--
+ALTER TABLE `transaksi`
+  MODIFY `id_transaksi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=96942;
+
+--
+-- AUTO_INCREMENT for table `transaksi_detail`
+--
+ALTER TABLE `transaksi_detail`
+  MODIFY `id_transaksi_detail` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- Constraints for dumped tables
@@ -418,14 +447,20 @@ ALTER TABLE `pengeluaran`
 -- Constraints for table `saldo`
 --
 ALTER TABLE `saldo`
-  ADD CONSTRAINT `saldo_ibfk_1` FOREIGN KEY (`id_akun`) REFERENCES `akun` (`id_akun`);
+  ADD CONSTRAINT `saldo_ibfk_1` FOREIGN KEY (`id_kelas`) REFERENCES `kelas` (`id_kelas`);
 
 --
 -- Constraints for table `transaksi`
 --
 ALTER TABLE `transaksi`
-  ADD CONSTRAINT `transaksi_ibfk_1` FOREIGN KEY (`id_akun`) REFERENCES `akun` (`id_akun`),
-  ADD CONSTRAINT `transaksi_ibfk_2` FOREIGN KEY (`id_minggu`) REFERENCES `minggu` (`id_minggu`);
+  ADD CONSTRAINT `transaksi_ibfk_1` FOREIGN KEY (`id_akun`) REFERENCES `akun` (`id_akun`);
+
+--
+-- Constraints for table `transaksi_detail`
+--
+ALTER TABLE `transaksi_detail`
+  ADD CONSTRAINT `transaksi_detail_ibfk_1` FOREIGN KEY (`id_transaksi`) REFERENCES `transaksi` (`id_transaksi`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `transaksi_detail_ibfk_2` FOREIGN KEY (`id_minggu`) REFERENCES `minggu` (`id_minggu`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -77,23 +77,23 @@
             if ($_SERVER['REQUEST_METHOD'] == "POST") {
                 $pencarian = trim(mysqli_real_escape_string($koneksi, $_POST['pencarian']));
                 if ($pencarian != "") {
-                    $sql = "SELECT * FROM detail_transaksi INNER JOIN pengeluaran ON detail_transaksi.id_pengeluaran = pengeluaran.id_pengeluaran JOIN 
-                            barang ON detail_transaksi.id_barang = barang.id_barang WHERE Nama_transaksi LIKE '%$pencarian%'";
+                    $sql = "SELECT * FROM detail_pengeluaran INNER JOIN pengeluaran ON detail_pengeluaran.id_pengeluaran = pengeluaran.id_pengeluaran JOIN 
+                            barang ON detail_pengeluaran.id_barang = barang.id_barang WHERE Nama_transaksi LIKE '%$pencarian%'";
 
                     $query = $sql;
                     $queryJml = $sql;
                 } else {
-                    $query = "SELECT * FROM detail_transaksi INNER JOIN pengeluaran ON detail_transaksi.id_pengeluaran = pengeluaran.id_pengeluaran JOIN 
-                            barang ON detail_transaksi.id_barang = barang.id_barang WHERE pengeluaran.id_pengeluaran  = '$transaksi'";
-                    $queryJml = "SELECT * FROM detail_transaksi INNER JOIN pengeluaran ON detail_transaksi.id_pengeluaran = pengeluaran.id_pengeluaran JOIN 
-                    barang ON detail_transaksi.id_barang = barang.id_barang WHERE pengeluaran.id_pengeluaran  = '$transaksi'  ";
+                    $query = "SELECT * FROM detail_pengeluaran INNER JOIN pengeluaran ON detail_pengeluaran.id_pengeluaran = pengeluaran.id_pengeluaran JOIN 
+                            barang ON detail_pengeluaran.id_barang = barang.id_barang WHERE pengeluaran.id_pengeluaran  = '$transaksi'";
+                    $queryJml = "SELECT * FROM detail_pengeluaran INNER JOIN pengeluaran ON detail_pengeluaran.id_pengeluaran = pengeluaran.id_pengeluaran JOIN 
+                    barang ON detail_pengeluaran.id_barang = barang.id_barang WHERE pengeluaran.id_pengeluaran  = '$transaksi'  ";
                     $no = $posisi * 1;
                 }
             } else {
-                $query = "SELECT * FROM detail_transaksi INNER JOIN pengeluaran ON detail_transaksi.id_pengeluaran = pengeluaran.id_pengeluaran JOIN 
-                            barang ON detail_transaksi.id_barang = barang.id_barang WHERE pengeluaran.id_pengeluaran  = '$transaksi'  ";
-                $queryJml = "SELECT * FROM detail_transaksi INNER JOIN pengeluaran ON detail_transaksi.id_pengeluaran = pengeluaran.id_pengeluaran JOIN 
-                            barang ON detail_transaksi.id_barang = barang.id_barang WHERE pengeluaran.id_pengeluaran  = '$transaksi' ";
+                $query = "SELECT * FROM detail_pengeluaran INNER JOIN pengeluaran ON detail_pengeluaran.id_pengeluaran = pengeluaran.id_pengeluaran JOIN 
+                            barang ON detail_pengeluaran.id_barang = barang.id_barang WHERE pengeluaran.id_pengeluaran  = '$transaksi'  ";
+                $queryJml = "SELECT * FROM detail_pengeluaran INNER JOIN pengeluaran ON detail_pengeluaran.id_pengeluaran = pengeluaran.id_pengeluaran JOIN 
+                            barang ON detail_pengeluaran.id_barang = barang.id_barang WHERE pengeluaran.id_pengeluaran  = '$transaksi' ";
                 $no = $posisi * 1;
             }
 

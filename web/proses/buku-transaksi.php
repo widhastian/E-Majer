@@ -1,11 +1,12 @@
 <?php
 require '../koneksi.php';
 
-$minggu = $_POST['minggu'];
+$nominal = $_POST['nominal'];
+$keterangan = $_POST['keterangan'];
 $tanggal = $_POST['tanggal'];
 $kelas = $_POST['kelas'];
 
-$query = "INSERT INTO minggu VALUES('','$minggu','$tanggal','$kelas')";
+$query = "INSERT INTO minggu VALUES('','$nominal','$keterangan','$tanggal','$kelas')";
 $result = mysqli_query($koneksi, $query);
 
 if ($result) {

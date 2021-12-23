@@ -18,7 +18,7 @@
                         <input type="date" name="pencarian" class="form-control" id="inputPassword2">
                     </div>
                     <div class="col-auto">
-                        <select class="form-select" id="pengumuman" name="pengumuman">
+                        <select class="form-select" name="pengumuman">
                             <option value="0">-- Jenis Pengumuman --</option>
                             <option value="1">Pengumuman</option>
                             <option value="2">Informasi</option>
@@ -36,7 +36,7 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="staticBackdropLabel">Tambah Barang</h5>
+                        <h5 class="modal-title" id="staticBackdropLabel">Tambah Mading</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
@@ -90,21 +90,21 @@
             $pencarian = trim(mysqli_real_escape_string($koneksi, $_POST['pencarian']));
             $pengumuman = trim(mysqli_real_escape_string($koneksi, $_POST['pengumuman']));
             if ($pencarian != "") {
-                $query = "SELECT * FROM mading INNER JOIN kelas ON mading.id_kelas = kelas.id_kelas WHERE mading.id_kelas= '$kelas' AND mading.tgl_pembagian LIKE '%$pencarian%' LIMIT $posisi, $batas";
-                $queryJml = "SELECT * FROM mading INNER JOIN kelas ON mading.id_kelas = kelas.id_kelas WHERE mading.id_kelas= '$kelas' AND mading.tgl_pembagian LIKE '%$pencarian%'";
+                $query = "SELECT * FROM mading INNER JOIN kelas ON mading.id_kelas = kelas.id_kelas WHERE mading.id_kelas= '$kelas' AND mading.tgl_pembagian LIKE '%$pencarian%' ORDER BY mading.tgl_pembagian DESC LIMIT $posisi, $batas";
+                $queryJml = "SELECT * FROM mading INNER JOIN kelas ON mading.id_kelas = kelas.id_kelas WHERE mading.id_kelas= '$kelas' AND mading.tgl_pembagian LIKE '%$pencarian%' ORDER BY mading.tgl_pembagian DESC";
                 $no = $posisi * 1;
             } else if ($pengumuman != "") {
-                $query =  "SELECT * FROM mading INNER JOIN kelas ON mading.id_kelas = kelas.id_kelas WHERE mading.id_kelas= '$kelas' AND mading.jenis_mading LIKE '%$pengumuman%' LIMIT $posisi, $batas";
-                $queryJml = "SELECT * FROM mading INNER JOIN kelas ON mading.id_kelas = kelas.id_kelas WHERE mading.id_kelas= '$kelas' AND mading.jenis_mading LIKE '%$pengumuman%'";
+                $query =  "SELECT * FROM mading INNER JOIN kelas ON mading.id_kelas = kelas.id_kelas WHERE mading.id_kelas= '$kelas' AND mading.jenis_mading LIKE '%$pengumuman%' ORDER BY mading.tgl_pembagian DESC LIMIT $posisi, $batas";
+                $queryJml = "SELECT * FROM mading INNER JOIN kelas ON mading.id_kelas = kelas.id_kelas WHERE mading.id_kelas= '$kelas' AND mading.jenis_mading LIKE '%$pengumuman%' ORDER BY mading.tgl_pembagian DESC";
                 $no = $posisi * 1;
             } else {
-                $query = "SELECT * FROM mading INNER JOIN kelas ON mading.id_kelas = kelas.id_kelas WHERE mading.id_kelas= '$kelas' LIMIT $posisi, $batas";
-                $queryJml = "SELECT * FROM mading INNER JOIN kelas ON mading.id_kelas = kelas.id_kelas WHERE mading.id_kelas = '$kelas'  ";
+                $query = "SELECT * FROM mading INNER JOIN kelas ON mading.id_kelas = kelas.id_kelas WHERE mading.id_kelas= '$kelas' ORDER BY mading.tgl_pembagian DESC LIMIT $posisi, $batas";
+                $queryJml = "SELECT * FROM mading INNER JOIN kelas ON mading.id_kelas = kelas.id_kelas WHERE mading.id_kelas = '$kelas' ORDER BY mading.tgl_pembagian DESC";
                 $no = $posisi * 1;
             }
         } else {
-            $query = "SELECT * FROM mading INNER JOIN kelas ON mading.id_kelas = kelas.id_kelas WHERE mading.id_kelas= '$kelas'  LIMIT $posisi, $batas";
-            $queryJml = "SELECT * FROM mading INNER JOIN kelas ON mading.id_kelas = kelas.id_kelas WHERE mading.id_kelas = '$kelas' ";
+            $query = "SELECT * FROM mading INNER JOIN kelas ON mading.id_kelas = kelas.id_kelas WHERE mading.id_kelas= '$kelas' ORDER BY mading.tgl_pembagian DESC LIMIT $posisi, $batas";
+            $queryJml = "SELECT * FROM mading INNER JOIN kelas ON mading.id_kelas = kelas.id_kelas WHERE mading.id_kelas = '$kelas' ORDER BY mading.tgl_pembagian DESC";
             $no = $posisi * 1;
         }
 

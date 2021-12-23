@@ -13,7 +13,7 @@ $date = $_GET['minggu'];
 $query = mysqli_query($koneksi, "SELECT * FROM akun INNER JOIN kelas ON akun.id_kelas = kelas.id_kelas WHERE akun.id_akun = '$id'");
 $r_data = mysqli_fetch_array($query);
 $nama = $r_data['nama'];
-$kelass = $r_data['nama_kelass'];
+$kelass = $r_data['nama_kelas'];
 
 $query1 = mysqli_query($koneksi, "SELECT * FROM minggu WHERE id_minggu = '$date'");
 $r_tanggal = mysqli_fetch_array($query1);
@@ -41,8 +41,7 @@ $html .= '<body>
             <th>status</th>
         </tr>';
 $nomor = 1;
-$query = "SELECT * FROM transaksi INNER JOIN akun ON transaksi.id_akun = akun.id_akun INNER JOIN kelas On akun.id_kelas = kelas.id_kelas INNER JOIN minggu ON transaksi.id_minggu = minggu.id_minggu  WHERE akun.id_kelas = '$kelas' AND 
-minggu.id_minggu = '$date' AND transaksi.status >= 1  ORDER BY akun.nama ASC";
+$query = "SELECT * FROM transaksi INNER JOIN transaksi_detail ON transaksi.id_transaksi = transaksi_detail.id_transaksi INNER JOIN minggu ON transaksi_detail.id_minggu = minggu.id_minggu INNER JOIN akun ON transaksi.id_akun = akun.id_akun INNER JOIN kelas ON akun.id_kelas = kelas.id_kelas WHERE minggu.id_minggu = $date AND transaksi.id_kelas = '$kelas' ORDER BY akun.nama ASC";
 $q_tampil_transaksi = mysqli_query($koneksi, $query);
 if (mysqli_num_rows($q_tampil_transaksi) > 0) {
     while ($r_tampil_transaksi = mysqli_fetch_array($q_tampil_transaksi)) {
@@ -51,14 +50,10 @@ if (mysqli_num_rows($q_tampil_transaksi) > 0) {
 
 <td>' . $nomor . '</td>
 <td>' . $r_tampil_transaksi['nama'] . '</td>
- <td>' . $r_tampil_transaksi['tanggal_pembayaran'] . '</td>
+ <td>' . $r_tampil_transaksi['tanggal_bayar'] . '</td>
  <td>' . $r_tampil_transaksi['tanggal'] . '</td>
- <td>' . $r_tampil_transaksi['nominal_transaksi'] . '</td>';
-        if ($r_tampil_transaksi['status'] == 1) {
-            $html .= '<td>Belum Bayar</td>';
-        } else  if ($r_tampil_transaksi['status'] == 2) {
-            $html .= '<td>Sudah Bayar</td>';
-        }
+ <td>' . $r_tampil_transaksi['nominal'] . '</td>
+ <td>' . $r_tampil_transaksi['status'] . '</td>';
         $nomor++;
     }
 }

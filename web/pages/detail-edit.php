@@ -1,6 +1,6 @@
 <?php
 $id = $_GET['id'];
-$query = mysqli_query($koneksi, "SELECT * FROM detail_transaksi WHERE id_detail ='$id'");
+$query = mysqli_query($koneksi, "SELECT * FROM detail_pengeluaran WHERE id_detail ='$id'");
 $data = mysqli_fetch_array($query);
 ?>
 <section class="home-section">

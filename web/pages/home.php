@@ -2,9 +2,11 @@
     <div class="home-content">
         <i class='bx bx-menu'></i>
         <h5 class="text">Dashboard</h5>
-        <button class="notif" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-            <i class="fas fa-bell n"></i>
-        </button>
+        <?php if ($level == 1) { ?>
+            <button class="notif" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                <i class="fas fa-bell n"></i>
+            </button>
+        <?php } ?>
         <!-- Scrollable modal -->
         <!-- Modal -->
         <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -15,53 +17,28 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <?php if ($level == 1) {
-                            $result = mysqli_query($koneksi, "SELECT * FROM transaksi INNER JOIN akun ON transaksi.id_akun = akun.id_akun WHERE transaksi.nama_kelas = '$kelas' AND status='2' ORDER BY transaksi.tanggal_pembayaran ASC");
-                            if (mysqli_num_rows($result) > 0) {
-                                while ($data = mysqli_fetch_array($result)) { ?>
-                                    <div class="isi-notif">
-                                        <div class="row">
-                                            <div class="col-md-2">
-                                                <img src="assets/gambar/transfer.png" alt="" width="70px">
-                                            </div>
-                                            <div class="col-md-8">
-                                                <p class="p"><?= $data['nama'] ?> Telah Membayar Kas Dengan Nominal <?= "Rp. " . number_format($data['nominal_transaksi'], 0, ".", ".") ?></p>
-                                            </div>
-                                            <div class="col-md-2">
-                                                <p class="tanggal1"><?= $data['tanggal_pembayaran'] ?></p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                <?php
-                                }
-                            } else {
-                                echo "<p align='center'>Tidak Ada Notification</p>";
-                            }
-                        } else if ($level == 2) {
-                            $result = mysqli_query($koneksi, "SELECT * FROM saldo WHERE id_akun ='$id' ORDER BY tgl_topup ASC");
-                            var_dump($result);
-                            if (mysqli_num_rows($result) > 0) {
-                                while ($data = mysqli_fetch_array($result)) { ?>
-                                    <div class="isi-notif">
-                                        <div class="row">
-                                            <div class="col-md-2">
-                                                <img src="assets/gambar/transfer.png" alt="" width="70px">
-                                            </div>
-                                            <div class="col-md-7">
-                                                <p class="p">Berhasil Tambah Saldo Dengan Nominal <?= "Rp. " . number_format($data['jumlah_saldo'], 0, ".", ".") ?></p>
-                                            </div>
-                                            <div class="col-md-3">
-                                                <p class="tanggal"><?= $data['tgl_topup'] ?></p>
-                                            </div>
-                                        </div>
-                                    </div>
                         <?php
-                                }
-                            } else {
-                                echo "<p align='center'>Tidak Ada Notification</p>";
+                        $result = mysqli_query($koneksi, "SELECT * FROM transaksi INNER JOIN transaksi_detail ON transaksi.id_transaksi = transaksi_detail.id_transaksi INNER JOIN minggu ON minggu.id_minggu = transaksi_detail.id_minggu INNER JOIN akun ON transaksi.id_akun = akun.id_akun WHERE transaksi.id_kelas = '$kelas' AND akun.id_level = 2 ORDER BY transaksi.tanggal_bayar DESC");
+                        if (mysqli_num_rows($result) > 0) {
+                            while ($data = mysqli_fetch_array($result)) { ?>
+                                <div class="isi-notif">
+                                    <div class="row">
+                                        <div class="col-md-2">
+                                            <img src="assets/gambar/transfer.png" alt="" width="70px">
+                                        </div>
+                                        <div class="col-md-8">
+                                            <p class="p"><?= $data['nama'] ?> Telah Membayar Kas Dengan Nominal <?= "Rp. " . number_format($data['nominal'], 0, ".", ".") ?></p>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <p class="tanggal1"><?= $data['tanggal_bayar'] ?></p>
+                                        </div>
+                                    </div>
+                                </div>
+                        <?php
                             }
-                        }
-                        ?>
+                        } else {
+                            echo "<p align='center'>Tidak Ada Notification</p>";
+                        } ?>
                     </div>
                 </div>
             </div>
@@ -84,7 +61,7 @@
                     </div>
                     <div class="text">
                         <p class="judul">Jumlah saldo</p>
-                        <p class="kelas"><?= $row['nama_kelass']; ?></p>
+                        <p class="kelas"><?= $row['nama_kelas']; ?></p>
                         <p class="saldo">Rp. <?= number_format($saldo, 0, ".", ".") ?>;-</p>
                     </div>
                 </div>
@@ -93,7 +70,7 @@
                     </div>
                     <div class="text">
                         <p class="judul">Kelas Saya</p>
-                        <p class="kelas"><?= $row['nama_kelass']; ?></p>
+                        <p class="kelas"><?= $row['nama_kelas']; ?></p>
                         <hr>
                         <center>
                             <a href="navbar.php?p=kelas"><button><i class="fas fa-landmark"></i> Detail kelas</button></a>
@@ -124,9 +101,9 @@
             data: {
                 labels: [
                     <?php
-                    $result = mysqli_query($koneksi, "SELECT * FROM transaksi WHERE nama_kelas='$kelas' GROUP BY tanggal_pembayaran");
+                    $result = mysqli_query($koneksi, "SELECT * FROM transaksi INNER JOIN transaksi_detail ON transaksi.id_transaksi = transaksi_detail.id_transaksi INNER JOIN minggu ON minggu.id_minggu = transaksi_detail.id_minggu WHERE transaksi.id_kelas ='$kelas' GROUP BY minggu.tanggal DESC");
                     while ($row = mysqli_fetch_array($result)) {
-                        $date   =  $row['tanggal_pembayaran']; ?> "<?= $date ?>",
+                        $date   =  $row['tanggal']; ?> "<?= $date ?>",
                     <?php
                     }
                     ?>
@@ -135,7 +112,7 @@
                     label: 'Belum Bayar',
                     data: [
                         <?php
-                        $result = mysqli_query($koneksi, "SELECT *, COUNT( * ) AS total FROM transaksi WHERE nama_kelas='$kelas' AND status ='1' GROUP BY tanggal_pembayaran");
+                        $result = mysqli_query($koneksi, "SELECT *, COUNT( * ) AS total FROM transaksi INNER JOIN transaksi_detail ON transaksi.id_transaksi = transaksi_detail.id_transaksi INNER JOIN minggu ON minggu.id_minggu = transaksi_detail.id_minggu WHERE transaksi.id_kelas ='$kelas' AND transaksi.status ='sudah bayar' GROUP BY minggu.tanggal DESC");
                         if (mysqli_num_rows($result) > 0) {
                             while ($row = mysqli_fetch_array($result)) {
                                 $bayar = $row['total'];
@@ -154,10 +131,32 @@
                     ],
                     borderWidth: 1
                 }, {
+                    label: 'Verifikasi',
+                    data: [
+                        <?php
+                        $result = mysqli_query($koneksi, "SELECT *, COUNT( * ) AS total FROM transaksi INNER JOIN transaksi_detail ON transaksi.id_transaksi = transaksi_detail.id_transaksi INNER JOIN minggu ON minggu.id_minggu = transaksi_detail.id_minggu WHERE transaksi.id_kelas ='$kelas' AND transaksi.status ='veirifikasi' GROUP BY minggu.tanggal DESC");
+                        if (mysqli_num_rows($result) > 0) {
+                            while ($row = mysqli_fetch_array($result)) {
+                                $bayar = $row['total'];
+                        ?>
+                                <?= $bayar ?>,
+                        <?php
+                            }
+                        }
+                        ?>
+                    ],
+                    backgroundColor: [
+                        'rgba(254, 190, 16, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(254, 190, 16, 1)'
+                    ],
+                    borderWidth: 1
+                }, {
                     label: 'Bayar',
                     data: [
                         <?php
-                        $result = mysqli_query($koneksi, "SELECT *, COUNT( * ) AS total FROM transaksi WHERE nama_kelas='$kelas' and status = '2'  GROUP BY tanggal_pembayaran");
+                        $result = mysqli_query($koneksi, "SELECT *, COUNT( * ) AS total FROM transaksi INNER JOIN transaksi_detail ON transaksi.id_transaksi = transaksi_detail.id_transaksi INNER JOIN minggu ON minggu.id_minggu = transaksi_detail.id_minggu WHERE transaksi.id_kelas ='$kelas' AND transaksi.status ='belum bayar' GROUP BY minggu.tanggal DESC");
                         if (mysqli_num_rows($result) > 0) {
                             while ($row = mysqli_fetch_array($result)) {
                                 $bayar = $row['total'];
