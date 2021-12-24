@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="assets/css/landing_page.css">
+    <link rel="stylesheet" href="assets/css/animate.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -34,6 +35,9 @@
     <div class="content1" id="content1">
         <nav class="navbar navbar-expand-lg navbar-light" style="background-color:rgba(244, 244, 244, 0); border:none;">
             <div class="container">
+                <a class="navbar-brand" href="index.php">
+                    <img src="assets/gbr_landing/logobrand.png" alt="">
+                </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -58,60 +62,73 @@
         </nav>
         <div class="row" style="width: 100%;">
             <div class="col-md-6">
-                <p class="p2">
+                <p class="p2 lex" data-lax-preset="spinIn">
                     Financial Recording easily and reliably
                 </p>
                 <p class="p3">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi nisl purus tempus feugiat nulla.
+                    Change the way you manage finances with our revolutionary project management technology
                 </p>
-                <button class="btn2">Get Started</button>
+                <button class="btn2 ">Get Started</button>
             </div>
-            <div class="col-md-6"><img src="assets/gbr_landing/bg91.png" alt="" width="80%"></div>
+            <div class="col-md-6">
+                <div class="gambar" data-tilt>
+                    <img src="assets/gbr_landing/bg91.png" alt="" width="80%">
+                </div>
+            </div>
         </div>
     </div>
     <div class="content2" id="content2">
         <div class="row" style="width: 100%;">
-            <div class="col-lg-6">
-                <img src="assets/gbr_landing/jkl.png" alt="" width="80%">
+            <div class="col-lg-6 ">
+                <img class="gambar lax" data-tilt data-tilt-scale="1.1" data-lax-translate-x="300 0, 500 -100" data-lax-opacity="300 1, 500 0" data-lax-anchor="self" src="assets/gbr_landing/jkl.png" alt="" width="80%">
             </div>
-            <div class="col-lg-6">
-                <p class="p2">
-                    Financial Recording easily and reliably
+            <div class="col-lg-6 ">
+                <p class="p2 lax" data-lax-translate-x="300 0, 500 100" data-lax-opacity="300 1, 500 0" data-lax-anchor="self">
+                    About Us
                 </p>
-                <p class="p3">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi nisl purus tempus feugiat nulla.
+                <p class="p3 lax" data-lax-translate-x="300 0, 500 100" data-lax-opacity="300 1, 500 0" data-lax-anchor="self">
+                    E-Manager can effectively support class administrators in managing class
+                    financial flows with the help of an android application that definitely
+                    makes it easier for users
                 </p>
             </div>
         </div>
     </div>
     <div class="content3" id="content3">
-        <p>Our Features</p>
+        <p class="lax" data-lax-preset="zoomIn">Our Features</p>
         <hr>
         <div class="row" style="width: 100%;">
             <div class="col-sm-4">
-                <div class="card">
-                    <div class="card-body">
-                        <img src="assets/gbr_landing/logo1.png" alt="" width="15%">
-                        <p class="judul">Cash Flow Management</p>
-                        <p class="content">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi nisl purus tempus feugiat nulla.</p>
+                <div class="lax" data-lax-preset="fadeIn">
+                    <div class="card">
+                        <div class="card-body lax" data-lax-preset="zoomIn">
+                            <img src="assets/gbr_landing/logo1.png" alt="" width="15%">
+                            <p class="judul">Digital Recording</p>
+                            <p class="content">Financial recording is done digitally which will certainly make it easier for users to use it.</p>
+                        </div>
                     </div>
                 </div>
             </div>
             <div class="col-sm-4">
-                <div class="card">
-                    <div class="card-body">
-                        <img src="assets/gbr_landing/logo2.png" alt="" width="15%">
-                        <p class="judul">Easy payment</p>
-                        <p class="content">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi nisl purus tempus feugiat nulla.</p>
+                <div class="lax" data-lax-preset="fadeIn">
+                    <div class="card">
+                        <div class="card-body lax" data-lax-preset="zoomIn">
+                            <img src="assets/gbr_landing/logo2.png" alt="" width="15%">
+                            <p class="judul">Easy payment</p>
+                            <p class="content">Payments on the E-Majer android application can be done easily by sending proof of payment transactions.</p>
+                        </div>
                     </div>
                 </div>
             </div>
             <div class="col-sm-4">
-                <div class="card">
-                    <div class="card-body">
-                        <img src="assets/gbr_landing/logo3.png" alt="" width="15%">
-                        <p class="judul">Cash Flow Management</p>
-                        <p class="content">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi nisl purus tempus feugiat nulla.</p>
+                <div class="lax" data-lax-preset="fadeIn">
+                    <div class="card">
+                        <div class="card-body lax" data-lax-preset="zoomIn">
+                            <img src="assets/gbr_landing/logo3.png" alt="" width="15%">
+                            <p class="judul">Cash Flow Management</p>
+                            <p class="content">E-Majer can also make it easier for class administrators to manage class financial flows,
+                                this can be seen through class finance diagrams in the E-Majer application used by class administrators.</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -119,27 +136,63 @@
     </div>
     <div class="content4">
         <div class="row" style="width: 100%;">
-            <div class="col-md-6">
-                <p class="p2">
-                    Financial Recording easily and reliably
+            <div class="col-md-6 ">
+                <p class="p2 lax" data-lax-translate-x="300 0, 500 -100" data-lax-opacity="300 1, 500 0" data-lax-anchor="self">
+                    Choose the best financial management tool for you
                 </p>
-                <p class="p3">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi nisl purus tempus feugiat nulla.
+                <p class="p3 lax" data-lax-translate-x="300 0, 500 -100" data-lax-opacity="300 1, 500 0" data-lax-anchor="self">
+                    "E-majer is the right application used by class administrators in managing class financial flows. Payments are made easily without meeting in person."
                 </p>
             </div>
-            <div class="col-md-6"><img src="assets/gbr_landing/gbr1.png" alt="" width="50%"></div>
+            <div class="col-md-6"><img class="lax" data-lax-translate-x="300 0, 500 100" data-lax-opacity="300 1, 500 0" data-lax-anchor="self" src="assets/gbr_landing/gbr1.png" alt="" width="50%"></div>
         </div>
     </div>
     <div class="content5">
-        <p align="center" class="p1">Start your class financial<br> management</p>
-        <p align="center" class="p2">Lorem ipsum dolor sit amet, consectetur<br> adipiscing elit. Morbi nisl purus.</p>
-        <p align="center"><button align="center" onclick="register()">Sign Up</button></p>
+        <p class="p1" align="center">Start managing your class <br>finances.</p>
+        <p align="center" class="p2">Get started today by using the E-major app.
+            <br>Register yourself first.
+        </p>
+        <p align="center" class=""><button align="center" onclick="register()">Sign Up</button></p>
     </div>
+
+
     <script>
         function register() {
             window.location.href = "register(admin).php";
         }
     </script>
 </body>
+<script src="assets/lax.js"></script>
+<script src="assets/vanilla-tilt.min.js"></script>
+<script src="assets/tille.js"></script>
+<script src="assets/wow.min.js"></script>
+<script src="assets/main.js"></script>
+<script>
+    $(document).ready(function() {
+        // Initiate Custom Cursor
+
+        // Lax Init
+        lax.setup();
+
+        const updateLax = () => {
+            lax.update(window.scrollY);
+            window.requestAnimationFrame(updateLax);
+        }
+
+        window.requestAnimationFrame(updateLax);
+
+        // Update on resize
+        window.addEventListener("resize", function() {
+            lax.updateElements();
+        });
+    });
+</script>
+
+<script>
+    VanillaTilt.init(document.querySelectorAll(".gambar"), {
+        max: 25,
+        speed: 400
+    });
+</script>
 
 </html>
