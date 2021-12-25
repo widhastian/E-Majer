@@ -19,7 +19,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <title>Document</title>
+    <title>Login</title>
 </head>
 
 <body id="login">
@@ -32,7 +32,7 @@
             <input type="password" class="input" id="password" name="password" placeholder="password"><br>
             <p class="forgot"><a href="">Lupa password?</a></p><br>
             <input type="submit" value="Masuk" name="btn-login">
-            <p class="register">Belum punya akun? <a href="register-awal.php">Daftar</a></p>
+            <p class="register">Belum punya akun? <a href="register(admin).php">Daftar</a></p>
         </form>
     </div>
     <script>
