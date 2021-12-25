@@ -28,7 +28,7 @@
         <button class="btn-goggle"><img src="assets/gambar/icon google.png"> Lanjutkan dengan Google</button>
         <p class="p2">Atau</p>
         <form action="login-proses.php" method="POST">
-            <input type="text" class="input" id="nama" name="email" placeholder="Email atau Username"><br>
+            <input type="email" class="input" id="nama" name="email" placeholder="Email"><br>
             <input type="password" class="input" id="password" name="password" placeholder="password"><br>
             <p class="forgot"><a href="">Lupa password?</a></p><br>
             <input type="submit" value="Masuk" name="btn-login">

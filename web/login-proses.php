@@ -26,7 +26,7 @@ if (isset($_POST['btn-login'])) {
                 $_SESSION['id_kelas'] = $kelas;
                 $_SESSION['id_level'] = $level;
                 echo "<script>alert('Anda Berhasil Login');</script>";
-                echo "<meta http-equiv='refresh' content='0; url=navbar.php?p=home'>";
+                echo "<meta http-equiv='refresh' content='0; url=navbar.php?p=home&&judul=Dashboard'>";
             } else {
                 echo "<script>alert('Anda Gagal Login');</script>";
                 echo "<meta http-equiv='refresh' content='0; url=login.php'>";
