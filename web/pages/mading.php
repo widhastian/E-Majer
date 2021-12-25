@@ -132,7 +132,7 @@
                         <div class="col-2">
                             <p style="padding-top: 4%;"><?= $row['tgl_pembagian'] ?></p>
                             <?php if ($level == 1) { ?>
-                                <a href="navbar.php?p=mading-edit&id=<?php echo $row['id_mading']; ?>" style="text-decoration: none; color:white;">
+                                <a href="navbar.php?p=mading-edit&id=<?php echo $row['id_mading']; ?>&judul=Edit Mading" style="text-decoration: none; color:white;">
                                     <div type="button" class="btn btn-primary button"><i class="fas fa-edit" style="margin-bottom: 5px; margin-left:-5px;"></i></div>
                                 </a>
                                 <button type="button" class="btn btn-danger button" onclick="konfirmasi('<?= $row['id_mading'] ?>')"><i class="fas fa-trash-alt" style="margin-bottom: 4px; margin-left:-4px;"></i></button>

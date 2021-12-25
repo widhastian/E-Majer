@@ -1,4 +1,6 @@
-<?php $date = $_GET['minggu']; ?>
+<?php
+$judul = 'Pemebayaran';
+$date = $_GET['minggu']; ?>
 <section class="home-section">
     <div class="home-content">
         <i class='bx bx-menu'></i>
@@ -117,15 +119,98 @@
             $q_tampil_transaksi = mysqli_query($koneksi, $query);
             if (mysqli_num_rows($q_tampil_transaksi) > 0) {
                 while ($r_tampil_transaksi = mysqli_fetch_array($q_tampil_transaksi)) {
-                    if (empty($r_tampil_transaksi['foto']) or ($r_tampil_transaksi['foto'] == '-')) {
+                    if (empty($r_tampil_transaksi['bukti_bayar']) or ($r_tampil_transaksi['bukti_bayar'] == '-')) {
                         $foto = "bayar.png";
                     } else {
-                        $foto = $r_tampil_transaksi['foto'];
+                        $foto = $r_tampil_transaksi['bukti_bayar'];
                     }
             ?>
+
                     <tr>
                         <td><?php echo $nomor; ?></td>
-                        <td><?php echo $r_tampil_transaksi['nama']; ?></td>
+                        <td>
+                            <?php $id = $r_tampil_transaksi['id_transaksi']; ?>
+                            <button type="button" style="border: none; background-color:rgba(0, 22, 220, 0);" data-bs-toggle="modal" data-bs-target="#exampleModal1<?= $id ?>"><?php echo $r_tampil_transaksi['nama']; ?></button>
+
+                            <div class=" modal fade" id="exampleModal1<?= $id ?>" tabindex=" -1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="margin-left:-120px;">
+                                <div class="modal-dialog">
+                                    <div class="modal-content" style="width: 120vh;">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Detail Transaksi</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <?php
+                                        $query = mysqli_query($koneksi, "SELECT * FROM transaksi INNER JOIN transaksi_detail ON transaksi.id_transaksi = transaksi_detail.id_transaksi INNER JOIN minggu ON transaksi_detail.id_minggu = minggu.id_minggu INNER JOIN akun ON transaksi.id_akun = akun.id_akun INNER JOIN kelas ON akun.id_kelas = kelas.id_kelas  WHERE transaksi.id_transaksi =$id");
+                                        $data = mysqli_fetch_array($query);
+                                        if (empty($data['bukti_bayar']) or ($data['bukti_bayar'] == '-')) {
+                                            $foto1 = "bayar.png";
+                                        } else {
+                                            $foto1 = $data['bukti_bayar'];
+                                        }
+                                        ?>
+                                        <div class="modal-body">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <img src="assets/gambar/<?php echo $foto1; ?>" width=310px height=390px class="mt-3">
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <table style="margin-left: -30px; margin-top:20%;">
+                                                        <tr align="left" style="height:40px">
+                                                            <td>ID Akun</td>
+                                                            <td width="20px" style="padding-left: 10px; padding-right:10px;">:</td>
+                                                            <td><?= $data['id_akun'] ?></td>
+                                                        </tr>
+                                                        <tr align="left" style="height:40px">
+                                                            <td>Nama</td>
+                                                            <td width="20px" style="padding-left: 10px; padding-right:10px;">:</td>
+                                                            <td><?= $data['nama'] ?></td>
+                                                        </tr>
+                                                        <tr align="left" style="height:40px">
+                                                            <td>Kelas</td>
+                                                            <td width="20px" style="padding-left: 10px; padding-right:10px;">:</td>
+                                                            <td><?= $data['nama_kelas'] ?></td>
+                                                        </tr>
+                                                        <tr align="left" style="height:40px">
+                                                            <td>Tanggal Pembayaran</td>
+                                                            <td width="20px" style="padding-left: 10px; padding-right:10px;">:</td>
+                                                            <td><?= $data['tanggal_bayar'] ?></td>
+                                                        </tr>
+                                                        <tr align="left" style="height:40px">
+                                                            <td>Tanggal Transaksi</td>
+                                                            <td width="20px" style="padding-left: 10px; padding-right:10px;">:</td>
+                                                            <td><?= $data['tanggal'] ?></td>
+                                                        </tr>
+                                                        <tr align="left" style="height:40px">
+                                                            <td>Nominal Transaksi</td>
+                                                            <td width="20px" style="padding-left: 10px; padding-right:10px;">:</td>
+                                                            <td><?= $data['nominal'] ?></td>
+                                                        </tr>
+                                                        <tr align="left" style="height:40px">
+                                                            <td>Status</td>
+                                                            <td width="20px" style="padding-left: 10px; padding-right:10px;">:</td>
+                                                            <td>
+                                                                <?php
+                                                                if ($data['status'] === 'belum bayar') {
+                                                                    echo "<div class='status' style='background-color: #DB0909;'>Belum Bayar</div>";
+                                                                } else if ($data['status'] === 'veirifikasi') {
+                                                                    echo "<div class='status' style='background-color: #2A07FF;'>Verifikasi</div>";
+                                                                } else if ($data['status'] === 'sudah bayar') {
+                                                                    echo "<div class='status' style='background-color: #1A8708;'>Sudah Bayar</div>";
+                                                                }
+                                                                ?>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-primary" data-bs-dismiss="modal">OK</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
                         <td><?php echo $r_tampil_transaksi['nama_kelas']; ?></td>
                         <td><?php echo $r_tampil_transaksi['tanggal_bayar']; ?></td>
                         <td><?php echo $r_tampil_transaksi['tanggal']; ?></td>
@@ -164,6 +249,7 @@
                             <?php } ?>
                         </td>
                     </tr>
+                    <!-- Modal -->
             <?php $nomor++;
                 }
             } else {

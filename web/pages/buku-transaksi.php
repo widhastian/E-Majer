@@ -153,7 +153,7 @@
                             </table>
                         </div>
                         <div class="col-2">
-                            <a href="navbar.php?p=pembayaran&minggu=<?php echo $row['id_minggu'] ?>">
+                            <a href="navbar.php?p=pembayaran&minggu=<?php echo $row['id_minggu'] ?>&judul=Detail Transaksi">
                                 <div type="button" class="btn btn-primary button" style="width: 85%; margin-bottom:5px; margin-top:3.5vh;">Detail</div>
                             </a>
                             <button type="button" class="btn btn-danger button" onclick="konfirmasi('<?= $row['id_minggu'] ?>')">Hapus</button>

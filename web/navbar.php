@@ -43,13 +43,13 @@ if (mysqli_num_rows($result) > 0) {
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
             <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js"></script>
             <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-            <title>Document</title>
+            <title><?= $_GET['judul'] ?></title>
         </head>
 
         <body>
             <div class="sidebar">
-                <div class="logo-details">
-                    <i class='bx bxl-c-plus-plus'></i>
+                <div class="logo-details" style="margin-top: 4%;">
+                    <img src="assets/gbr_landing/money.png" alt="" width="12%" style="margin-right:10px; margin-left:20%;">
                     <span class="logo_name">E-Majer</span>
                 </div>
                 <div class="profil-box">
@@ -62,7 +62,7 @@ if (mysqli_num_rows($result) > 0) {
                 <ul class="nav-links">
                     <li>
                         <div class="li">
-                            <a href="navbar.php?p=home">
+                            <a href="navbar.php?p=home&judul=Dashboard">
                                 <i class='bx bxs-home'></i>
                                 <span class="link_name">Dashboard</span>
                             </a>
@@ -73,7 +73,7 @@ if (mysqli_num_rows($result) > 0) {
                     </li>
                     <li>
                         <div class="li">
-                            <a href="navbar.php?p=barang">
+                            <a href="navbar.php?p=barang&judul=Data Barang">
                                 <i class='bx bx-clipboard'></i>
                                 <span class="link_name">Data Barang</span>
                             </a>
@@ -84,17 +84,10 @@ if (mysqli_num_rows($result) > 0) {
                     </li>
                     <li>
                         <div class="li">
-                            <?php if ($level == 1) { ?>
-                                <a href="navbar.php?p=buku-transaksi">
-                                    <i class='bx bxs-credit-card'></i>
-                                    <span class="link_name">Transaksi Pembayaran</span>
-                                </a>
-                            <?php } else { ?>
-                                <a href="navbar.php?p=pembayaran-siswa">
-                                    <i class='bx bxs-credit-card'></i>
-                                    <span class="link_name">Transaksi Pembayaran</span>
-                                </a>
-                            <?php } ?>
+                            <a href="navbar.php?p=buku-transaksi&judul=Transaksi Pembayaran">
+                                <i class='bx bxs-credit-card'></i>
+                                <span class="link_name">Transaksi Pembayaran</span>
+                            </a>
                             <ul class="sub-menu blank">
                                 <li><a class="link_name" href="#">Transaksi Pembayaran</a></li>
                             </ul>
@@ -102,17 +95,10 @@ if (mysqli_num_rows($result) > 0) {
                     </li>
                     <li>
                         <div class="li">
-                            <?php if ($level == 1) { ?>
-                                <a href="navbar.php?p=pengeluaran">
-                                    <i class='bx bx-credit-card'></i>
-                                    <span class="link_name">Transaksi Pengeluaran</span>
-                                </a>
-                            <?php } else { ?>
-                                <a href="navbar.php?p=pengeluaran-siswa">
-                                    <i class='bx bx-credit-card'></i>
-                                    <span class="link_name">Riwayat Transaksi</span>
-                                </a>
-                            <?php } ?>
+                            <a href="navbar.php?p=pengeluaran&judul=Transaksi Pengeluaran">
+                                <i class='bx bx-credit-card'></i>
+                                <span class="link_name">Transaksi Pengeluaran</span>
+                            </a>
                             <ul class="sub-menu blank">
                                 <li><a class="link_name" href="#">Transaksi Pengeluaran</a></li>
                             </ul>
@@ -121,7 +107,7 @@ if (mysqli_num_rows($result) > 0) {
 
                     <li>
                         <div class="li">
-                            <a href="navbar.php?p=mading">
+                            <a href="navbar.php?p=mading&judul=Mading">
                                 <i class='bx bx-news'></i>
                                 <span class="link_name">Mading</span>
                             </a>

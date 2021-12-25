@@ -117,7 +117,37 @@
                         <td><?php echo $nomor; ?></td>
                         <td><?php echo $r_tampil_transaksi['nominal_pengeluaran']; ?></td>
                         <td><?php echo $r_tampil_transaksi['tgl_pengeluaran']; ?></td>
-                        <td><img src="<?php echo "assets/gambar/" . $foto ?>" width=70px height=70px></td>
+                        <td>
+                            <?php $id = $r_tampil_transaksi['id_pengeluaran']; ?>
+                            <a data-bs-toggle="modal" data-bs-target="#exampleModal1<?= $id ?>"><img src="<?php echo "assets/gambar/" . $foto ?>" width=70px height=70px></a>
+
+                            <!-- Modal -->
+                            <div class="modal fade" id="exampleModal1<?= $id ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Foto Nota</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <?php
+                                        $query = mysqli_query($koneksi, "SELECT * FROM pengeluaran WHERE id_pengeluaran = '$id'");
+                                        $data = mysqli_fetch_array($query);
+                                        if (empty($data['foto']) or ($data['foto'] == '-')) {
+                                            $foto1 = "bayar.png";
+                                        } else {
+                                            $foto1 = $data['foto'];
+                                        }
+                                        ?>
+                                        <div class="modal-body">
+                                            <img src="assets/gambar/<?php echo $foto1; ?>" width=310px height=390px class="mt-3">
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
                         <?php if ($level == 1) { ?>
                             <td>
                                 <!-- Example single danger button -->
@@ -126,8 +156,8 @@
                                         Action
                                     </button>
                                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                        <li><a class="dropdown-item" href="navbar.php?p=detail&id=<?= $r_tampil_transaksi['id_pengeluaran'] ?>">Detail Transaksi</a></li>
-                                        <li><a class="dropdown-item" href="navbar.php?p=pengeluaran-edit&id=<?= $r_tampil_transaksi['id_pengeluaran'] ?>">Update</a></li>
+                                        <li><a class="dropdown-item" href="navbar.php?p=detail&id=<?= $r_tampil_transaksi['id_pengeluaran'] ?>&judul=Detail Pengeluaran">Detail Pengeluaran</a></li>
+                                        <li><a class="dropdown-item" href="navbar.php?p=pengeluaran-edit&id=<?= $r_tampil_transaksi['id_pengeluaran'] ?>&judul=Edit Pengeluaran">Update</a></li>
                                         <li><button class="dropdown-item" onclick="konfirmasi('<?php echo $r_tampil_transaksi['id_pengeluaran']; ?>')">Delete</button></li>
                                     </ul>
                                 </div>

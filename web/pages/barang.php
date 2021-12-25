@@ -143,7 +143,7 @@
                         <td><img src="<?php echo "assets/gambar/" . $foto ?>" width=70px height=70px></td>
                         <?php if ($level == 1) { ?>
                             <td>
-                                <a href="navbar.php?p=barang-edit&id=<?php echo $r_tampil_barang['id_barang']; ?>" style="text-decoration: none; color:white;">
+                                <a href="navbar.php?p=barang-edit&id=<?php echo $r_tampil_barang['id_barang']; ?>&judul=Edit Barang" style="text-decoration: none; color:white;">
                                     <div type="button" class="btn btn-primary"><i class="fas fa-edit"></i></div>
                                 </a>
                                 <button type="button" class="btn btn-danger" onclick="konfirmasi('<?php echo $r_tampil_barang['id_barang']; ?>')"><i class="fas fa-trash-alt"></i></button>

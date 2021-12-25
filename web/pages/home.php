@@ -2,11 +2,9 @@
     <div class="home-content">
         <i class='bx bx-menu'></i>
         <h5 class="text">Dashboard</h5>
-        <?php if ($level == 1) { ?>
-            <button class="notif" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-                <i class="fas fa-bell n"></i>
-            </button>
-        <?php } ?>
+        <button class="notif" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+            <i class="fas fa-bell n"></i>
+        </button>
         <!-- Scrollable modal -->
         <!-- Modal -->
         <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -44,7 +42,7 @@
             </div>
         </div>
         <div class="setting">
-            <a href="navbar.php?p=profil" style="color: black;"><i class="fas fa-cog s"></i></a>
+            <a href="navbar.php?p=profil&judul=Setting Profil" style="color: black;"><i class="fas fa-cog s"></i></a>
         </div>
     </div>
 
@@ -73,7 +71,7 @@
                         <p class="kelas"><?= $row['nama_kelas']; ?></p>
                         <hr>
                         <center>
-                            <a href="navbar.php?p=kelas"><button><i class="fas fa-landmark"></i> Detail kelas</button></a>
+                            <a href="navbar.php?p=kelas&judul=Detail Kelas"><button><i class="fas fa-landmark"></i> Detail kelas</button></a>
                         </center>
                     </div>
                 </div>

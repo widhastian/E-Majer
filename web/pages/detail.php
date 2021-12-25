@@ -107,7 +107,7 @@
                         <td><?php echo $r_tampil_detail['Nama_barang']; ?></td>
                         <td><?php echo $r_tampil_detail['jumlah']; ?></td>
                         <td>
-                            <a href="navbar.php?p=detail-edit&id=<?php echo $r_tampil_detail['id_detail']; ?>" style="text-decoration: none; color:white;">
+                            <a href="navbar.php?p=detail-edit&id=<?php echo $r_tampil_detail['id_detail']; ?>&judul=Edit Detail Pengeluaran" style="text-decoration: none; color:white;">
                                 <div type="button" class="btn btn-primary"><i class="fas fa-edit"></i></div>
                             </a>
                             <button type="button" class="btn btn-danger" onclick="konfirmasi('<?= $r_tampil_detail['id_detail']; ?>','<?= $r_tampil_detail['id_pengeluaran'] ?>')"><i class="fas fa-trash-alt"></i></button>

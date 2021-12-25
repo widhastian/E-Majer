@@ -7,7 +7,7 @@ $kelas = $_POST['kelas'];
 $tanggal = $_POST['tanggal'];
 $minggu = $_POST['minggu'];
 
-$query = "INSERT INTO transaksi VALUES('$id','$nama','$kelas','$tanggal','veirifikasi','bayar')";
+$query = "INSERT INTO transaksi VALUES('$id','$nama','$kelas','$tanggal','veirifikasi','-')";
 $result = mysqli_query($koneksi, $query);
 $query1 = "INSERT INTO transaksi_detail VALUES('','$id','$minggu')";
 $result1 = mysqli_query($koneksi, $query1);
