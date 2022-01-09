@@ -27,7 +27,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <link href="assets/gbr_landing/title.png" rel='icon'>
     <title>E-Majer</title>
 </head>
 <!-- rgba(244, 244, 244, 0); -->
@@ -88,7 +87,7 @@
                     About Us
                 </p>
                 <p class="p3 lax" data-lax-translate-x="300 0, 500 100" data-lax-opacity="300 1, 500 0" data-lax-anchor="self">
-                    E-Majer can effectively support class administrators in managing class
+                    E-Manager can effectively support class administrators in managing class
                     financial flows with the help of an android application that definitely
                     makes it easier for users
                 </p>
@@ -150,7 +149,7 @@
     </div>
     <div class="content5">
         <p class="p1" align="center">Start managing your class <br>finances.</p>
-        <p align="center" class="p2">Get started today by using the E-majer app.
+        <p align="center" class="p2">Get started today by using the E-major app.
             <br>Register yourself first.
         </p>
         <p align="center" class=""><button align="center" onclick="register()">Sign Up</button></p>

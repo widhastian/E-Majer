@@ -30,7 +30,7 @@ function get_all_mading()
     } else {
         $response = array(
             'status' => 1,
-            'message' => 'Tidak ada mading',
+            'message' => 'Tidak ada Mading',
         );
     }
 

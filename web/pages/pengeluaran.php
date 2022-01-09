@@ -34,7 +34,7 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <form action="proses/pengeluaran-tambah-proses.php" method="POST" class="row g-3 needs-validation" enctype="multipart/form-data" onsubmit="return tambah();">
+                        <form action="proses/pengeluaran-tambah-proses.php?judul=Transaksi Pengeluaran" method="POST" class="row g-3 needs-validation" enctype="multipart/form-data" onsubmit="return tambah();">
                             <div class="col-md-12">
                                 <div class="input-group has-validation">
                                     <span class="input-group-text" id="inputGroupPrepend"><i class='bx bxs-dollar-circle'></i></span>
@@ -119,7 +119,7 @@
                         <td><?php echo $r_tampil_transaksi['tgl_pengeluaran']; ?></td>
                         <td>
                             <?php $id = $r_tampil_transaksi['id_pengeluaran']; ?>
-                            <a data-bs-toggle="modal" data-bs-target="#exampleModal1<?= $id ?>"><img src="<?php echo "assets/gambar/" . $foto ?>" width=70px height=70px></a>
+                            <a data-bs-toggle="modal" data-bs-target="#exampleModal1<?= $id ?>"><img src="<?php echo "images/nota/" . $foto ?>" width=70px height=70px></a>
 
                             <!-- Modal -->
                             <div class="modal fade" id="exampleModal1<?= $id ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -139,7 +139,7 @@
                                         }
                                         ?>
                                         <div class="modal-body">
-                                            <img src="assets/gambar/<?php echo $foto1; ?>" width=310px height=390px class="mt-3">
+                                            <img src="images/nota/<?php echo $foto1; ?>" width=310px height=390px class="mt-3">
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
@@ -183,7 +183,7 @@
                     $jml_hal = ceil($jml / $batas);
                     for ($i = 1; $i <= $jml_hal; $i++) {
                         if ($i != $hal) {
-                            echo "<a href=\"?p=transaksi&hal=$i\">$i</a>";
+                            echo "<a href=\"?p=pengeluaran&judul=Transaksi Pengeluaran&hal=$i\">$i</a>";
                         } else {
                             echo "<a class=\"active\">$i</a>";
                         }
@@ -192,7 +192,7 @@
                 </div>
             <?php
             } else {
-                echo "<meta http-equiv='refresh' content='0; url=navbar.php?p=pengeluaran'>";
+                echo "<meta http-equiv='refresh' content='0; url=navbar.php?p=pengeluaran&judul=Transaksi Pengeluaran'>";
             }
         } else { ?>
             <div style="float: left;">
@@ -206,7 +206,7 @@
                 $jml_hal = ceil($jml / $batas);
                 for ($i = 1; $i <= $jml_hal; $i++) {
                     if ($i != $hal) {
-                        echo "<a href=\"?p=transaksi&hal=$i\">$i</a>";
+                        echo "<a href=\"?p=pengeluaran&judul=Transaksi Pengeluaran&hal=$i\">$i</a>";
                     } else {
                         echo "<a class=\"active\">$i</a>";
                     }
@@ -256,7 +256,7 @@
             cancelButtonColor: '#d33',
         }).then((result) => {
             if (result.value) {
-                window.location.href = "proses/pengeluaran-hapus-proses.php?id=" + id;
+                window.location.href = "proses/pengeluaran-hapus-proses.php?id=" + id + "&judul=Transaksi Pengeluaran";
             }
         });
     }

@@ -36,7 +36,7 @@ $date = $_GET['minggu']; ?>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <form action="proses/pembayaran-tambah-proses.php" method="POST" class="row g-3 needs-validation" enctype="multipart/form-data" onsubmit="return tambah();">
+                        <form action="proses/pembayaran-tambah-proses.php?judul=Detail Transaksi" method="POST" class="row g-3 needs-validation" enctype="multipart/form-data" onsubmit="return tambah();">
                             <div class="col-md-12">
                                 <div class="input-group has-validation">
                                     <span class="input-group-text" id="inputGroupPrepend"><i class='bx bxs-user'></i></span>
@@ -58,6 +58,7 @@ $date = $_GET['minggu']; ?>
                             <div class="col-md-12">
                                 <div class="input-group has-validation">
                                     <input type="hidden" name="kelas" value="<?= $kelas ?>">
+                                    <input type="hidden" name="total" value="<?= $nominal ?>">
                                     <span class="input-group-text" id="inputGroupPrepend"><i class="fas fa-calendar-alt"></i></span>
                                     <input type="date" class="form-control" id="tanggal" n aria-describedby="inputGroupPrepend" name="tanggal">
                                     <input type="hidden" value="<?= $date ?>" name="minggu">
@@ -228,7 +229,10 @@ $date = $_GET['minggu']; ?>
                         <td><img src="<?php echo "assets/gambar/" . $foto ?>" width=70px height=70px></td>
                         <td>
                             <!-- Example single danger button -->
-                            <?php if ($level == 1) { ?>
+                            <?php if ($level == 1) {
+                                $query = mysqli_query($koneksi, "SELECT * FROM transaksi WHERE id_transaksi =$id");
+                                $data = mysqli_fetch_array($query);
+                                $total = $data['total']; ?>
                                 <div class="dropdown">
                                     <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                                         Action
@@ -236,13 +240,13 @@ $date = $_GET['minggu']; ?>
                                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                                         <?php
                                         if ($r_tampil_transaksi['status'] === 'belum bayar' || $r_tampil_transaksi['status'] === 'veirifikasi') { ?>
-                                            <li><button class="dropdown-item" onclick="bayar('<?= $r_tampil_transaksi['id_transaksi']; ?>','<?= $nominal ?>','<?= $kelas ?>','<?= $date ?>')">Bayar</button></li>
-                                            <li><button class="dropdown-item" hidden onclick="belum_bayar('<?= $r_tampil_transaksi['id_transaksi']; ?>','<?= $nominal ?>','<?= $kelas ?>','<?= $date ?>')">Belum Bayar</button></li>
-                                            <li><button class="dropdown-item" onclick="konfirmasi('<?= $r_tampil_transaksi['id_transaksi'] ?>','<?= $date ?>','<?= $r_tampil_transaksi['status'] ?>','<?= $nominal ?>','<?= $kelas ?>')">Hapus</button></li>
+                                            <li><button class="dropdown-item" onclick="bayar('<?= $r_tampil_transaksi['id_transaksi']; ?>','<?= $total ?>','<?= $kelas ?>','<?= $date ?>')">Bayar</button></li>
+                                            <li><button class="dropdown-item" hidden onclick="belum_bayar('<?= $r_tampil_transaksi['id_transaksi']; ?>','<?= $total ?>','<?= $kelas ?>','<?= $date ?>')">Belum Bayar</button></li>
+                                            <li><button class="dropdown-item" onclick="konfirmasi('<?= $r_tampil_transaksi['id_transaksi'] ?>','<?= $date ?>','<?= $r_tampil_transaksi['status'] ?>','<?= $total ?>','<?= $kelas ?>')">Hapus</button></li>
                                         <?php } else if ($r_tampil_transaksi['status'] === 'sudah bayar') { ?>
-                                            <li><button class=" dropdown-item" hidden onclick="bayar('<?= $r_tampil_transaksi['id_transaksi']; ?>','<?= $nominal ?>','<?= $kelas ?>','<?= $date ?>')">Bayar</button></li>
-                                            <li><button class="dropdown-item" onclick="belum_bayar('<?= $r_tampil_transaksi['id_transaksi']; ?>','<?= $nominal ?>','<?= $kelas ?>','<?= $date ?>')">Belum Bayar</button></li>
-                                            <li><button class="dropdown-item" onclick="konfirmasi('<?= $r_tampil_transaksi['id_transaksi']  ?>','<?= $date ?>','<?= $r_tampil_transaksi['status'] ?>','<?= $nominal ?>','<?= $kelas ?>')">Hapus</button></li>
+                                            <li><button class=" dropdown-item" hidden onclick="bayar('<?= $r_tampil_transaksi['id_transaksi']; ?>','<?= $total ?>','<?= $kelas ?>','<?= $date ?>')">Bayar</button></li>
+                                            <li><button class="dropdown-item" onclick="belum_bayar('<?= $r_tampil_transaksi['id_transaksi']; ?>','<?= $total ?>','<?= $kelas ?>','<?= $date ?>')">Belum Bayar</button></li>
+                                            <li><button class="dropdown-item" onclick="konfirmasi('<?= $r_tampil_transaksi['id_transaksi']  ?>','<?= $date ?>','<?= $r_tampil_transaksi['status'] ?>','<?= $total ?>','<?= $kelas ?>')">Hapus</button></li>
                                         <?php } ?>
                                     </ul>
                                 </div>
@@ -269,7 +273,7 @@ $date = $_GET['minggu']; ?>
                     $jml_hal = ceil($jml / $batas);
                     for ($i = 1; $i <= $jml_hal; $i++) {
                         if ($i != $hal) {
-                            echo "<a href=\"?p=pembayaran&minggu=$date&hal=$i\">$i</a>";
+                            echo "<a href=\"?p=pembayaran&judul=Detail Transaksi&minggu=$date&hal=$i\">$i</a>";
                         } else {
                             echo "<a class=\"active\">$i</a>";
                         }
@@ -278,7 +282,7 @@ $date = $_GET['minggu']; ?>
                 </div>
             <?php
             } else {
-                echo "<meta http-equiv='refresh' content='0; url=navbar.php?p=pembayaran&minggu=$date'>";
+                echo "<meta http-equiv='refresh' content='0; url=navbar.php?p=pembayaran&minggu=$date&judul=Detail Transaksi'>";
             }
         } else { ?>
             <div style="float: left;">
@@ -292,7 +296,7 @@ $date = $_GET['minggu']; ?>
                 $jml_hal = ceil($jml / $batas);
                 for ($i = 1; $i <= $jml_hal; $i++) {
                     if ($i != $hal) {
-                        echo "<a href=\"?p=pembayaran&minggu=$date&hal=$i\">$i</a>";
+                        echo "<a href=\"?p=pembayaran&judul=Detail Transaksi&minggu=$date&hal=$i\">$i</a>";
                     } else {
                         echo "<a class=\"active\">$i</a>";
                     }
@@ -327,11 +331,11 @@ $date = $_GET['minggu']; ?>
     }
 
     function bayar(id, nominal, kelas, minggu) {
-        window.location.href = "proses/change-bayar.php?id=" + id + "&nominal=" + nominal + "&minggu=" + minggu + "&id_kelas=" + kelas;
+        window.location.href = "proses/change-bayar.php?id=" + id + "&nominal=" + nominal + "&minggu=" + minggu + "&id_kelas=" + kelas + "&judul=Detail Transaksi";
     }
 
     function belum_bayar(id, nominal, kelas, minggu) {
-        window.location.href = "proses/change-belumbayar.php?id=" + id + "&nominal=" + nominal + "&minggu=" + minggu + "&id_kelas=" + kelas;
+        window.location.href = "proses/change-belumbayar.php?id=" + id + "&nominal=" + nominal + "&minggu=" + minggu + "&id_kelas=" + kelas + "&judul=Detail Transaksi";
     }
 
     function konfirmasi(id, minggu, status, nominal, kelas) {
@@ -346,7 +350,7 @@ $date = $_GET['minggu']; ?>
             cancelButtonColor: '#d33',
         }).then((result) => {
             if (result.value) {
-                window.location.href = "proses/pembayaran-hapus-proses.php?id=" + id + "&minggu=" + minggu + "&status=" + status + "&nominal=" + nominal + "&id_kelas=" + kelas;
+                window.location.href = "proses/pembayaran-hapus-proses.php?id=" + id + "&minggu=" + minggu + "&status=" + status + "&nominal=" + nominal + "&id_kelas=" + kelas + "&judul=Detail Transaksi";
             }
         });
     }

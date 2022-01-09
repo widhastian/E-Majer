@@ -34,7 +34,7 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <form action="proses/barang-tambah-proses.php" method="POST" class="row g-3 needs-validation" enctype="multipart/form-data" onsubmit="return tambah();">
+                        <form action="proses/barang-tambah-proses.php?judul=Data Barang" method="POST" class="row g-3 needs-validation" enctype="multipart/form-data" onsubmit="return tambah();">
                             <div class="col-md-12">
                                 <div class="input-group has-validation">
                                     <input type="hidden" value="<?= $no ?>" name="kelas">
@@ -86,6 +86,7 @@
                 <?php } ?>
             </tr>
             <?php
+            $judul = $_GET['judul'];
             $batas = 4;
             extract($_GET);
             if (empty($hal)) {
@@ -140,7 +141,7 @@
                             }
                             ?>
                         </td>
-                        <td><img src="<?php echo "assets/gambar/" . $foto ?>" width=70px height=70px></td>
+                        <td><img src="<?php echo "images/barang/" . $foto ?>" width=70px height=70px></td>
                         <?php if ($level == 1) { ?>
                             <td>
                                 <a href="navbar.php?p=barang-edit&id=<?php echo $r_tampil_barang['id_barang']; ?>&judul=Edit Barang" style="text-decoration: none; color:white;">
@@ -178,7 +179,7 @@
                 </div>
             <?php
             } else {
-                echo "<meta http-equiv='refresh' content='0; url=navbar.php?p=barang'>";
+                echo "<meta http-equiv='refresh' content='0; url=navbar.php?p=barang&judul=Data Barang'>";
             }
         } else { ?>
             <div style="float: left;">
@@ -192,7 +193,7 @@
                 $jml_hal = ceil($jml / $batas);
                 for ($i = 1; $i <= $jml_hal; $i++) {
                     if ($i != $hal) {
-                        echo "<a href=\"?p=barang&hal=$i\">$i</a>";
+                        echo "<a href=\"?p=barang&judul=Data Barang&hal=$i\">$i</a>";
                     } else {
                         echo "<a class=\"active\">$i</a>";
                     }
@@ -247,7 +248,7 @@
             cancelButtonColor: '#d33',
         }).then((result) => {
             if (result.value) {
-                window.location.href = "proses/barang-hapus-proses.php?id=" + id;
+                window.location.href = "proses/barang-hapus-proses.php?id=" + id + "&judul=Data Barang";
             }
         });
 

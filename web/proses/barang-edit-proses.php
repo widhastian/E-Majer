@@ -1,6 +1,7 @@
 <?php
 require '../koneksi.php';
 
+$judul = $_GET['judul'];
 $id = $_POST['id'];
 $nama_barang = $_POST['nama_barang'];
 $jumlah_barang = $_POST['jumlah_barang'];
@@ -17,7 +18,7 @@ if (isset($_POST['btn-edit'])) {
         $tipe_file = pathinfo($nama_file, PATHINFO_EXTENSION);
         $file_foto = "Barang_" . $id . "." . $tipe_file;
         // Tentukan folder untuk menyimpan file
-        $folder = "../assets/gambar/$file_foto";
+        $folder = "../images/barang/$file_foto";
         @unlink("$folder");
         // Apabila file berhasil di upload
         move_uploaded_file($lokasi_file, "$folder");
@@ -27,5 +28,5 @@ if (isset($_POST['btn-edit'])) {
     $query = "UPDATE barang SET Nama_barang = '$nama_barang', jumlah_barang = '$jumlah_barang', id_kelas = '$kelas', kondisi = '$kondisi', foto = '$file_foto' WHERE id_barang = '$id'";
 
     $result = mysqli_query($koneksi, $query);
-    echo "<meta http-equiv='refresh' content='0; url=../navbar.php?p=barang'>";
+    echo "<meta http-equiv='refresh' content='0; url=../navbar.php?p=barang&judul=$judul'>";
 }
