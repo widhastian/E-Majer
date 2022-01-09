@@ -1,6 +1,7 @@
 <?php
 require '../koneksi.php';
 
+$judul = $_GET['judul'];
 $id = "B-" . mt_rand(1000, 99999);
 $nama_barang = $_POST['nama_barang'];
 $jumlah_barang = $_POST['jumlah_barang'];
@@ -17,7 +18,7 @@ if (isset($_POST['btn-tambah'])) {
         $file_foto = "Barang_" . $id . "." . $tipe_file;
 
         // Tentukan folder untuk menyimpan file
-        $folder = "../assets/gambar/$file_foto";
+        $folder = "../images/barang/$file_foto";
         // Apabila file berhasil di upload
         move_uploaded_file($lokasi_file, "$folder");
     } else
@@ -26,5 +27,5 @@ if (isset($_POST['btn-tambah'])) {
     $query = "INSERT INTO barang VALUES('$id','$nama_barang','$jumlah_barang','$kelas','$kondisi','$file_foto')";
     $result = mysqli_query($koneksi, $query);
 
-    echo "<meta http-equiv='refresh' content='0; url=../navbar.php?p=barang'>";
+    echo "<meta http-equiv='refresh' content='0; url=../navbar.php?p=barang&judul=$judul'>";
 }

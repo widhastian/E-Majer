@@ -1,6 +1,7 @@
 <?php
 require '../koneksi.php';
 
+$judul = $_GET['judul'];
 $id = $_POST['id_akun'];
 $nama = $_POST['nama_lengkap'];
 $username = $_POST['username'];
@@ -11,7 +12,7 @@ $query = "UPDATE akun SET nama='$nama',email='$email',username='$username',passw
 $result = mysqli_query($koneksi, $query);
 
 if ($result) {
-    echo "<meta http-equiv='refresh' content='0; url=../navbar.php?p=profil'>";
+    echo "<meta http-equiv='refresh' content='0; url=../navbar.php?p=profil&judul=$judul'>";
 } else {
-    echo "<meta http-equiv='refresh' content='0; url=../navbar.php?p=profil'>";
+    echo "<meta http-equiv='refresh' content='0; url=../navbar.php?p=profil&judul=$judul'>";
 }

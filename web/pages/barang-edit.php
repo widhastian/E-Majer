@@ -15,7 +15,7 @@ if (empty($data['foto']) or ($data['foto'] == '-')) {
     </div>
     <div class="content">
         <table width="80%">
-            <form action="proses/barang-edit-proses.php" method="POST" class="row g-3 needs-validation" enctype="multipart/form-data" onsubmit="return tambah();">
+            <form action="proses/barang-edit-proses.php?judul=Data Barang" method="POST" class="row g-3 needs-validation" enctype="multipart/form-data" onsubmit="return tambah();">
                 <tr>
                     <td style="width:15%; padding-top:1%"><label for="validationServer01" class="form-label ">Nama Barang</label></td>
                     <td style="width: 3%;">:</td>
@@ -71,7 +71,7 @@ if (empty($data['foto']) or ($data['foto'] == '-')) {
                     <td style="padding-top: 2%;"><label for="validationServer01" class="form-label ">Foto</label></td>
                     <td style="padding-top: 1%;">:</td>
                     <td>
-                        <img src="assets/gambar/<?php echo $foto; ?>" width=70px height=75px class="mt-3">
+                        <img src="images/barang/<?php echo $foto; ?>" width=70px height=75px class="mt-3">
                         <div class="input-group has-validation mt-3">
                             <input type="file" class="form-control" name="foto" id="foto" aria-describedby="inputGroupPrepend">
                             <input type="hidden" name="foto_awal" value="<?php echo $data['foto']; ?>">

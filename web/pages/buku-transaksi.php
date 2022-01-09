@@ -33,7 +33,7 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <form action="proses/buku-transaksi.php" method="POST" class="row g-3 needs-validation" enctype="multipart/form-data" onsubmit="return tambah();">
+                        <form action="proses/buku-transaksi.php?judul=Transaksi Pembayaran" method="POST" class="row g-3 needs-validation" enctype="multipart/form-data" onsubmit="return tambah();">
                             <div class="col-md-12">
                                 <div class="input-group has-validation">
                                     <input type="hidden" name="nominal" value="<?= $nominal; ?>">
@@ -178,7 +178,7 @@
                     $jml_hal = ceil($jml / $batas);
                     for ($i = 1; $i <= $jml_hal; $i++) {
                         if ($i != $hal) {
-                            echo "<a href=\"?p=buku-transaksi&hal=$i\">$i</a>";
+                            echo "<a href=\"?p=buku-transaksi&judul=Transaksi Pembayaran&hal=$i\">$i</a>";
                         } else {
                             echo "<a class=\"active\">$i</a>";
                         }
@@ -187,7 +187,7 @@
                 </div>
             <?php
             } else {
-                echo "<meta http-equiv='refresh' content='0; url=navbar.php?p=buku-transaksi'>";
+                echo "<meta http-equiv='refresh' content='0; url=navbar.php?p=buku-transaksi&judul=Transaksi Pembayaran'>";
             }
         } else { ?>
             <div style="float: left;">
@@ -201,7 +201,7 @@
                 $jml_hal = ceil($jml / $batas);
                 for ($i = 1; $i <= $jml_hal; $i++) {
                     if ($i != $hal) {
-                        echo "<a href=\"?p=buku-transaksi&hal=$i\">$i</a>";
+                        echo "<a href=\"?p=buku-transaksi&judul=Transaksi Pembayaran&hal=$i\">$i</a>";
                     } else {
                         echo "<a class=\"active\">$i</a>";
                     }
@@ -255,7 +255,7 @@
             cancelButtonColor: '#d33',
         }).then((result) => {
             if (result.value) {
-                window.location.href = "proses/buku-transaksi-hapus.php?id=" + id;
+                window.location.href = "proses/buku-transaksi-hapus.php?id=" + id + "judul=Transaksi Pembayaran";
             }
         });
     }

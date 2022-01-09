@@ -1,6 +1,7 @@
 <?php
 require '../koneksi.php';
 
+$judul = $_GET['judul'];
 $nominal = $_POST['nominal'];
 $keterangan = $_POST['keterangan'];
 $tanggal = $_POST['tanggal'];
@@ -10,7 +11,7 @@ $query = "INSERT INTO minggu VALUES('','$nominal','$keterangan','$tanggal','$kel
 $result = mysqli_query($koneksi, $query);
 
 if ($result) {
-    echo "<meta http-equiv='refresh' content='0; url=../navbar.php?p=buku-transaksi'>";
+    echo "<meta http-equiv='refresh' content='0; url=../navbar.php?p=buku-transaksi&judul=$judul'>";
 } else {
-    echo "<meta http-equiv='refresh' content='0; url=../navbar.php?p=buku-transaksi'>";
+    echo "<meta http-equiv='refresh' content='0; url=../navbar.php?p=buku-transaksi&judul=$judul'>";
 }

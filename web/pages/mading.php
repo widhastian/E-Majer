@@ -40,7 +40,7 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <form action="proses/mading-tambah-proses.php" method="POST" class="row g-3 needs-validation" enctype="multipart/form-data" onsubmit="return tambah();">
+                        <form action="proses/mading-tambah-proses.php?judul=Mading" method="POST" class="row g-3 needs-validation" enctype="multipart/form-data" onsubmit="return tambah();">
                             <div class="col-md-12">
                                 <div class="input-group has-validation">
                                     <span class="input-group-text" id="inputGroupPrepend"><i class='bx bxs-pin'></i></span>
@@ -159,7 +159,7 @@
                     $jml_hal = ceil($jml / $batas);
                     for ($i = 1; $i <= $jml_hal; $i++) {
                         if ($i != $hal) {
-                            echo "<a href=\"?p=mading&hal=$i\">$i</a>";
+                            echo "<a href=\"?p=mading&judul=Mading&hal=$i\">$i</a>";
                         } else {
                             echo "<a class=\"active\">$i</a>";
                         }
@@ -168,7 +168,7 @@
                 </div>
             <?php
             } else {
-                echo "<meta http-equiv='refresh' content='0; url=navbar.php?p=mading'>";
+                echo "<meta http-equiv='refresh' content='0; url=navbar.php?p=mading&judul=Mading'>";
             }
         } else { ?>
             <div style="float: left; margin-top:15px;">
@@ -182,7 +182,7 @@
                 $jml_hal = ceil($jml / $batas);
                 for ($i = 1; $i <= $jml_hal; $i++) {
                     if ($i != $hal) {
-                        echo "<a href=\"?p=mading&hal=$i\">$i</a>";
+                        echo "<a href=\"?p=mading&judul=Mading&hal=$i\">$i</a>";
                     } else {
                         echo "<a class=\"active\">$i</a>";
                     }
@@ -232,7 +232,7 @@
             cancelButtonColor: '#d33',
         }).then((result) => {
             if (result.value) {
-                window.location.href = "proses/mading-hapus-proses.php?id=" + id;
+                window.location.href = "proses/mading-hapus-proses.php?id=" + id + "&judul=Mading";
             }
         });
     }

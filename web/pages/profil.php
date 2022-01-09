@@ -13,7 +13,7 @@ $data = mysqli_fetch_array($query);
         </div>
         <div class="content" style="display: block;">
             <table width="80%">
-                <form action="proses/profil-edit-proses.php" method="POST" class="row g-3 needs-validation" enctype="multipart/form-data" onsubmit="return tambah();">
+                <form action="proses/profil-edit-proses.php?judul=Setting Profil" method="POST" class="row g-3 needs-validation" enctype="multipart/form-data" onsubmit="return tambah();">
                     <tr>
                         <td style="padding-top: 2%; width:20%;"><label for="validationServer01" class="form-label ">ID Akun</label></td>
                         <td style="padding-top: 1%; width:3%;">:</td>

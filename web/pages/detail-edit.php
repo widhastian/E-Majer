@@ -10,7 +10,7 @@ $data = mysqli_fetch_array($query);
     </div>
     <div class="content">
         <table width="80%">
-            <form action="proses/detail-edit-proses.php" method="POST" class="row g-3 needs-validation" enctype="multipart/form-data" onsubmit="return tambah();">
+            <form action="proses/detail-edit-proses.php?judul=Detail Pengeluaran" method="POST" class="row g-3 needs-validation" enctype="multipart/form-data" onsubmit="return tambah();">
                 <tr>
                     <td style="width:15%; padding-top:1%"><label for="validationServer01" class="form-label ">Nama Barang</label></td>
                     <td style="width: 3%;">:</td>

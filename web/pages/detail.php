@@ -8,7 +8,6 @@
         <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
             <i class="fas fa-plus"></i> Tambah
         </button>
-        <button type="button" class="btn btn-secondary"><i class="fas fa-print"></i> Print</button>
 
         <!-- Modal -->
         <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -19,7 +18,7 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <form action="proses/detail-tambah-proses.php" method="POST" class="row g-3 needs-validation" enctype="multipart/form-data" onsubmit="return tambah();">
+                        <form action="proses/detail-tambah-proses.php?judul=Detail Pengeluaran" method="POST" class="row g-3 needs-validation" enctype="multipart/form-data" onsubmit="return tambah();">
                             <div class="col-md-12">
                                 <div class="input-group has-validation">
                                     <span class="input-group-text" id="inputGroupPrepend"><i class='bx bx-briefcase-alt'></i></span>
@@ -78,20 +77,19 @@
                 $pencarian = trim(mysqli_real_escape_string($koneksi, $_POST['pencarian']));
                 if ($pencarian != "") {
                     $sql = "SELECT * FROM detail_pengeluaran INNER JOIN pengeluaran ON detail_pengeluaran.id_pengeluaran = pengeluaran.id_pengeluaran JOIN 
-                            barang ON detail_pengeluaran.id_barang = barang.id_barang WHERE Nama_transaksi LIKE '%$pencarian%'";
-
+                            barang ON detail_pengeluaran.id_barang = barang.id_barang WHERE Nama_transaksi LIKE '%$pencarian%' LIMIT $posisi, $batas";
                     $query = $sql;
                     $queryJml = $sql;
                 } else {
                     $query = "SELECT * FROM detail_pengeluaran INNER JOIN pengeluaran ON detail_pengeluaran.id_pengeluaran = pengeluaran.id_pengeluaran JOIN 
-                            barang ON detail_pengeluaran.id_barang = barang.id_barang WHERE pengeluaran.id_pengeluaran  = '$transaksi'";
+                            barang ON detail_pengeluaran.id_barang = barang.id_barang WHERE pengeluaran.id_pengeluaran  = '$transaksi' LIMIT $posisi, $batas";
                     $queryJml = "SELECT * FROM detail_pengeluaran INNER JOIN pengeluaran ON detail_pengeluaran.id_pengeluaran = pengeluaran.id_pengeluaran JOIN 
                     barang ON detail_pengeluaran.id_barang = barang.id_barang WHERE pengeluaran.id_pengeluaran  = '$transaksi'  ";
                     $no = $posisi * 1;
                 }
             } else {
                 $query = "SELECT * FROM detail_pengeluaran INNER JOIN pengeluaran ON detail_pengeluaran.id_pengeluaran = pengeluaran.id_pengeluaran JOIN 
-                            barang ON detail_pengeluaran.id_barang = barang.id_barang WHERE pengeluaran.id_pengeluaran  = '$transaksi'  ";
+                            barang ON detail_pengeluaran.id_barang = barang.id_barang WHERE pengeluaran.id_pengeluaran  = '$transaksi' LIMIT $posisi, $batas";
                 $queryJml = "SELECT * FROM detail_pengeluaran INNER JOIN pengeluaran ON detail_pengeluaran.id_pengeluaran = pengeluaran.id_pengeluaran JOIN 
                             barang ON detail_pengeluaran.id_barang = barang.id_barang WHERE pengeluaran.id_pengeluaran  = '$transaksi' ";
                 $no = $posisi * 1;
@@ -135,16 +133,16 @@
                 ?>
             </div>
             <div class="pagination">
-                <!-- <?php
-                        $jml_hal = ceil($jml / $batas);
-                        for ($i = 1; $i <= $jml_hal; $i++) {
-                            if ($i != $hal) {
-                                echo "<a href=\"?p=transaksi&hal=$i\">$i</a>";
-                            } else {
-                                echo "<a class=\"active\">$i</a>";
-                            }
-                        }
-                        ?> -->
+                <?php
+                $jml_hal = ceil($jml / $batas);
+                for ($i = 1; $i <= $jml_hal; $i++) {
+                    if ($i != $hal) {
+                        echo "<a href=\"?p=detail&id=$transaksi&judul=Detail Pengeluaran&hal=$i\">$i</a>";
+                    } else {
+                        echo "<a class=\"active\">$i</a>";
+                    }
+                }
+                ?>
             </div>
         <?php
         }
@@ -185,7 +183,7 @@
             cancelButtonColor: '#d33',
         }).then((result) => {
             if (result.value) {
-                window.location.href = "proses/detail-hapus-proses.php?id=" + id + "&transaksi=" + transaksi;
+                window.location.href = "proses/detail-hapus-proses.php?id=" + id + "&transaksi=" + transaksi + "&judul=Detail Pengeluaran";
             }
         });
     }

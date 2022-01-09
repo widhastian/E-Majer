@@ -5,9 +5,9 @@ $connection = null;
 try {
     //Config
     $host = "localhost";
-    $username = "root";
-    $password = "";
-    $dbname = "emajer3";
+    $username = "u1694897_b_reg_4";
+    $password = "jtipolije";
+    $dbname = "u1694897_b_reg_4_db";
 
     //Connect
     $database = "mysql:dbname=$dbname;host=$host";
