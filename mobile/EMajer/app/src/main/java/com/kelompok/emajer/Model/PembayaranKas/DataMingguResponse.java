@@ -32,4 +32,3 @@ public class DataMingguResponse {
         this.data = data;
     }
 }
-
