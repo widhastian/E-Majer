@@ -17,9 +17,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.kelompok.emajer.API.APIRequestRiwayatTransaksi;
 import com.kelompok.emajer.API.APIUtils;
+import com.kelompok.emajer.Activity.Transaksi.RiwayatTransaksi.PaymentActivity;
 import com.kelompok.emajer.Model.RiwayatTransaksi.RiwayatAll;
 import com.kelompok.emajer.Model.RiwayatTransaksi.RiwayatDetail;
-import com.kelompok.emajer.Activity.Transaksi.RiwayatTransaksi.PaymentActivity;
 import com.kelompok.emajer.R;
 
 import java.text.DateFormat;
@@ -100,8 +100,8 @@ public class RiwayatTransaksiAdapter extends RecyclerView.Adapter<RiwayatTransak
                 @Override
                 public void onClick(View v) {
                     Intent i = new Intent(context, PaymentActivity.class);
-                    i.putExtra("id_transaksi", riwayatAll.get(position).getId_transaksi());
-                    i.putExtra("total", riwayatAll.get(position).getTotal());
+                    i.putExtra("id_transaksi", String.valueOf(riwayatAll.get(position).getId_transaksi()));
+                    i.putExtra("total", formatRupiah(Double.parseDouble(riwayatAll.get(position).getTotal().toString())));
                     context.startActivity(i);
                 }
             });

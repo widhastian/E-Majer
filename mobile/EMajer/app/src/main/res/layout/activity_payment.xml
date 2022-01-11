@@ -10,7 +10,7 @@
         android:id="@+id/constraintLayout29"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:background="@color/white"
+        android:background="#FEBE10"
         android:elevation="2dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -32,6 +32,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Upload Bukti"
+            android:fontFamily="@font/poppins"
+            android:textStyle="bold"
             android:textColor="@color/black"
             android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -71,6 +73,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="25dp"
                     android:text="Silahkan melakukan pembayaran"
+                    android:fontFamily="@font/poppins"
                     android:textColor="@color/black"
                     app:layout_constraintStart_toStartOf="@+id/textView22"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -82,7 +85,8 @@
                     android:layout_marginStart="20dp"
                     android:layout_marginEnd="20dp"
                     android:layout_marginBottom="25dp"
-                    android:text="ke BANK MANDIRI 137-889900-753 AN. Fathor Rahman"
+                    android:text="Silahkan Upload Bukti Pembayaran"
+                    android:fontFamily="@font/poppins"
                     android:textColor="@color/black"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -93,6 +97,7 @@
                     android:id="@+id/pay_tvtotal"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins"
                     android:text="Rp 234500"
                     app:layout_constraintStart_toStartOf="@+id/textView21"
                     app:layout_constraintTop_toBottomOf="@+id/textView21" />
@@ -106,7 +111,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/constraintLayout14"
-                tools:srcCompat="@tools:sample/avatars" />
+                tools:srcCompat="@drawable/bukti_bayar" />
 
             <Button
                 android:id="@+id/pay_btnpilihimg"
@@ -114,6 +119,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:backgroundTint="@color/colorPrimary"
+                android:fontFamily="@font/poppins"
                 android:text="Pilih Gambar"
                 app:layout_constraintEnd_toEndOf="@+id/pay_image"
                 app:layout_constraintStart_toStartOf="@+id/pay_image"
@@ -125,6 +131,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="50dp"
+                android:fontFamily="@font/poppins"
                 android:text="Upload gambar"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@+id/pay_btnpilihimg"

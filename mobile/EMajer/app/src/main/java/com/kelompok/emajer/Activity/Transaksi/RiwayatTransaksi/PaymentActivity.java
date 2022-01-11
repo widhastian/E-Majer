@@ -1,11 +1,15 @@
 package com.kelompok.emajer.Activity.Transaksi.RiwayatTransaksi;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
+import android.Manifest;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
-import android.database.Cursor;
-import android.graphics.BitmapFactory;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -14,14 +18,18 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-import java.io.File;
-import java.text.NumberFormat;
-import java.util.Locale;
-import com.kelompok.emajer.API.APIRequestOrders;
+
+import com.kelompok.emajer.API.APIRequestRiwayatTransaksi;
 import com.kelompok.emajer.API.APIUtils;
-//import com.pina.emajer_v2.Activity.Auth.Preferences;
-import com.kelompok.emajer.Model.RiwayatTransaksi.OrdersResponse;
+import com.kelompok.emajer.API.RetrofitClient;
+import com.kelompok.emajer.Activity.Transaksi.RiwayatTransaksi.riwayatTransaksi;
+import com.kelompok.emajer.Model.RiwayatTransaksi.RiwayatResponse;
+import com.kelompok.emajer.Model.RiwayatTransaksi.Upload_gambar;
+import com.kelompok.emajer.Model.barang.DataBarangResponse;
 import com.kelompok.emajer.R;
+import com.squareup.picasso.Picasso;
+
+import java.io.File;
 
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
@@ -29,126 +37,135 @@ import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-
-//import java.util.UUID;
+import retrofit2.Retrofit;
 
 public class PaymentActivity extends AppCompatActivity {
 
-    private APIRequestOrders apiRequestOrders;
-    private Integer id_order, id_user, total;
-    private TextView payTotal;
-    private ImageView payImage, payBtnBack;
-    private Button payBtnPilih, payBtnUpload;
-    private Integer IMG_REQUEST = 21;
-    private String token;
-    private String part_image;
-    private String code ="1";
+    private String id_transaksi,total,selectedImage;
+    TextView Ptotal;
+    ImageView image2, btnBack;
+    private CharSequence[] options= {"Camera","Gallery","Cancel"};
+    Button pilih, upload;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_payment);
 
-//        String code = Preferences.getLoginToken(getBaseContext());
-        token = "Bearer "+code;
-        apiRequestOrders = APIUtils.getReqOrders();
+        Intent terima = getIntent();
+        id_transaksi = terima.getStringExtra("id_transaksi");
+        total = terima.getStringExtra("total");
 
-        id_order = getIntent().getIntExtra("id_order", 0);
-        id_user = getIntent().getIntExtra("id_user", 0);
-        total = getIntent().getIntExtra("total", 0);
+        Ptotal = findViewById(R.id.pay_tvtotal);
+        image2 = findViewById(R.id.pay_image);
+        pilih = findViewById(R.id.pay_btnpilihimg);
+        upload = findViewById(R.id.pay_btnuploadimg);
+        btnBack = findViewById(R.id.pay_btnback);
 
-        payBtnBack = findViewById(R.id.pay_btnback);
-        payTotal = findViewById(R.id.pay_tvtotal);
-        payBtnPilih = findViewById(R.id.pay_btnpilihimg);
-        payBtnUpload = findViewById(R.id.pay_btnuploadimg);
-        payImage = findViewById(R.id.pay_image);
+        Ptotal.setText(total);
 
-        payTotal.setText(formatRupiah(Double.parseDouble(total.toString())));
+        requirePermission();
 
-        payBtnPilih.setOnClickListener(new View.OnClickListener() {
+        pilih.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent();
-                intent.setType("image/*");
-                intent.setAction(Intent.ACTION_GET_CONTENT);
-                startActivityForResult(intent, IMG_REQUEST);
+                AlertDialog.Builder builder = new AlertDialog.Builder(PaymentActivity.this);
+                builder.setTitle("Select Image");
+                builder.setItems(options, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        if(options[which].equals("Camera")){
+                            Intent takePic = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                            startActivityForResult(takePic, 0);
+                        }
+                        else if(options[which].equals("Gallery")) {
+                            Intent gallery = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                            startActivityForResult(gallery, 1);
+                        }
+                        else {
+                            dialog.dismiss();
+                        }
+                    }
+                });
+                builder.show();
             }
         });
 
-        payBtnUpload.setOnClickListener(new View.OnClickListener() {
+        upload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                uploadImage();
+                uploadFileToServer();
             }
         });
 
-        payBtnBack.setOnClickListener(new View.OnClickListener() {
+        btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View view) {
                 onBackPressed();
             }
         });
-
     }
 
-    public void uploadImage(){
-        File imagefile = new File(part_image);
-        RequestBody reqBody = RequestBody.create(MediaType.parse("multipart/form-file"),imagefile);
-        MultipartBody.Part partImage = MultipartBody.Part.createFormData("image", imagefile.getName(),reqBody);
+    public void requirePermission(){
+        ActivityCompat.requestPermissions(PaymentActivity.this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
+    }
 
-        Call<OrdersResponse> call = apiRequestOrders.postOrderPayment(id_order,token,partImage);
-        call.enqueue(new Callback<OrdersResponse>() {
-            @Override
-            public void onResponse(Call<OrdersResponse> call, Response<OrdersResponse> response) {
-                if (response.isSuccessful()){
-                    String msg = response.body().getMessage();
-                    Toast.makeText(getBaseContext(), "pesan: "+msg, Toast.LENGTH_LONG).show();
-                }else {
-                    Toast.makeText(getBaseContext(), "Gagal input payment", Toast.LENGTH_LONG).show();
-                }
-            }
+    public Uri getImageUri(Context context, Bitmap bitmap){
+        String path = MediaStore.Images.Media.insertImage(context.getContentResolver(), bitmap, "myImage","");
 
-            @Override
-            public void onFailure(Call<OrdersResponse> call, Throwable t) {
-                Toast.makeText(getBaseContext(), "Gagal konek server: "+t.getLocalizedMessage(), Toast.LENGTH_LONG).show();
-            }
-        });
-
+        return Uri.parse(path);
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (requestCode == IMG_REQUEST && resultCode == RESULT_OK && data != null)
-        {
-            if(requestCode == IMG_REQUEST)
-            {
-                Uri dataimage = data.getData();
-                String[] imageprojection = {MediaStore.Images.Media.DATA};
-                Cursor cursor = getContentResolver().query(dataimage,imageprojection,null,null,null);
+        if(resultCode !=RESULT_CANCELED){
 
-                if (cursor != null)
-                {
-                    cursor.moveToFirst();
-                    int indexImage = cursor.getColumnIndex(imageprojection[0]);
-                    part_image = cursor.getString(indexImage);
-
-                    if(part_image != null)
-                    {
-                        File image = new File(part_image);
-                        payImage.setImageBitmap(BitmapFactory.decodeFile(image.getAbsolutePath()));
+            switch (requestCode){
+                case 0:
+                    if(resultCode == RESULT_OK && data !=null){
+                        Bitmap image = (Bitmap) data.getExtras().get("data");
+                        selectedImage = APIUtils.getPath(PaymentActivity.this, getImageUri(PaymentActivity.this,image));
+                        image2.setImageBitmap(image);
                     }
-                }
+                    break;
+                case 1:
+                    if(resultCode == RESULT_OK && data !=null){
+
+                        Uri image = data.getData();
+                        selectedImage = APIUtils.getPath(PaymentActivity.this,image);
+                        Picasso.get().load(image).into(image2);
+                    }
             }
+
         }
-
     }
 
-    private String formatRupiah(Double number){
-        Locale localeID = new Locale("in", "ID");
-        NumberFormat formatRupiah = NumberFormat.getCurrencyInstance(localeID);
-        return formatRupiah.format(number);
-    }
+    public void uploadFileToServer(){
 
+        File file = new File(Uri.parse(selectedImage).getPath());
+        RequestBody requestBody = RequestBody.create(MediaType.parse("multipart/form-data"),file);
+        MultipartBody.Part filePart = MultipartBody.Part.createFormData("sendimage",file.getName(),requestBody);
+        MultipartBody.Part ID = MultipartBody.Part.createFormData("id", id_transaksi);
+
+        APIRequestRiwayatTransaksi service = RetrofitClient.getClient1().create(APIRequestRiwayatTransaksi.class);
+
+        Call<Upload_gambar> call = service.uploadImage(ID, filePart);
+        call.enqueue(new Callback<Upload_gambar>()  {
+            @Override
+            public void onResponse(Call<Upload_gambar> call, Response<Upload_gambar> response) {
+                Upload_gambar fileModel = response.body();
+                startActivity(new Intent(PaymentActivity.this, riwayatTransaksi.class));
+                //Toast.makeText(Payment2.this, fileModel.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onFailure(Call<Upload_gambar> call, Throwable t) {
+                Toast.makeText(PaymentActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
+    }
 }
