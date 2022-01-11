@@ -41,3 +41,4 @@ public class Transaksi {
         this.transaksiDetail = transaksiDetail;
     }
 }
+
