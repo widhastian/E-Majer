@@ -102,7 +102,8 @@ public class ProfilActivity extends AppCompatActivity {
         Intent wa = new Intent(Intent.ACTION_SEND);
         wa.setType("text/plain");
         wa.putExtra(Intent.EXTRA_TEXT,
-                "Anda dapat mendownload Aplikasi Android");
+                "Anda dapat mendownload Aplikasi E-Majer pada URL berikut ini = " +
+                        "http://ws-tif.com/e-majer/apk/E-Majer.apk");
         wa.setPackage("com.whatsapp");
         startActivity(wa);
 
