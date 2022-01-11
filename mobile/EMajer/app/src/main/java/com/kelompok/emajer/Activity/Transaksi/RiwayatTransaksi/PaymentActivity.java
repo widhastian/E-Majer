@@ -101,7 +101,7 @@ public class PaymentActivity extends AppCompatActivity {
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                onBackPressed();
+                startActivity(new Intent(PaymentActivity.this, riwayatTransaksi.class));
             }
         });
     }

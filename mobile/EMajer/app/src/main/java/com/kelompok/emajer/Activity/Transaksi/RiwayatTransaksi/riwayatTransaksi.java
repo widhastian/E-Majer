@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -12,6 +13,7 @@ import android.widget.Toast;
 import com.kelompok.emajer.API.APIRequestRiwayatTransaksi;
 import com.kelompok.emajer.API.APIUtils;
 import com.kelompok.emajer.Adapter.RiwayatTransaksiAdapter;
+import com.kelompok.emajer.HomeActivity;
 import com.kelompok.emajer.Model.RiwayatTransaksi.RiwayatAll;
 import com.kelompok.emajer.Model.RiwayatTransaksi.RiwayatResponse;
 import com.kelompok.emajer.R;
@@ -54,7 +56,7 @@ public class riwayatTransaksi extends AppCompatActivity {
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                onBackPressed();
+                startActivity(new Intent(riwayatTransaksi.this, HomeActivity.class));
             }
         });
     }
